@@ -1,0 +1,274 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[bookmarks=true,linkcolor=blue!80!black,
+ citecolor=blue!80!black,urlcolor=blue!80!black,colorlinks=true,
+ breaklinks=true, bookmarksopen=true]{hyperref}
+\usepackage{authblk}  % support footnote style author/affiliation
+\usepackage{paralist}  % very flexible & customisable lists (eg. enumerate/itemize, etc.), including inparaenum
+\usepackage{tikz}
+% \usetikzlibrary{mindmap}
+% % \usetikzlibrary{shapes.geometric,shapes.symbols,shapes.misc,shapes.callouts}
+% \usetikzlibrary{fadings}
+% \usetikzlibrary{fit}
+% \usetikzlibrary{backgrounds}
+% \tikzset{
+% persp/.style={very thick,text centered},
+% edge/.style={very thick,text centered},
+% individual/.style={draw,ellipse},
+% formulation/.style={draw,cloud,aspect=2.2, cloud puff arc=100,cloud puffs=13},
+% society/.style={draw,starburst,starburst points=13},
+% analysis/.style={draw=violet!50,top color=white,bottom color=violet!10},
+% descriptive/.style={draw=black!50,top color=white,bottom color=black!10},
+% statistical/.style={draw=brown!50,top color=white,bottom color=brown!10},
+% axiomatic/.style={draw=green!50,top color=white,bottom color=green!10}
+% }
+% \colorlet{shaping}{red!75!black}
+% \newcommand{\micro}{\tikz\node[persp,individual,statistical,text width=12mm,font=\scriptsize] {Empirics \\ \textbf{Microlevel}};}
+% \newcommand{\macro}{\tikz\node[persp,society,statistical,text width=12mm,font=\scriptsize,inner sep=1pt,starburst point height=0.2cm] {Empirics \\ \textbf{Macrolevel}};}
+% \newcommand{\model}{\tikz\node[persp,formulation,descriptive,text width=12mm,font=\scriptsize,aspect=1.5,inner sep=0pt] {{\normalsize\textbf{Model}} \\ {\scriptsize Procedure} };}
+% \newcommand{\normative}{\tikz\node[persp,formulation,axiomatic,text width=12mm,font=\scriptsize,inner sep=1pt] {\textbf{Normative} \\ Intention};}
+% \newcommand{\rational}{\tikz\node[persp,individual,analysis,text width=12mm,font=\scriptsize] {\textbf{Rationality} \\ Strategy};}
+% \newcommand{\system}{\tikz\node[persp,society,analysis,text width=12mm,font=\scriptsize,inner sep=1pt,starburst point height=0.2cm] {\textbf{Systems} \\ Dynamics};}
+
+
+\usepackage[backend=biber, hyperref=auto]{biblatex}
+\addbibresource{../literature/lit_lorenz.bib}
+\ExecuteBibliographyOptions{isbn=false,doi=false,url=false,firstinits=false,maxbibnames=99,maxcitenames=99,eprint=false}
+\newbibmacro{string+doi+url}[1]{%
+  \iffieldundef{doi}{\iffieldundef{url}{\iffieldequalstr{eprinttype}{jstor}{\href{http://www.jstor.org/stable/\thefield{eprint}}{#1}}{\iffieldequalstr{eprinttype}{arxiv}{\href{http://www.arxiv.org/abs/\thefield{eprint}}{#1}}{\iffieldequalstr{eprinttype}{googlebooks}{\href{http://books.google.com/books?id=\thefield{eprint}}{#1}}{#1}}}}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+\DeclareFieldFormat{title}{\usebibmacro{string+doi+url}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi+url}{#1}}
+\DeclareFieldFormat[incollection]{title}{\usebibmacro{string+doi+url}{#1}}
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \setunit*{\addthinspace}% NEW (optional); there's also \addnbthinspace
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat{pages}{#1}
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+
+\author{Jan Lorenz}
+\affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+{\Huge \bf Systemic Effects in \\ Models of \\
+Opinion Dynamics, \\ Societal Growth, \\ and the Wisdom of the Crowds \\}
+\vspace{7mm}
+\Large
+Cumulative Habilitation Work \\ 
+for obtaining the academic degree \\[2mm] 
+\emph{Dr. habil.} and the \emph{Venia Legendi} \\[2mm]
+in partial fulfillment of the requirements of the \\ 
+\emph{Policies for Habilitation Candidates} of \\[2mm]
+\emph{Jacobs University Bremen} \\[2mm]
+in the area of expertise \\[2mm]
+\emph{Modeling, Analysis and Experimental Research in the Social and Economic Sciences} \\[2mm]
+submitted by \\[4mm]
+\emph{\bf Dr. rer. nat. Jan Lorenz}\\[4mm]
+Bremen, \texttt{[hopefully mid 2016]}\\[7mm]
+\end{center}
+\end{titlepage}
+
+Suggestions for members of the Habilitation Committee \\ 
+(3-6 Jacobs faculty members and the dean): \\
+\begin{compactenum}
+\item Prof. Dr. Klaus Boehnke
+\item Prof. Dr. Adalbert F. X. Wilhelm
+\item Prof. Dr. Dierk Schleicher 
+\item Prof. Dr. Adele Diederich
+\item Prof. Dr. Hildegard Meyer-Ortmanns
+\item Dr. rer. nat. habil. Jens Christian Claussen
+\item Prof. Dr. Arvid Kappas (as dean)
+\end{compactenum}
+\mbox{}\\[1mm]
+
+\noindent Suggestions for external referees \\
+(3 referees needed, 2 must be external): \\
+\begin{compactenum}
+\item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
+\item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
+\item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
+\end{compactenum}
+
+\newpage
+
+% Of democracy we expect that it enables us to utilize collective intelligence such that our collective decisions build and enhance social welfare, and such that we accept their distributive and normative consequences. Collective decisions are produced by voting procedures which aggregate individual opinions such as preferences or judgments. On the other hand, individual opinions form and change by discussion and deliberation. Voting procedures and deliberation both create obstacles to achieve their democratic aims. 
+% 
+
+\chapter*{The Cummulative Habilitation Work}
+
+The habilitation work is this document accompanyied by a collection of twelve independent scientific works. Nine works have been published (or are accepted) in peer-reviewed journals spanning the disciplines political science, sociology, psychology, economics, and physics as well as two multi-disciplinary journals.   
+One publication appeared in an edited scientific year book of action and decision theory (in German), and two as contributions to conferences in political science and social simulation. 
+
+The habilitation includes the following publications ordered by type of publication
+\paragraph{Journal Publications}
+\begin{compactenum}
+\item \fullcite{Lorenz2009Universalityofmovie}
+\item \fullcite{Shin.Lorenz2010TippingDiffusivityin}
+\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
+\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
+\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
+\item \fullcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\
+Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
+\item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
+\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\end{compactenum}
+
+\paragraph{Book Chapters and Conference Papers}
+\begin{compactenum}
+\setcounter{enumi}{9}
+\item \fullcite{Lorenz2012ZurMethodeder}
+\item \fullcite{Metz.Lorenz2013Becomewhoyou}
+\item \fullcite{Lorenz2015ModelingEvolutionIdeological}
+\end{compactenum}
+
+\bigskip 
+This document is to present them as a coherent contributions to a deeper understanding of 
+\begin{inparaenum}[(i)]
+\item opinion dynamics, 
+\item societal growth, and 
+\item the wisdom of the crowd.
+\end{inparaenum}
+The particular contributions and some common findings and conclusions are outlined in the following three chapters.  
+
+
+\chapter{Introduction}
+
+
+Systemic effects are system-wide effects which are triggered through local interaction. That means, systemic effects in a system can not be boiled down to a simple aggregates of properties of its units but only through more complex ones. Thus, the understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
+Entanglement and understanding of the relation of microscopic rules of action and interaction to macroscopic effects is the core contributions of this habilitation. 
+
+Studying potential systemic effects scientifically requires a well-suited description the units of a system and their action and interaction. For socio-economic systems that means the developement of an agent-based model with humans (or firms and organisations) as the agents. Agents' actions and interactions are defined based on behavioral rules which might be derived from utility functions which agents want to maximize or satisfice. 
+
+\textbf{Agent-based models} can be studied with computer simulations. How this generally works and how it is used to tackle political science research questions is the subject of one part of the habilitation work:
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    \begin{flushleft}
+       \fullcite{Lorenz2012ZurMethodeder}
+    \end{flushleft}
+  \end{minipage}
+\end{center}
+
+Before simulation comes modeling. Every model maps the real world in a simplifying way, therefore in some sense every model is ``wrong'' in capturing reality. The art of modeling lies in the selection of relevant aspects in relevant relations such that the phenomena of interest are captured most appropriate by few variables and parameters. 
+
+
+Data-driven modeling is 
+
+DATA DRIVEN Stylized facst
+
+EXPERIMENTS
+
+CONCEPTS / IMPLICATIONS
+
+\chapter{Opinion Dynamics}
+
+When individuals form opinions on certain topics these are based on the one hand on individual knowledge, experience, and emotions, but on the other hand opinions are to a large extent intrinsically social. We adjust our existing opinions once we hear the opinions of others because we learn new information, or because we want to conform with or confront the opinions of others. Sometimes we consciously might form our opinions entirely based on how it best fits in the opinion landscapes of our social environment. 
+
+How individuals adjust their opinions with respect to messages from other is has been studied in \emph{social psychology} for a long time in the field of \emph{attitude research}. The focus of the \emph{opinion dynamics} goes beyond the individual and studies the effect which the repeated simultaneous opinion formation and opinion adjustments transforms and shapes the entire opinion landscape. Thus, opinion dynamics extends the view from individual processes to systemic processes triggered by them. 
+
+\begin{compactenum}
+  \item \fullcite{Lorenz2009Universalityofmovie}
+  \item \fullcite{Shin.Lorenz2010TippingDiffusivityin}
+  \item \fullcite{Metz.Lorenz2013Becomewhoyou}
+  \item \fullcite{Lorenz2015ModelingEvolutionIdeological}
+  \item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
+\end{compactenum}
+
+
+% Preference aggregation and how it generalizes to continuous problems. 
+% Games of collective decision. 
+% Solutions and further problems leading to the importance of opinion dynamics to potentially solve problems. 
+% The importance of opinion landscapes for collective decisions. 
+% Game of opinion formation
+% 
+% Preferences:
+% Social Individual Epistemic
+% Agreement vs. Individualisation
+% Information Exchange
+% 
+% Consensus
+% Clustering
+% Drifting
+
+
+
+\chapter{Societal Growth}
+
+ Growth is fundamental to all living organisms. 
+ Societal growth is the growth of a societal value such as total wealth or total productivity in a society composed of individuals which act mostly independent but also interrelated through interaction or societal institutions. 
+ Macroeconomic growth can be defined analogously. % TODO Check 
+ Whether a society or economy experiences growth or decline, can critically depend on this coupling of individual growth process. 
+ The three   two contributions to systemic effects on societal growth. 
+
+ First, \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology optimizes productivity growth in an economy of independent firms. 
+ The second contribution \parencite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}, shows how redistribution of wealth through proportional taxation and redistribution as equal lump-sums can spur growth. 
+ 
+ 
+ Such growth through redistribution is triggered when individual growth is proportional but rates of growth (or decline when below one) are partly stochastic. 
+ The latter results poses the question if and how a democratic society is capable of realizing the desired levels of redistribution. 
+ An experimental study \parencite{Lorenz.Paetzel.ea2016JustDontCall} on framing of collective decisions about redistribution shows an important aspect of the answer to this question There is a higher propensity to high tax rates  
+\section{Growth of productivity through innovation and imitation}
+
+\parencite{Koenig.Lorenz.ea2016Innovationvs.Imitation}, shows how innovation together with imitation of technology maximized productivity growth in an economy of firms. The model is able to reproduce stylized facts of the evolution of empirical distributions of 
+
+The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
+
+\begin{figure}[tbp]
+ \centering%
+ \includegraphics[width=0.6\textwidth]{figs/fig_ODE_tfpFR}
+ \includegraphics[width=0.3\textwidth]{figs/fig_nu_fitFR}
+ \caption{The left panel shows the total factor productivity (TFP) distribution of French firms over the years from $1995$ to $2003$ (vertical axes in logarithmic scale). The right-hand panel shows the mean and standard
+deviation of the $\log $-TFP, with fitted regression lines.}
+\label{fig:ODEFR}
+\end{figure}
+
+
+ The publications on societal growth are
+\begin{compactenum}
+\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
+\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
+\end{compactenum}
+% 
+% \section{Growth through innovation and imitation}
+% 
+% \section{Growth through redistribution under multiplicative stochastic growth}
+
+
+\chapter{The Wisdom of Crowds}
+
+ The wisdom of the crowd phenomenon is when the aggregate of several individual estimates is close to the true value although most estimates are far away from it. 
+ 
+ The seminal example is the weight-judging competition at the West England Fat Stock and Poultry Exhibition for which \textcite{Galton1907Voxpopuli} collected 787 card on which competitors estimated the weight of the meat of an ox (after it has been slaughtered and dressed). The 5\%-percentile and the 95\%-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. Galton concludes: \textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
+ 
+ An even more drastic example is a follow up of this 
+ 
+ Which aggregate (e.g. arithmetic mean, the geometric mean, the median, or the mode) is used is sometimes crucial for the existence of the phenomenon. 
+ 
+ The wisdom of the crowd effect appears surprising to most individuals although it is a natural statistical property when we see individual estimates as independent random draws a distribution which is unbiased in the sense that the aggregate measure coincides with the correct value. 
+
+
+ Systematic error
+
+\begin{compactenum}
+\item \fullcite{Lorenz.Rauhut.ea2011HowSocialInfluence}
+\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} \\
+Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
+\end{compactenum}
+
+% \printbibliography
+
+\end{document}
