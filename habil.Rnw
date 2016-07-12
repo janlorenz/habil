@@ -260,6 +260,7 @@ Our theoretical question is under what conditions on the amount and ratio of int
 
 The opinion dynamics is modeled as an information accumulation system \parencite{Shin2009Informationaccumulationsystem}. Information means here opinion towards one of the two opposites -1 or +1. In each iteration agents on the one hand forget part of that information (which would imply convergence to the ground state zero) and accumulate on the other hand opinions of the agents within their network which includes many agents from the same community and few agents from the other community. As all agents  
 The global variables of the model are: the 
+kjkasd
 
 
 \includegraphics[width=\textwidth]{figs/fig2_3_blog-crop.pdf}
