@@ -2,6 +2,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter}{15pt}{\Huge\bfseries}
 \usepackage[bookmarks=true,linkcolor=blue!80!black,
  citecolor=blue!80!black,urlcolor=blue!80!black,colorlinks=true,
  breaklinks=true, bookmarksopen=true]{hyperref}
@@ -33,8 +39,16 @@
 % \newcommand{\system}{\tikz\node[persp,society,analysis,text width=12mm,font=\scriptsize,inner sep=1pt,starburst point height=0.2cm] {\textbf{Systems} \\ Dynamics};}
 
 
-\usepackage[backend=biber, hyperref=auto]{biblatex}
+\usepackage[backend=biber, hyperref=auto, style=alphabetic, citestyle=authoryear ]{biblatex}
 \addbibresource{../literature/lit_lorenz.bib}
+\defbibenvironment{bibliography}
+  {\list{}
+  {\setlength{\leftmargin}{\bibhang}%
+  \setlength{\itemindent}{-\leftmargin}%
+  \setlength{\itemsep}{\bibitemsep}%
+  \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
 \ExecuteBibliographyOptions{isbn=false,doi=false,url=false,firstinits=false,maxbibnames=99,maxcitenames=99,eprint=false}
 \newbibmacro{string+doi+url}[1]{%
   \iffieldundef{doi}{\iffieldundef{url}{\iffieldequalstr{eprinttype}{jstor}{\href{http://www.jstor.org/stable/\thefield{eprint}}{#1}}{\iffieldequalstr{eprinttype}{arxiv}{\href{http://www.arxiv.org/abs/\thefield{eprint}}{#1}}{\iffieldequalstr{eprinttype}{googlebooks}{\href{http://books.google.com/books?id=\thefield{eprint}}{#1}}{#1}}}}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
@@ -82,13 +96,13 @@ Bremen, \texttt{[hopefully mid 2016]}\\[7mm]
 Suggestions for members of the Habilitation Committee \\ 
 (3-6 Jacobs faculty members and the dean): \\
 \begin{compactenum}
+\item Prof. Dr. Arvid Kappas (as dean)
 \item Prof. Dr. Klaus Boehnke
 \item Prof. Dr. Adalbert F. X. Wilhelm
 \item Prof. Dr. Dierk Schleicher 
 \item Prof. Dr. Adele Diederich
 \item Prof. Dr. Hildegard Meyer-Ortmanns
 \item Dr. rer. nat. habil. Jens Christian Claussen
-\item Prof. Dr. Arvid Kappas (as dean)
 \end{compactenum}
 \mbox{}\\[1mm]
 
@@ -105,7 +119,7 @@ Suggestions for members of the Habilitation Committee \\
 % Of democracy we expect that it enables us to utilize collective intelligence such that our collective decisions build and enhance social welfare, and such that we accept their distributive and normative consequences. Collective decisions are produced by voting procedures which aggregate individual opinions such as preferences or judgments. On the other hand, individual opinions form and change by discussion and deliberation. Voting procedures and deliberation both create obstacles to achieve their democratic aims. 
 % 
 
-\chapter*{The Cummulative Habilitation Work}
+\chapter*{The Cummulative \\ Habilitation Work}
 
 The habilitation work is this document accompanyied by a collection of twelve independent scientific works. Nine works have been published (or are accepted) in peer-reviewed journals spanning the disciplines political science, sociology, psychology, economics, and physics as well as two multi-disciplinary journals.   
 One publication appeared in an edited scientific year book of action and decision theory (in German), and two as contributions to conferences in political science and social simulation. 
@@ -115,14 +129,14 @@ The habilitation includes the following publications ordered by type of publicat
 \begin{compactenum}
 \item \fullcite{Lorenz2009Universalityofmovie}
 \item \fullcite{Shin.Lorenz2010TippingDiffusivityin}
-\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
-\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
-\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
+\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
 \item \fullcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\
 Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
-\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
+\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
+\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
 \item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
 \item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
 \end{compactenum}
 
 \paragraph{Book Chapters and Conference Papers}
@@ -140,52 +154,115 @@ This document is to present them as a coherent contributions to a deeper underst
 \item societal growth, and 
 \item the wisdom of the crowd.
 \end{inparaenum}
-The particular contributions and some common findings and conclusions are outlined in the following three chapters.  
+The particular contributions and some common findings and conclusions are outlined in the following four chapters.
+Each chapter starts with the a list of the parts of the habilitation work which it describes. These lists are ordered in order of appearance in the text as well as in the habilitation work itself. 
 
 
-\chapter{Introduction}
+\chapter{Introduction}\mbox{}\\[-1cm]
+{\footnotesize
+Parts of the Habilitation Work: \\[-1.5mm]
+\begin{compactenum}
+\item \fullcite{Lorenz2012ZurMethodeder}
+\item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
+\end{compactenum}
+}
+\vspace{1.3cm}
 
-
-Systemic effects are system-wide effects which are triggered through local interaction. That means, systemic effects in a system can not be boiled down to a simple aggregates of properties of its units but only through more complex ones. Thus, the understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
+\textbf{Systemic effects} are system-wide effects which are triggered through local interaction. 
+That means, systemic effects in a system can not be boiled down to a simple aggregate of properties of its units but only through more complex ones. 
+Thus, the understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
 Entanglement and understanding of the relation of microscopic rules of action and interaction to macroscopic effects is the core contributions of this habilitation. 
 
-Studying potential systemic effects scientifically requires a well-suited description the units of a system and their action and interaction. For socio-economic systems that means the developement of an agent-based model with humans (or firms and organisations) as the agents. Agents' actions and interactions are defined based on behavioral rules which might be derived from utility functions which agents want to maximize or satisfice. 
+Studying potential systemic effects scientifically requires a well-suited description of the units of a system and their action and interaction. 
+For socio-economic systems that means the developement of an agent-based model with humans (or human driven organisations) as the agents. 
+\textbf{Agent-based models} are studied with computer simulations. 
+How this generally works and how it is used to tackle political science research questions is the subject of \textcite{Lorenz2012ZurMethodeder} as part of habilitation work.
+% \begin{center}
+%   \begin{minipage}{0.9\textwidth}
+%     \begin{flushleft}
+%        \fullcite{Lorenz2012ZurMethodeder}
+%     \end{flushleft}
+%   \end{minipage}
+% \end{center}
+The basis of simulation is modeling, which is to maps the real world in a simplifying way to a formal framework and ultimately into an algorithm to be implemented for simulation. 
 
-\textbf{Agent-based models} can be studied with computer simulations. How this generally works and how it is used to tackle political science research questions is the subject of one part of the habilitation work:
+The actions and interactions of agents in the model are defined through usually simple behavioral rules which are modeled simple and not based on utility maximization. 
+Agents apply these rules repeatedly in response to the societal context they observe. 
+In that regard, agent-based models are typically not seen as rational choice models where the theoretical goal is to study equilibria of actions and not their evolution. 
+Some agent-based modelers therefore emphasize to study systems dynamics where systems are ``out of equilibrium''.  
+Although the dynamical perspective is indeed lacking to a large extent in rational choice theories like game theory, the oppositional view of agent-based and rational choice models is mostly overstated.
+First, every dynamical model has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic.  
+Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can be identical. This is further discussed in \textcite{Lorenz2012ZurMethodeder}.
 
-\begin{center}
-  \begin{minipage}{0.9\textwidth}
-    \begin{flushleft}
-       \fullcite{Lorenz2012ZurMethodeder}
-    \end{flushleft}
-  \end{minipage}
-\end{center}
+\textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} -- another part of the habilitation work -- is one example which shows how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response to minimize opinion dissonance in their social context. 
 
-Before simulation comes modeling. Every model maps the real world in a simplifying way, therefore in some sense every model is ``wrong'' in capturing reality. The art of modeling lies in the selection of relevant aspects in relevant relations such that the phenomena of interest are captured most appropriate by few variables and parameters. 
+Agent-based modeling in this habilitation work is either theory-driven (two works) or partly data-driven (four works).
+\textbf{Theory-driven modeling} starts with a plausible setup of variables, parameters and microscopic behavioral rules. 
+\textbf{Data-driven modeling} starts with the exploration of observation data by the extraction of interesting non-trivial stylized macroscopic facts. 
+Either way, the idea is to explain macroscopic phenomana through human interaction on the microscopic level. 
+Models always simplify the real-world therefore in some sense every model is wrong in capturing reality. The art of modeling lies in the selection of relevant aspects in relevant relations such that the phenomena of interest are captured most appropriate by few variables and few parameters. 
+
+Lastly, systemic effects in social systems are also explored through controlled \textbf{group experiments} (four works). 
+
+Table \ref{tab:habilworks} outlines the main focus of the further ten parts of the habilitation work grouped by the topics of the following three chapters. 
+
+\begin{table}[htb]
+\footnotesize
+\def\tabularxcolumn#1{m{#1}}
+\begin{tabularx}{\textwidth}{@{}l *3{>{\raggedright\arraybackslash}X}@{}} \toprule
+                 & \multicolumn{3}{c}{Systemic effects studied} \\ \cmidrule{2-4}
+Topic            & theoretically & based on data & experimentally \\ \midrule\midrule
+                 &               & \textcite{Lorenz2009Universalityofmovie} &  \\   
+Opinion Dynamics & \textcite{Shin.Lorenz2010TippingDiffusivityin} & \textcite{Metz.Lorenz2013Becomewhoyou} & \\
+                 &               & \textcite{Lorenz2015ModelingEvolutionIdeological} & \\  \midrule
+Societal Growth  & \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth} & \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} & \textcite{Lorenz.Paetzel.ea2016JustDontCall} \\ \midrule
+                 & & & \textcite{Rauhut.Lorenz2010wisdomofcrowds} \\
+Wisdom of Crowds & & & \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\ 
+                 & & & \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} \\ \bottomrule
+\end{tabularx}
+\caption{Ten habilitation works of Chapters 2, 3, and 4 grouped by methodological focus and topic.} \label{tab:habilworks}
+\end{table}
 
 
-Data-driven modeling is 
-
-DATA DRIVEN Stylized facst
-
-EXPERIMENTS
-
-CONCEPTS / IMPLICATIONS
 
 \chapter{Opinion Dynamics}
-
-When individuals form opinions on certain topics these are based on the one hand on individual knowledge, experience, and emotions, but on the other hand opinions are to a large extent intrinsically social. We adjust our existing opinions once we hear the opinions of others because we learn new information, or because we want to conform with or confront the opinions of others. Sometimes we consciously might form our opinions entirely based on how it best fits in the opinion landscapes of our social environment. 
-
-How individuals adjust their opinions with respect to messages from other is has been studied in \emph{social psychology} for a long time in the field of \emph{attitude research}. The focus of the \emph{opinion dynamics} goes beyond the individual and studies the effect which the repeated simultaneous opinion formation and opinion adjustments transforms and shapes the entire opinion landscape. Thus, opinion dynamics extends the view from individual processes to systemic processes triggered by them. 
-
+\mbox{}\\[-1cm]
+{\footnotesize
+Parts of the Habilitation Work: \\[-1.5mm]
 \begin{compactenum}
-  \item \fullcite{Lorenz2009Universalityofmovie}
-  \item \fullcite{Shin.Lorenz2010TippingDiffusivityin}
-  \item \fullcite{Metz.Lorenz2013Becomewhoyou}
-  \item \fullcite{Lorenz2015ModelingEvolutionIdeological}
-  \item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
+\setcounter{enumi}{2}
+\item \fullcite{Shin.Lorenz2010TippingDiffusivityin}
+\item \fullcite{Metz.Lorenz2013Becomewhoyou}
+\item \fullcite{Lorenz2009Universalityofmovie}
+\item \fullcite{Lorenz2015ModelingEvolutionIdeological}
 \end{compactenum}
+}
+\vspace{1.3cm}
 
+When individuals form opinions on certain topics these are based on the one hand on individual knowledge, experience, and emotions, but on the other hand opinions are to a large extent intrinsically social. 
+We as citizens, employees, consumers, and the like adjust our existing opinions once we hear the opinions of others because we learn new information, or because we want to conform with or confront the opinions of others. Sometimes we consciously might form our opinions entirely based on how it best fits in the opinion landscapes of our social environment (see \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}). 
+
+How individuals adjust their opinions with respect to messages from others has been studied in \emph{social psychology} in the field of \emph{attitude research}.
+The focus of the \emph{opinion dynamics} goes beyond the individual and studies the effect which the repeated simultaneous opinion formation and opinion adjustments transforms and shapes the entire opinion landscape. Thus, opinion dynamics extends the view from individual processes to systemic processes triggered by them. 
+
+
+\bigskip
+
+My dissertation \textcite{Lorenz2007RepeatedAveragingand} and some parts and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights,Lorenz2010Heterogeneousboundsof} have extensively studied the \textbf{bounded confidence model of continuous opinion dynamics} through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works, where no further relations to real-world opinion dynamics then the plausibility of its assumptions were made. A first attempt to apply the model basically ``as is'' to explain real-world opinion landscape in the political/ideological realm will be discussed at the end of this section as part of the habilitation work. 
+
+The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
+We model a situation of two equally sized communities of agents which both are characterized by a typical number of intra-community links between agents of the same community and a typically lower number of inter-community links of members from different communities. 
+All agents hold an opinion which is a real numbers between -1 and +1. It might represent a tendency towards different opposing cultures, while zero represents no opinion on these. 
+Our point of analysis is to further assume that initially all agents of each community hold the same opinion, while 
+one community has a negative one, and the other a positive one. 
+``Negative'' and ``positive'' are used in the mathematical sense here, abstracting from any value judgment. 
+Our theoretical question is under what conditions on the amount and ratio of intra- vs. inter-community links can these communities maintain their different opinions. 
+
+The opinion dynamics is modeled as an information accumulation system \parencite{Shin2009Informationaccumulationsystem}. Information means here opinion towards one of the two opposites -1 or +1. In each iteration agents on the one hand forget part of that information (which would imply convergence to the ground state zero) and accumulate on the other hand opinions of the agents within their network which includes many agents from the same community and few agents from the other community. As all agents  
+The global variables of the model are: the 
+
+
+\includegraphics[width=\textwidth]{figs/fig2_3_blog-crop.pdf}
 
 % Preference aggregation and how it generalizes to continuous problems. 
 % Games of collective decision. 
@@ -205,8 +282,19 @@ How individuals adjust their opinions with respect to messages from other is has
 
 
 \chapter{Societal Growth}
+\mbox{}\\[-1cm]
+{\footnotesize
+Parts of the Habilitation Work: \\[-1.5mm]
+\begin{compactenum}
+\setcounter{enumi}{6}
+\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
+\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
+\end{compactenum}
+}
+\vspace{1.3cm}
 
- Growth is fundamental to all living organisms. 
+Growth is fundamental to all living organisms. 
  Societal growth is the growth of a societal value such as total wealth or total productivity in a society composed of individuals which act mostly independent but also interrelated through interaction or societal institutions. 
  Macroeconomic growth can be defined analogously. % TODO Check 
  Whether a society or economy experiences growth or decline, can critically depend on this coupling of individual growth process. 
@@ -248,6 +336,19 @@ deviation of the $\log $-TFP, with fitted regression lines.}
 
 
 \chapter{The Wisdom of Crowds}
+\mbox{}\\[-1cm]
+{\footnotesize
+Parts of the Habilitation Work: \\[-1.5mm]
+\begin{compactenum}
+\setcounter{enumi}{9}
+\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
+\item \fullcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\
+Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
+\end{compactenum}
+}
+\vspace{1.3cm}
+
 
  The wisdom of the crowd phenomenon is when the aggregate of several individual estimates is close to the true value although most estimates are far away from it. 
  
@@ -269,6 +370,8 @@ Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 \item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
 \end{compactenum}
 
-% \printbibliography
+
+
+\printbibliography
 
 \end{document}
