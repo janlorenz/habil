@@ -11,7 +11,7 @@
 \usepackage[bookmarks=true,linkcolor=blue!80!black,
  citecolor=blue!80!black,urlcolor=blue!80!black,colorlinks=true,
  breaklinks=true, bookmarksopen=true]{hyperref}
-\usepackage{authblk}  % support footnote style author/affiliation
+% \usepackage{authblk}  % support footnote style author/affiliation
 \usepackage{paralist}  % very flexible & customisable lists (eg. enumerate/itemize, etc.), including inparaenum
 \usepackage{tikz}
 % \usetikzlibrary{mindmap}
@@ -68,7 +68,7 @@
   \printtext{\bibstring{in}\intitlepunct}}}
 
 \author{Jan Lorenz}
-\affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
+% \affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
 \date{\today}
 
 \begin{document}
@@ -86,33 +86,33 @@ in partial fulfillment of the requirements of the \\
 \emph{Policies for Habilitation Candidates} of \\[2mm]
 \emph{Jacobs University Bremen} \\[2mm]
 in the area of expertise \\[2mm]
-\emph{Modeling, Analysis and Experimental Research in the Social and Economic Sciences} \\[2mm]
+\emph{Computational and Experimental Social Sciences} \\[2mm]
 submitted by \\[4mm]
 \emph{\bf Dr. rer. nat. Jan Lorenz}\\[4mm]
-Bremen, \texttt{[hopefully mid 2016]}\\[7mm]
+Bremen, \today \\[7mm]
 \end{center}
 \end{titlepage}
 
-Suggestions for members of the Habilitation Committee \\ 
-(3-6 Jacobs faculty members and the dean): \\
-\begin{compactenum}
-\item Prof. Dr. Arvid Kappas (as dean)
-\item Prof. Dr. Klaus Boehnke
-\item Prof. Dr. Adalbert F. X. Wilhelm
-\item Prof. Dr. Dierk Schleicher 
-\item Prof. Dr. Adele Diederich
-\item Prof. Dr. Hildegard Meyer-Ortmanns
-\item Dr. rer. nat. habil. Jens Christian Claussen
-\end{compactenum}
-\mbox{}\\[1mm]
-
-\noindent Suggestions for external referees \\
-(3 referees needed, 2 must be external): \\
-\begin{compactenum}
-\item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
-\item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
-\item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
-\end{compactenum}
+% Suggestions for members of the Habilitation Committee \\ 
+% (3-6 Jacobs faculty members and the dean): \\
+% \begin{compactenum}
+% \item Prof. Dr. Arvid Kappas (as dean)
+% \item Prof. Dr. Klaus Boehnke
+% \item Prof. Dr. Adalbert F. X. Wilhelm
+% \item Prof. Dr. Dierk Schleicher 
+% \item Prof. Dr. Adele Diederich
+% \item Prof. Dr. Hildegard Meyer-Ortmanns
+% \item Dr. rer. nat. habil. Jens Christian Claussen
+% \end{compactenum}
+% \mbox{}\\[1mm]
+% 
+% \noindent Suggestions for external referees \\
+% (3 referees needed, 2 must be external): \\
+% \begin{compactenum}
+% \item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
+% \item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
+% \item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
+% \end{compactenum}
 
 \newpage
 
@@ -260,7 +260,6 @@ Our theoretical question is under what conditions on the amount and ratio of int
 
 The opinion dynamics is modeled as an information accumulation system \parencite{Shin2009Informationaccumulationsystem}. Information means here opinion towards one of the two opposites -1 or +1. In each iteration agents on the one hand forget part of that information (which would imply convergence to the ground state zero) and accumulate on the other hand opinions of the agents within their network which includes many agents from the same community and few agents from the other community. As all agents  
 The global variables of the model are: the 
-kjkasd
 
 
 \includegraphics[width=\textwidth]{figs/fig2_3_blog-crop.pdf}
