@@ -11,7 +11,7 @@
 \usepackage[bookmarks=true,linkcolor=blue!80!black,
  citecolor=blue!80!black,urlcolor=blue!80!black,colorlinks=true,
  breaklinks=true, bookmarksopen=true]{hyperref}
-% \usepackage{authblk}  % support footnote style author/affiliation
+\usepackage{authblk}  % support footnote style author/affiliation
 \usepackage{paralist}  % very flexible & customisable lists (eg. enumerate/itemize, etc.), including inparaenum
 \usepackage{tikz}
 % \usetikzlibrary{mindmap}
@@ -68,7 +68,7 @@
   \printtext{\bibstring{in}\intitlepunct}}}
 
 \author{Jan Lorenz}
-% \affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
+\affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
 \date{\today}
 
 \begin{document}
@@ -86,33 +86,33 @@ in partial fulfillment of the requirements of the \\
 \emph{Policies for Habilitation Candidates} of \\[2mm]
 \emph{Jacobs University Bremen} \\[2mm]
 in the area of expertise \\[2mm]
-\emph{Computational and Experimental Social Sciences} \\[2mm]
+\emph{Modeling, Analysis and Experimental Research in the Social and Economic Sciences} \\[2mm]
 submitted by \\[4mm]
 \emph{\bf Dr. rer. nat. Jan Lorenz}\\[4mm]
-Bremen, \today \\[7mm]
+Bremen, \texttt{[hopefully mid 2016]}\\[7mm]
 \end{center}
 \end{titlepage}
 
-% Suggestions for members of the Habilitation Committee \\ 
-% (3-6 Jacobs faculty members and the dean): \\
-% \begin{compactenum}
-% \item Prof. Dr. Arvid Kappas (as dean)
-% \item Prof. Dr. Klaus Boehnke
-% \item Prof. Dr. Adalbert F. X. Wilhelm
-% \item Prof. Dr. Dierk Schleicher 
-% \item Prof. Dr. Adele Diederich
-% \item Prof. Dr. Hildegard Meyer-Ortmanns
-% \item Dr. rer. nat. habil. Jens Christian Claussen
-% \end{compactenum}
-% \mbox{}\\[1mm]
-% 
-% \noindent Suggestions for external referees \\
-% (3 referees needed, 2 must be external): \\
-% \begin{compactenum}
-% \item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
-% \item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
-% \item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
-% \end{compactenum}
+Suggestions for members of the Habilitation Committee \\ 
+(3-6 Jacobs faculty members and the dean): \\
+\begin{compactenum}
+\item Prof. Dr. Arvid Kappas (as dean)
+\item Prof. Dr. Klaus Boehnke
+\item Prof. Dr. Adalbert F. X. Wilhelm
+\item Prof. Dr. Dierk Schleicher 
+\item Prof. Dr. Adele Diederich
+\item Prof. Dr. Hildegard Meyer-Ortmanns
+\item Dr. rer. nat. habil. Jens Christian Claussen
+\end{compactenum}
+\mbox{}\\[1mm]
+
+\noindent Suggestions for external referees \\
+(3 referees needed, 2 must be external): \\
+\begin{compactenum}
+\item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
+\item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
+\item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
+\end{compactenum}
 
 \newpage
 
@@ -245,41 +245,66 @@ We as citizens, employees, consumers, and the like adjust our existing opinions 
 How individuals adjust their opinions with respect to messages from others has been studied in \emph{social psychology} in the field of \emph{attitude research}.
 The focus of the \emph{opinion dynamics} goes beyond the individual and studies the effect which the repeated simultaneous opinion formation and opinion adjustments transforms and shapes the entire opinion landscape. Thus, opinion dynamics extends the view from individual processes to systemic processes triggered by them. 
 
+My dissertation \textcite{Lorenz2007RepeatedAveragingand} and some parts and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights,Lorenz2010Heterogeneousboundsof} have extensively studied the \textbf{bounded confidence model of continuous opinion dynamics} through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works, where no further relations to real-world opinion dynamics then the plausibility of its assumptions were made. A first attempt to apply the model basically ``as is'' to explain real-world opinion landscape in the political/ideological realm will be discussed at the end of this section as part of the habilitation work. 
 
 \bigskip
 
-My dissertation \textcite{Lorenz2007RepeatedAveragingand} and some parts and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights,Lorenz2010Heterogeneousboundsof} have extensively studied the \textbf{bounded confidence model of continuous opinion dynamics} through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works, where no further relations to real-world opinion dynamics then the plausibility of its assumptions were made. A first attempt to apply the model basically ``as is'' to explain real-world opinion landscape in the political/ideological realm will be discussed at the end of this section as part of the habilitation work. 
-
-The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
+\paragraph{Tipping diffusivity and why more links can lead to less consensus.} The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
 We model a situation of two equally sized communities of agents which both are characterized by a typical number of intra-community links between agents of the same community and a typically lower number of inter-community links of members from different communities. 
-All agents hold an opinion which is a real numbers between -1 and +1. It might represent a tendency towards different opposing cultures, while zero represents no opinion on these. 
+All agents hold an opinion which is a real numbers between -1 and +1. It might represent a tendency towards different opposing cultures, while zero represents no opinion on this. 
 Our point of analysis is to further assume that initially all agents of each community hold the same opinion, while 
 one community has a negative one, and the other a positive one. 
 ``Negative'' and ``positive'' are used in the mathematical sense here, abstracting from any value judgment. 
 Our theoretical question is under what conditions on the amount and ratio of intra- vs. inter-community links can these communities maintain their different opinions. 
 
-The opinion dynamics is modeled as an information accumulation system \parencite{Shin2009Informationaccumulationsystem}. Information means here opinion towards one of the two opposites -1 or +1. In each iteration agents on the one hand forget part of that information (which would imply convergence to the ground state zero) and accumulate on the other hand opinions of the agents within their network which includes many agents from the same community and few agents from the other community. As all agents  
-The global variables of the model are: the 
+The opinion dynamics is modeled as an information accumulation system \parencite{Shin2009Informationaccumulationsystem}. Information means here opinion towards one of the two opposites -1 or +1. In each iteration agents on the one hand forget part of that information (which would imply convergence to the ground state zero) and accumulate on the other hand opinions of the agents within their network which includes many agents from the same community and few agents from the other community. As we assume that all agents start with the same opinion as the others in their community and all have the same amount of intra- and inter-community links, their opinions will always move synchronously and we can study just two dynamical equations as $y_1$ and $y_2$ for the opinion in each community. 
+The global variables of the model are: the intra-community diffusivity $\Omega_0$, the inter-community diffusivity $\Omega_X$, and the rate of forgetting $\Delta$ (diffusivities are uniformly derived from the number of intra- and inter-community links). The dynamical equations and their derivation from the agent-based model are shown in \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
 
+We are able to completely characterize the dynamics of this system, including all fixed points, their status of attractivity and stability, and their basins of attraction. Figure \ref{fig:ShinLorenz} shows a phase diagram with respect to intra- and inter-community diffusivities. It shows which fixed points of which kind exist in which regions of the phase space.
 
+\begin{figure}[htbp]
 \includegraphics[width=\textwidth]{figs/fig2_3_blog-crop.pdf}
+\caption{Phase diagram of intra- vs. inter-community diffusivity $(\Omega_0,\Omega_X)$ parameterized by the rate of forgetting $\Delta$ (top), with five exemplary $(y_1,y_2)$-planes which show the fixed points for the opinions of the two communities and their basins of attraction for different initial opinions (center), and with ten exemplary trajectories over time for different initial opinions (periphery). } \label{fig:ShinLorenz}
+\end{figure}
 
-% Preference aggregation and how it generalizes to continuous problems. 
-% Games of collective decision. 
-% Solutions and further problems leading to the importance of opinion dynamics to potentially solve problems. 
-% The importance of opinion landscapes for collective decisions. 
-% Game of opinion formation
-% 
-% Preferences:
-% Social Individual Epistemic
-% Agreement vs. Individualisation
-% Information Exchange
-% 
-% Consensus
-% Clustering
-% Drifting
+The most interesting prediction of the model is summarized in the title of the paper: ``More links, less consensus''. This result can be best understood by following the red arrow in Figure \ref{fig:ShinLorenz}. This arrow represents situations where there are always four times more intra-community links than inter-community links but along the arrow the total number of links for each agent increases. The phase diagram is parameterized in units of the rate of forgetting. When we follow the arrow diffusivity increases (under constant ratio intra vs. inter) with respect to the rate of forgetting. The ``travel'' goes as follows:
+\begin{compactenum}[(1)]
+ \item Initially we are in the trivial zone. The rate of forgetting dominates and trajectories converge to the ground state or ``no opinion'' for any initial opinions. 
+ \item We cross the border to the consensus zone. Now two fixed points emerge, and both communities converge to a either a positive or a negative opinion. The system converges to the opinion of the community starting with the more extreme opinion. It is still possible for the system to converge to the ground state but only for a thin set of initial values (shown as a white diagonal line). This is a typical example of an unstable but attractive fixed point. 
+ \item We cross the dotted line and ar still in the consensus zone, but two unstable fixed points with coexisting different opinions in communities emerge. Even the smallest fluctuation in opinions around these fixed points of coexistence would bring the system to the basin of attractio of one of the two consensual fixed points. 
+ \item We cross the border to the coexistence zone where both coexistence fixed point become stable. The further we go the larger their basins of attraction grow. 
+\end{compactenum}
+One reason for the emergence of the coexistence zone that the dynamical equation has a saturation component which prevents that agents accumulate information in one direction ad infinitum. Information saturates at either +1 or -1, which seems like a reasonable assumption.
+
+A hypothesis which one can derive from this model is that coexistence of different cultures in connected communities is more likely when the overall connectivity is larger. We think that this might be part of an explanation for the increasing polarization and fragmentation of political debates which seems to happen nowadays through increasing  connectivity through social networks on the internet. The next step should be to bring this hypothesis to an empirical test. 
+
+\bigskip
+
+The following three parts of the habilitation are data-driven modeling works on different types of opinions. We start with a model of party attachment over the life-span of people, continue with a model to explain histograms of movie ratings and conclude with a first attempt to use a version of the bounded confidence model to explain opinion landscapes and from the European Social Survey. Every description therefore starts with a brief description of the stylized facts observed in data. 
 
 
+
+\bigskip
+
+\paragraph{How does political partisanship form?} The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
+Figure \ref{fig:MetzLorenz} is a histogram of these 965 individuals showing how many individuals made which amounts of announcement for a left (SPD and Grüne) and right (CDU/CSU and FDP) party. In particular, the histogram shows, that there are about 100 people who made 27 announcements of attachments to a left party (leftmost bin), also about 100 people announced 27 times an attachment to a right party (rightmost bin), and about 40 people never announced any party attachment (most backward bin). People announcing an attachment to for a left (right) party but not all the time exist in large magnitude. People who announce a large number announcements for left and right parties are rare. For example there is only one person which announced eleven times a left party and also eleventimes a right party. This histogram is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
+
+\begin{figure}[htbp]
+\includegraphics[width=\textwidth]{figs/3dPlotSideChoice_qti.pdf}
+\caption{Histogram indicating the count of individuals announcing attachment with left (SPD, Grüne) and right (CDU/CSU, FDP) parties. } \label{fig:MetzLorenz}
+\end{figure}
+
+\emph{Short description of model and results of \textcite{Metz.Lorenz2013Becomewhoyou}.}
+
+\bigskip
+
+\paragraph{How universal are movie rating histograms?} \textcite{Lorenz2009Universalityofmovie} analyzes movie rating histograms. 
+\emph{Short description of model and results.}
+
+\bigskip
+
+\paragraph{How do clusters in ideology space emerge?} \textcite{Lorenz2015ModelingEvolutionIdeological}
+\emph{Short description of model and results.}
 
 \chapter{Societal Growth}
 \mbox{}\\[-1cm]
@@ -307,32 +332,39 @@ Growth is fundamental to all living organisms.
  Such growth through redistribution is triggered when individual growth is proportional but rates of growth (or decline when below one) are partly stochastic. 
  The latter results poses the question if and how a democratic society is capable of realizing the desired levels of redistribution. 
  An experimental study \parencite{Lorenz.Paetzel.ea2016JustDontCall} on framing of collective decisions about redistribution shows an important aspect of the answer to this question There is a higher propensity to high tax rates  
-\section{Growth of productivity through innovation and imitation}
+\bigskip
 
-\parencite{Koenig.Lorenz.ea2016Innovationvs.Imitation}, shows how innovation together with imitation of technology maximized productivity growth in an economy of firms. The model is able to reproduce stylized facts of the evolution of empirical distributions of 
-
-The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
+\paragraph{How innovation and imitation drive productivity growth?} \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
 
 \begin{figure}[tbp]
  \centering%
  \includegraphics[width=0.6\textwidth]{figs/fig_ODE_tfpFR}
  \includegraphics[width=0.3\textwidth]{figs/fig_nu_fitFR}
  \caption{The left panel shows the total factor productivity (TFP) distribution of French firms over the years from $1995$ to $2003$ (vertical axes in logarithmic scale). The right-hand panel shows the mean and standard
-deviation of the $\log $-TFP, with fitted regression lines.}
+deviation of the $\log$-TFP, with fitted regression lines.}
 \label{fig:ODEFR}
 \end{figure}
 
+\emph{Short description of model and results.}
 
- The publications on societal growth are
-\begin{compactenum}
-\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
-\item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
-\item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
-\end{compactenum}
-% 
-% \section{Growth through innovation and imitation}
-% 
-% \section{Growth through redistribution under multiplicative stochastic growth}
+
+\bigskip
+
+\paragraph{How redistribution can spur growth?}
+\textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
+\emph{Short description of model and results.}
+
+
+\bigskip
+
+\paragraph{How framing of a redistributive decision matters?}
+\textcite{Lorenz.Paetzel.ea2016JustDontCall}\emph{Short description of model and results.}
+
+
+
+
+
+
 
 
 \chapter{The Wisdom of Crowds}
@@ -354,21 +386,35 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
  
  The seminal example is the weight-judging competition at the West England Fat Stock and Poultry Exhibition for which \textcite{Galton1907Voxpopuli} collected 787 card on which competitors estimated the weight of the meat of an ox (after it has been slaughtered and dressed). The 5\%-percentile and the 95\%-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. Galton concludes: \textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
  
- An even more drastic example is a follow up of this 
+ % An even more drastic example is a follow up of this 
  
- Which aggregate (e.g. arithmetic mean, the geometric mean, the median, or the mode) is used is sometimes crucial for the existence of the phenomenon. 
+ % Which aggregate (e.g. arithmetic mean, the geometric mean, the median, or the mode) is used is sometimes crucial for the existence of the phenomenon. 
  
  The wisdom of the crowd effect appears surprising to most individuals although it is a natural statistical property when we see individual estimates as independent random draws a distribution which is unbiased in the sense that the aggregate measure coincides with the correct value. 
 
 
- Systematic error
+ % Systematic error
 
-\begin{compactenum}
-\item \fullcite{Lorenz.Rauhut.ea2011HowSocialInfluence}
-\item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} \\
-Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
-\item \fullcite{Rauhut.Lorenz2010wisdomofcrowds}
-\end{compactenum}
+\bigskip
+
+\paragraph{How social influence undermines the wisdom of the crowd?}
+\textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} 
+plus letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+\emph{Short description of model and results.}
+
+
+\bigskip
+
+\paragraph{How framing of a redistributive decision matters?}
+\textcite{Rauhut.Lorenz2010wisdomofcrowds}\emph{Short description of model and results.}
+
+
+\bigskip
+
+\paragraph{How majoritarian democracy undermines collective truth-finding?}
+\textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}\emph{Short description of model and results.}
+
+
 
 
 
