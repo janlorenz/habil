@@ -1,9 +1,11 @@
 \documentclass[a4paper,10pt]{report}
-\usepackage{amsmath}
-\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, eurosym}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{rotating}
 \usepackage{titlesec, blindtext, color}
 \definecolor{gray75}{gray}{0.75}
 \newcommand{\hsp}{\hspace{20pt}}
@@ -86,45 +88,45 @@ in partial fulfillment of the requirements of the \\
 \emph{Policies for Habilitation Candidates} of \\[2mm]
 \emph{Jacobs University Bremen} \\[2mm]
 in the area of expertise \\[2mm]
-\emph{Modeling, Analysis and Experimental Research in the Social and Economic Sciences} \\[2mm]
+\emph{Computational Social Sciences} \\[2mm]
 submitted by \\[4mm]
 \emph{\bf Dr. rer. nat. Jan Lorenz}\\[4mm]
-Bremen, \texttt{[hopefully mid 2016]}\\[7mm]
+Bremen, \today\\[7mm]
 \end{center}
 \end{titlepage}
 
-Suggestions for members of the Habilitation Committee \\ 
-(3-6 Jacobs faculty members and the dean): \\
-\begin{compactenum}
-\item Prof. Dr. Arvid Kappas (as dean)
-\item Prof. Dr. Klaus Boehnke
-\item Prof. Dr. Adalbert F. X. Wilhelm
-\item Prof. Dr. Dierk Schleicher 
-\item Prof. Dr. Adele Diederich
-\item Prof. Dr. Hildegard Meyer-Ortmanns
-\item Dr. rer. nat. habil. Jens Christian Claussen
-\end{compactenum}
-\mbox{}\\[1mm]
-
-\noindent Suggestions for external referees \\
-(3 referees needed, 2 must be external): \\
-\begin{compactenum}
-\item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
-\item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
-\item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
-\end{compactenum}
+% Suggestions for members of the Habilitation Committee \\ 
+% (3-6 Jacobs faculty members and the dean): \\
+% \begin{compactenum}
+% \item Prof. Dr. Arvid Kappas (as dean)
+% \item Prof. Dr. Klaus Boehnke
+% \item Prof. Dr. Adalbert F. X. Wilhelm
+% \item Prof. Dr. Dierk Schleicher 
+% \item Prof. Dr. Adele Diederich
+% \item Prof. Dr. Hildegard Meyer-Ortmanns
+% \item Dr. rer. nat. habil. Jens Christian Claussen
+% \end{compactenum}
+% \mbox{}\\[1mm]
+% 
+% \noindent Suggestions for external referees \\
+% (3 referees needed, 2 must be external): \\
+% \begin{compactenum}
+% \item Prof. Dr. Andreas Flache (Sociology, Uni Groningen)
+% \item Prof. Dr. Rainer Hegselmann (Philosophy and Social Simulation, Uni Bayreuth)
+% \item Prof. Dr. Susumu Shikano (Political Science, Uni Konstanz)
+% \end{compactenum}
 
 \newpage
 
-% Of democracy we expect that it enables us to utilize collective intelligence such that our collective decisions build and enhance social welfare, and such that we accept their distributive and normative consequences. Collective decisions are produced by voting procedures which aggregate individual opinions such as preferences or judgments. On the other hand, individual opinions form and change by discussion and deliberation. Voting procedures and deliberation both create obstacles to achieve their democratic aims. 
-% 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% FOREWORD %%%%%%%%%%%%%%%%%
 \chapter*{The Cummulative \\ Habilitation Work}
 
-The habilitation work is this document accompanyied by a collection of twelve independent scientific works. Nine works have been published (or are accepted) in peer-reviewed journals spanning the disciplines political science, sociology, psychology, economics, and physics as well as two multi-disciplinary journals.   
+The habilitation work is a collection of twelve independent scientific works accompanyied by this document. Nine works have been published (or are accepted) in peer-reviewed journals spanning the disciplines political science, sociology, psychology, economics, and physics as well as two multi-disciplinary journals.   
 One publication appeared in an edited scientific year book of action and decision theory (in German), and two as contributions to conferences in political science and social simulation. 
 
-The habilitation includes the following publications ordered by type of publication
+The papers of the habilitation work ordered by type of publication and year of publication are:
 \paragraph{Journal Publications}
 \begin{compactenum}
 \item \fullcite{Lorenz2009Universalityofmovie}
@@ -158,7 +160,13 @@ The particular contributions and some common findings and conclusions are outlin
 Each chapter starts with the a list of the parts of the habilitation work which it describes. These lists are ordered in order of appearance in the text as well as in the habilitation work itself. 
 
 
-\chapter{Introduction}\mbox{}\\[-1cm]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 1 %%%%%%%%%%%%%%%%%
+\chapter{Introduction: Systemic \\ Effects and Modeling}\mbox{}\\[-1cm]
 {\footnotesize
 Parts of the Habilitation Work: \\[-1.5mm]
 \begin{compactenum}
@@ -171,10 +179,10 @@ Parts of the Habilitation Work: \\[-1.5mm]
 \textbf{Systemic effects} are system-wide effects which are triggered through local interaction. 
 That means, systemic effects in a system can not be boiled down to a simple aggregate of properties of its units but only through more complex ones. 
 Thus, the understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
-Entanglement and understanding of the relation of microscopic rules of action and interaction to macroscopic effects is the core contributions of this habilitation. 
+Entanglement and understanding of some relations of microscopic action and interaction and macroscopic effects is the core contributions of this habilitation. 
 
 Studying potential systemic effects scientifically requires a well-suited description of the units of a system and their action and interaction. 
-For socio-economic systems that means the developement of an agent-based model with humans (or human driven organisations) as the agents. 
+For socio-economic systems that means the development of an agent-based model with humans (or human driven organisations) as the agents. 
 \textbf{Agent-based models} are studied with computer simulations. 
 How this generally works and how it is used to tackle political science research questions is the subject of \textcite{Lorenz2012ZurMethodeder} as part of habilitation work.
 % \begin{center}
@@ -184,19 +192,20 @@ How this generally works and how it is used to tackle political science research
 %     \end{flushleft}
 %   \end{minipage}
 % \end{center}
-The basis of simulation is modeling, which is to maps the real world in a simplifying way to a formal framework and ultimately into an algorithm to be implemented for simulation. 
+The basis of simulation is formal modeling, which is to map the real world in a simplifying way to a mathematical framework and ultimately into an algorithm to be implemented for simulation. 
 
-The actions and interactions of agents in the model are defined through usually simple behavioral rules which are modeled simple and not based on utility maximization. 
+The actions and interactions of agents in the model are defined through behavioral rules which are usually modeled in a simple direct way and not necessarily based on utility maximization. 
 Agents apply these rules repeatedly in response to the societal context they observe. 
-In that regard, agent-based models are typically not seen as rational choice models where the theoretical goal is to study equilibria of actions and not their evolution. 
+In that regard, agent-based models are typically not seen as rational choice models where the theoretical goal is to study equilibria of actions and not which equilibria the system reaches in which way and if at all. The idea of rational-choice is that rational actors anticipate the potential rational moves of others which implies that all immediately switch to rational play. 
 Some agent-based modelers therefore emphasize to study systems dynamics where systems are ``out of equilibrium''.  
 Although the dynamical perspective is indeed lacking to a large extent in rational choice theories like game theory, the oppositional view of agent-based and rational choice models is mostly overstated.
 First, every dynamical model has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic.  
 Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can be identical. This is further discussed in \textcite{Lorenz2012ZurMethodeder}.
 
-\textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} -- another part of the habilitation work -- is one example which shows how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response to minimize opinion dissonance in their social context. 
+\textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} (another part of the habilitation work) show an example how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response of an individual to minimize opinion dissonance within its social context. In particular, the paper shows under what conditions of the dissonance function, dissonance minimization can serve as a microfoundation of averaging as the behavioral rule in opinion dynamics models. In that sense, agents in many opinion dynamics models appear as boundedly rational agents which links agent-based modeling back to decision and game theory. 
+\smallskip 
 
-Agent-based modeling in this habilitation work is either theory-driven (two works) or partly data-driven (four works).
+In this habilitation work, agent-based modeling is either theory-driven (two works) or partly data-driven (four works).
 \textbf{Theory-driven modeling} starts with a plausible setup of variables, parameters and microscopic behavioral rules. 
 \textbf{Data-driven modeling} starts with the exploration of observation data by the extraction of interesting non-trivial stylized macroscopic facts. 
 Either way, the idea is to explain macroscopic phenomana through human interaction on the microscopic level. 
@@ -225,6 +234,10 @@ Wisdom of Crowds & & & \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\
 
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 2 %%%%%%%%%%%%%%%%%
 \chapter{Opinion Dynamics}
 \mbox{}\\[-1cm]
 {\footnotesize
@@ -240,15 +253,15 @@ Parts of the Habilitation Work: \\[-1.5mm]
 \vspace{1.3cm}
 
 When individuals form opinions on certain topics these are based on the one hand on individual knowledge, experience, and emotions, but on the other hand opinions are to a large extent intrinsically social. 
-We as citizens, employees, consumers, and the like adjust our existing opinions once we hear the opinions of others because we learn new information, or because we want to conform with or confront the opinions of others. Sometimes we consciously might form our opinions entirely based on how it best fits in the opinion landscapes of our social environment (see \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}). 
+We as citizens, employees, consumers, and in other roles adjust our existing opinions once we hear the opinions of others because we learn new information, because we want to conform with, or confront the opinions of others. Sometimes we consciously might form our opinions entirely based on how it best fits in the opinion landscapes of our social environment (see \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}). 
 
 How individuals adjust their opinions with respect to messages from others has been studied in \emph{social psychology} in the field of \emph{attitude research}.
 The focus of the \emph{opinion dynamics} goes beyond the individual and studies the effect which the repeated simultaneous opinion formation and opinion adjustments transforms and shapes the entire opinion landscape. Thus, opinion dynamics extends the view from individual processes to systemic processes triggered by them. 
 
-My dissertation \textcite{Lorenz2007RepeatedAveragingand} and some parts and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights,Lorenz2010Heterogeneousboundsof} have extensively studied the \textbf{bounded confidence model of continuous opinion dynamics} through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works, where no further relations to real-world opinion dynamics then the plausibility of its assumptions were made. A first attempt to apply the model basically ``as is'' to explain real-world opinion landscape in the political/ideological realm will be discussed at the end of this section as part of the habilitation work. 
-
 \bigskip
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 1, Tipping Diffusivity %%%%%%%%%%%%%%%%%%%
 \paragraph{Tipping diffusivity and why more links can lead to less consensus.} The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
 We model a situation of two equally sized communities of agents which both are characterized by a typical number of intra-community links between agents of the same community and a typically lower number of inter-community links of members from different communities. 
 All agents hold an opinion which is a real numbers between -1 and +1. It might represent a tendency towards different opposing cultures, while zero represents no opinion on this. 
@@ -271,7 +284,7 @@ The most interesting prediction of the model is summarized in the title of the p
 \begin{compactenum}[(1)]
  \item Initially we are in the trivial zone. The rate of forgetting dominates and trajectories converge to the ground state or ``no opinion'' for any initial opinions. 
  \item We cross the border to the consensus zone. Now two fixed points emerge, and both communities converge to a either a positive or a negative opinion. The system converges to the opinion of the community starting with the more extreme opinion. It is still possible for the system to converge to the ground state but only for a thin set of initial values (shown as a white diagonal line). This is a typical example of an unstable but attractive fixed point. 
- \item We cross the dotted line and ar still in the consensus zone, but two unstable fixed points with coexisting different opinions in communities emerge. Even the smallest fluctuation in opinions around these fixed points of coexistence would bring the system to the basin of attractio of one of the two consensual fixed points. 
+ \item We cross the dotted line and are still in the consensus zone, but two unstable fixed points with coexisting different opinions in communities emerge. Even the smallest fluctuation in opinions around these fixed points of coexistence would bring the system to the basin of attractio of one of the two consensual fixed points. 
  \item We cross the border to the coexistence zone where both coexistence fixed point become stable. The further we go the larger their basins of attraction grow. 
 \end{compactenum}
 One reason for the emergence of the coexistence zone that the dynamical equation has a saturation component which prevents that agents accumulate information in one direction ad infinitum. Information saturates at either +1 or -1, which seems like a reasonable assumption.
@@ -282,30 +295,392 @@ A hypothesis which one can derive from this model is that coexistence of differe
 
 The following three parts of the habilitation are data-driven modeling works on different types of opinions. We start with a model of party attachment over the life-span of people, continue with a model to explain histograms of movie ratings and conclude with a first attempt to use a version of the bounded confidence model to explain opinion landscapes and from the European Social Survey. Every description therefore starts with a brief description of the stylized facts observed in data. 
 
-
-
 \bigskip
 
-\paragraph{How does political partisanship form?} The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
-Figure \ref{fig:MetzLorenz} is a histogram of these 965 individuals showing how many individuals made which amounts of announcement for a left (SPD and Grüne) and right (CDU/CSU and FDP) party. In particular, the histogram shows, that there are about 100 people who made 27 announcements of attachments to a left party (leftmost bin), also about 100 people announced 27 times an attachment to a right party (rightmost bin), and about 40 people never announced any party attachment (most backward bin). People announcing an attachment to for a left (right) party but not all the time exist in large magnitude. People who announce a large number announcements for left and right parties are rare. For example there is only one person which announced eleven times a left party and also eleventimes a right party. This histogram is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
 
-\begin{figure}[htbp]
+%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, PAPER 2, Political Partisanship %%%%%%%%%%%%%%%%%%%
+\paragraph{How political partisanship forms through self-reinforcement.} The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
+Figure \ref{fig:MetzLorenz} is a histogram of these 965 individuals showing how many individuals made which amounts of announcement for a left (SPD and Grüne) and right (CDU/CSU and FDP) party. In particular, the histogram shows, that there are about 100 people who made 27 announcements of attachments to a left party (leftmost bin). Also about 100 people announced 27 times an attachment to a right party (rightmost bin). About 40 people never announced any party attachment (most backward bin). People announcing an attachment toa left (right) party but not all the time exist in large magnitude. People who announce a large number announcements for left and right parties are rare. For example there is only one person which announced eleven times a left party and also eleven times a right party. This histogram is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
+
+\begin{figure}[tb]
 \includegraphics[width=\textwidth]{figs/3dPlotSideChoice_qti.pdf}
-\caption{Histogram indicating the count of individuals announcing attachment with left (SPD, Grüne) and right (CDU/CSU, FDP) parties. } \label{fig:MetzLorenz}
+\caption{Histogram indicating the count of individuals announcing attachment with left (SPD, Grüne) and right (CDU/CSU, FDP) parties. (This 3d bar-plot matches Figure 1 (Left) in \textcite{Metz.Lorenz2013Becomewhoyou}.)} \label{fig:MetzLorenz}
 \end{figure}
 
-\emph{Short description of model and results of \textcite{Metz.Lorenz2013Becomewhoyou}.}
+The main stylized facts of this data are: 
+\begin{compactenum}[(i)]
+ \item Party attachment is almost exclusively either to right or to left parties. The decision of an individual is thus mostly if the left (or right) attachement is announced or not and not which of the two sides is chosen. 
+ \item The histogram (count of people) of the number of uttered attachment within a time interval (here 27 years) has a U-shape. That means, there are peaks at the extremes for no attachment ever (0 announcments) and always attached (27 announcments), and further on there are more people close to these extremes than for an intermediate number of announcements.  
+\end{compactenum}
+
+The paper presents a stochastic model for the utterance of party attachments by individuals over time. 
+Based on, stylized fact 1. we decided to neglect the left-right divide and concentrate on the homing-in and homing-out process. The dynamic variable for each individual over the 27 years is thus if she or he utters an attachment or not. The U-shape leads us to assume some self-reinforcing for utterance and non-utterance over time. 
+
+Our model idea is the following: 
+We focus on the individual and its memory of past announcements of party attachments. 
+In year one an individual announces a party attachment with probability $0 \leq q \leq 1$. 
+In year two this individual announces a party attachment with probability $\frac{q}{2}$ if it had not announced an attachment before and with probability $\frac{q+1}{2}$ if it had announced one. 
+The probability of an announcement is thus more likely if an announcement happened before. 
+
+For a generic mechanism we define $x(t) \in \{0,1\}$ to be the \emph{announcement of the individual} at time step $t$, $\bar{x}(t) = \sum_{s=1}^t x(t)$ as the \emph{number of announcements} up to $t$, and $q$ as the \emph{interest in politics}. 
+We define the \emph{probability to announce a partisanship} at time $t$ as $p(t,\bar{x}(t),q) = \frac{\bar{x}(t) + q}{t+1}$. 
+Consequently $x(t+1)=1$ with probabilty $p(t,\bar{x}(t),q)$ and x(t+1) = 0 otherwise. 
+The stochastic process $(x(t))_{t}$ is thus not a Markov process as the transition probabilities depends not only on the latest state but on all past states. 
+The analog process $(\bar{x}(t))_t$ instead is a time-dependent Markov process, because $\bar{x}(t+1) = \bar{x}(t) + 1$ with probability $p(t,\bar{x}(t),q)$ and $\bar{x}(t+1) = \bar{x}(t)$ otherwise. Here, the transition probabilities only depned on the current state and the time step. 
+This evolution of the probability distribution of the number of announcements $\bar{x}(t)$ can be easily computed by iteratively multiplying the time-dependent transition matrices of the Markov process. 
+Figure \ref{fig:MetzLorenz2} shows how the probability distribution evolves for $q=0.641$. 
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.8\textwidth]{figs/EvolutionOfMarkovChain.pdf}
+\caption{Evolution the interactive Markov chain for the probability distribution of the numbers of attachments in 0, 1, 2, ..., 10 years. (Plot is not in \textcite{Metz.Lorenz2013Becomewhoyou}.)} \label{fig:MetzLorenz2}
+\end{figure}
+
+Theoretically, it turns out the distribution of the number of announcements after $t$ time steps is Beta-binomial distribution for $t$ trials with $\alpha = q$ and $\beta = 1-q$. 
+Another way to see the model is as a kind of urn model: Each announcement as a random draw from the urn where all  past announcements and non-announcements are represented by balls with two different colors plus one additional special ball which shows the announcements color with probability $q$ and the non-announcement color with probability $1-q$. 
+
+<<Test_Beta_Binomial, echo=FALSE, fig.show='hide'>>=
+n <- 10
+a <- 0.641
+b <- 1-a
+K <- 0:n
+bb <- choose(n,K) * beta(K + a, n - K + b)/beta(a,b)
+plot(K,bb*100,ylim=c(0,100))
+@
+
+We fitted the model parameter $q$ to best match the data and received $q=0.641$. The model fit is shown in Figure \ref{fig:MetzLorenz3}. The model fit has a striking coefficient of determination of $R^2 = 0.958$ (not reported in the paper). This shows that the idea to model announcements of party attachment as a self-re-inforcing stochastic process already explains the evolving U-shaped distribution quite well. In particular, it explains with just one global parameter -- the interest in politics $q$ -- the co-existence of large fractions non- and strong partisans and smaller fraction of individuals which home-in and home-out of their party attachment.  
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.8\textwidth]{figs/ParameterFit.pdf}
+\caption{Fit between SOEP data and theory (q = 0.641) for number of at-
+tachments. Data from Markov chain, confidence intervals from 1000 runs
+of agent-based simulation with 965 agents. Insets: Model behavior for first 10 and first 20 steps
+of the panel. (This plot matches Figure 2 (Left) in \textcite{Metz.Lorenz2013Becomewhoyou}.)} \label{fig:MetzLorenz3}
+\end{figure}
+
+For smaller interest in politics $q<0.641$ the distribution would lead to a U-shape with a higher amount of never attached and a lower amount of always attached individuals. For higher interest in politics $q<0.641$ the bin with always attached individuals would be even higher and the bin with never attached individuals even lower. In the paper, we analysed if this would realize when we subdivide our sample based on the survey question about individuals' political interest in the \textcite{GSPS2010datayears1984-2010}. It turns out that fitting the model parameter $q$ for the different subsamples of people gives us $q=0.82$ for individuals with very strong political interest, $q=0.7$ for strong, $q=0.58$ for weak, and $q=41$ for no interest in politics. 
 
 \bigskip
 
-\paragraph{How universal are movie rating histograms?} \textcite{Lorenz2009Universalityofmovie} analyzes movie rating histograms. 
-\emph{Short description of model and results.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 3, Movie ratings %%%%%%%%%%%%%%%%%%%
+\paragraph{Average and deviate -- how movie rating histograms take shape.} 
+
+Nowadays, $\bigstar$-based rating systems are ubiquitous. Almost everything can be rated with some $\bigstar$'s. The costs of rating is just one click. Movies gain several 10,000 or even 100,000 ratings on popular sites. The ``Internet Movie Database'' (\url{IMDb.com} uses a 10$\bigstar$-scale. Of most interest to users is the average number of $\bigstar$s, which is prominently displayed in the website. This number influences the decisions of other to watch the movie. Further on, the user-movie-matrix of ratings is the basis for personalized recommendation systems. Besides the average, also the histogram of the number of $\bigstar$s is accessible. \textcite{Lorenz2009Universalityofmovie} analyzes histograms of all movies with more than 20,000 ratings\footnote{These were 1,086 movies by March 2008. For an impression of the trend: By Sep 6, 2016 IMDb has 1,403 titles with more than 100,000 votes. This includes series now.}, and tries to identify universal characteristics which say something about underlying processes of continuous opinion dynamics. 10$\bigstar$-rating scales are a good approximation of continuous opinions because ratings are adjustable and fairly fine-grained. 
+
+The main stylized facts are:
+\begin{compactenum}[(i)]
+\item Histograms have {`Gaussian-like'} shape on the central bins (2$\bigstar$--9$\bigstar$). That means there is only one peak and the decay when deviating from the peak looks like a Gaussian.
+\item {Extreme} bins (1$\bigstar$ and $10\bigstar$) are higher than expected from extrapolating the Gaussian-like shape on central bins.
+\end{compactenum}
+Consequently, movie histograms have either three or two peaks. When there are three peaks two are at the extremes. When there are two peaks one or both are at the extremes. There are only 5 movies (0.5\%) exemptions\footnote{In 4 cases the 2$\bigstar$-bin is slightly higher than 3$\bigstar$-bin but less than the 1$\bigstar$-bin. One movie has an almost invisible additional peak at the 3$\bigstar$-bin.} Nine examples are shown in Figure \ref{fig:IMDbexamples}.
+These observations contradict assumptions on the shape from the literature: for example the uniform, U-like, or single-peaked shape. These assumptions were either made ad hoc for theoretical reasons, or on the basis of data on the coarser grained 5$\bigstar$-scale.
+
+
+\begin{figure}[htbp]
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb2}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb3}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb4}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb5}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb6}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb7}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb8}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb9}
+\includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb10}
+\caption{Nine movie rating histogram examples from IMDb together with a corresponding $\mu$-fitted confined Levy-skew $\alpha$-stable histogram (red lines).} \label{fig:IMDbexamples}
+\end{figure}
+
+Both stylized facts are explained through two assumptions on the process of opinion formation:
+\begin{compactenum}[I.]
+\item A ratings is the average of opinions of others, the current average rating, or several criteria which we assume to be independent random variables. Thus, the distribution of ratings has a Gaussian-like shape due to the central limit theorem.
+\item Ratings are {discretised and confined} continuous opinions. All probability mass which lies beyond the rating scale has to be collected in the extremal bins.
+\end{compactenum}
+The idea off II. is that individuals might want to assess a movie as 15$\bigstar$ or -1$\bigstar$ but have to confine their estimate between 1$\bigstar$ and 10$\bigstar$. Regarding I., the only distribution which evolves under averaging in the limit of many criteria is the \emph{L\'evy skew $\alpha$-stable distribution} $S(\alpha,\beta,\gamma,\mu)$. Thus, it is a natural candidate to characterise rating histograms. 
+Its probability density function is
+\begin{displaymath}
+  P(x) = \frac{1}{2 \pi} \int_{-\infty}^{+\infty}
+\varphi (t)
+  e^{-itx}\,dt, \quad \varphi(t) = e^{\mu\!-\!|\gamma t|^\alpha\,(1\!-\!i\beta\,\textrm{sign}(t)\Phi)}.
+\end{displaymath}
+with $\Phi = \tan(\frac{\pi\alpha}{2})$ if $\alpha\neq 1$ and $\Phi=-\frac{2}{\pi}\log |t|$ for $\alpha=1$.
+Parameters characterise  $\alpha \in (0,2]$ {peakedness}, $\beta \in [-1,1]$ {skewness}, $\gamma \in [0,\infty)$ {scale} (or dispersion), and $\mu \in (-\infty,\infty)$ {location} of the distribution of opinions as shown in Figure \ref{fig:levy}.
+The normal distribution comes out for $\alpha=2$, in this case $\beta$ has no effect. For $\alpha<2$ the distribution has power-law tails which decay on both sides as $P(x) \propto |x|^{-(1+\alpha)}$. The mean of the distribution exists for $\alpha>1$ and is $\mu$. The generalized central limit theorem states that the average of several random variables which distributiona have power law tails with the same exponent converge to a L\'evy skew $\alpha$-stable distribution. From a continuous L\'evy skew $\alpha$-stable distribution, a \emph{confined $(\alpha,\beta,\gamma,\mu)$-histogram} of ratings can be produced by discretisation as shown in Figure \ref{fig:discretization}.
+
+
+\begin{figure}[htbp]
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainLevyA.pdf}
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainLevyB}
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainLevyC}\\
+\tikz\draw (0,0) node{$\mu$} (4,0)node{$\mu$} (8,0)node{$\mu$};
+\caption{How the parameters of the L\'evy-skew $\alpha$-stable distribution modify the shape of the distirbution compared to $S(\frac{4}{3},0,1,\mu)$, where $\mu$ is the mark on the real line. } \label{fig:levy}
+\end{figure}
+
+\begin{figure}[htbp]
+\includegraphics[width=0.45\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainDiscretisation1}
+\begin{tikzpicture}
+\path (0,0) -- (0,0.8cm )node {\Large $\leadsto$};
+\end{tikzpicture}
+\includegraphics[width=0.45\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainDiscretisation2}
+\caption{Discretization of continuous distribtuion with confinement. }\label{fig:discretization}
+\end{figure}
+
+With a procedure documented in the paper, confined $(\alpha,\beta,\gamma,\mu)$-histograms were fitted to the empirical IMDb-histograms. Figure \ref{fig:LevyParams} shows how the fitted $\alpha$, $\beta$ and $\gamma$ are distributed with respect to $\mu$. The figure shows that the smallest scale parameter $\gamma$ as well as no skewness ($\beta=0$) appear both for $\mu\approx 7.5$ which coincides with the overall average $\mu$. Further on, the peakedness $\alpha$
+is relatively constant at around $\frac{4}{3}$ with respect to $\mu$. Skewness shows a linear trend with movies better than average being left-skew and movies worse than average being right skew. That means, better movies even have a fatter tail in the very good ratings, while bad movies have a fatter tail in the bad ratings. The scale parameter increases in a parabolic form when deviting from the average rating. That mean non-average movies show more dispresion. Form these regularities -- linear $\beta$, quadratic $\gamma$, and constant $\alpha$ -- a one-parameter fit called {$\mu$-fit} was constructed and all movies where fitted again by only using the parameter $\mu$. The other three parameters of the confined $(\alpha,\beta,\gamma,\mu)$-histograms are just functions of $\mu$ corresponding to the green lines in Figure \ref{fig:LevyParams}.
+
+\begin{figure}[htbp]
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figLevyParams1}
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figLevyParams2}
+\includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figLevyParams3}\\
+\caption{Fitted Levy-skew $\alpha$-stable parameters of all 1,086 movies with respect to the location parameter $\mu$ (also fitted). Blue lines show averages between gridlines. Green lines show constant, linear and quadratic fits.}\label{fig:LevyParams}
+\end{figure}
+
+The $\mu$-fit in comparison to the original empirical histograms is shown for the nine example movies in Figure \ref{fig:IMDbexamples}. Over all the quality of the one parameter fit is impressive. The average coefficient of determination $R^2$ is 0.943.
+
+In conclusion see ratings as discretised and confined pre-averaged continuous opinions leads to very good approximations of real-world rating histograms. The underlying {opinion distribution is not normal but fat-tailed}. The one-parameter $\mu$-fit is still good and shows surprising regularities: an average movie ($\mu\approx 7.5$) has most narrow distribution and no skewness. Deviation from an average movie makes the opinion distribution broader and skew pronouncing the deviation. The surprising accuracy achieved with a non-trival model but only one parameter points to strong non-trivial regularities in the process of opinion formation for movie ratings.
+Despite these indication of universality, the results can also be used to {characterise movies} in a new way by quantifying the differences from theoretical histograms with a given quality.
 
 \bigskip
 
-\paragraph{How do clusters in ideology space emerge?} \textcite{Lorenz2015ModelingEvolutionIdeological}
-\emph{Short description of model and results.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 4, Ideology Landscapes %%%%%%%%%%%%%%%%%%%
+\paragraph{How clusters in ideology space emerge through opinion dynamics under bounded confidence.} 
+
+
+My dissertation \textcite{Lorenz2007RepeatedAveragingand, Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights} and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2010Heterogeneousboundsof} have extensively studied the bounded confidence model of continuous opinion dynamics through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works. \textcite{Lorenz2015ModelingEvolutionIdeological} (part of the habilitation work) is a first attempt to apply the model ``as is'' to explain the shape of real-world opinion landscapes in the political/ideological realm.
+
+The data we use is from two items of the European Social Survey \parencite{ESS6}. People from a representative sample are asked for their ideological left---right selfplacement with the question ``In politics people sometimes talk of `left' and `right'. Using this card, where would you place yourself on this scale, where 0 means the left and 10 means the right?'' They are asked about European unification with the question ``Now thinking about the European Union, some say European unification should go further. Others say it has already gone too far. Using this card, what number on the scale best describes your position? [0=`Unification has already gone too far', 10=`Unification should go further']''. Figure \ref{fig:ess} shows histograms of answers over the samples in France, Germany, Sweden, and the United Kingdom using the design weights provided by ESS. These weights correct for different selection probabilities triggered by the sampling design. We call such histograms \emph{ideology} or \emph{opinion landscapes}. 
+
+These (and the other) opininon landscapes show the following stylized Facts:
+\begin{compactenum}
+ \item They never show the characteristics of a simple distribution, like the normal, uniform, or beta distribution. 
+ \item The largest peak is always central.
+ \item Multiple peaks are almost ubiquitous.
+ \item Very often peaks at the extremes exist.
+ \item Often there are intermediate off-center peaks e.g at 3 or 4 and 7 or 8.
+\end{compactenum}
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tikzpicture}[ultra thick,red]
+ \node at (0,0) {\includegraphics[trim=40 40 40 40,width=0.64\columnwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_lrscale_2012_FR}};
+ \draw (0.55,1.8) ellipse (0.45 and 0.45);
+ \draw (-2.6,-0.7) ellipse (0.45 and 0.45) (3.7,-0.8) ellipse (0.45 and 0.45);
+ \draw (-0.7,-0.28) ellipse (0.45 and 0.45) (2.1,-0.35) ellipse (0.9 and 0.45);
+\end{tikzpicture}
+\hspace{5mm}\includegraphics[width=15mm]{/home/janlo/Documents/papers/ideologylandscapes/r/colorbar}
+\end{center}
+\begin{tabular}{ccccc}
+ & France & Germany & Sweden & United Kingdom \\
+\rotatebox{90}{Left/Right} & \includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_lrscale_2012_FR} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_lrscale_2012_DE} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_lrscale_2012_SE} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_lrscale_2012_GB}  \\
+\rotatebox{90}{\ \ \ EU} & \includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_euftf_2012_DE} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_euftf_2012_FR} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_euftf_2012_SE} &
+\includegraphics[trim=40 40 40 40,width=0.2\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/r/ess-hist_euftf_2012_GB}
+\end{tabular}
+\caption{Stylized facts of political landscapes demonstrated for the left-right selfplacement in France 2012. The same landscape for Germany, Sweden and the United Kingdom and for all four countries the landscape of opinions about European integration. All data from ESS 2012 using the design weights. (Variables \texttt{lrscale} and \texttt{euftf} using \texttt{dweight} as weight.)}\label{fig:ess}
+\end{figure}
+
+We try to reproduce these stylized facts with the model bounded confidence model (the name goes back to \textcite{Hegselmann.Krause2002OpinionDynamicsand}) in the version with dyadic communication as in \textcite{Deffuant.Neau.ea2000MixingBeliefsamong} including random opinion replacements (called ``reconsideration'' by \textcite{Lorenz2015ModelingEvolutionIdeological}), operationalized as noise following \textcite{Pineda.Toral.ea2009Noisycontinuous-opiniondynamics}. 
+
+In short, the model is about $N$ agents (e.g. $N=1000$) which opinions are numbers from the interval $[0,1]$, which represent a continuous version of the 11-point scale from the ESS. Initially, the opinion of an agent is a random draw from a uniform distribution on the interval $[0,1]$. The opinions of agents are subject to change over time because they communicate with others. All agents are further equipped with a homogeneous \emph{bound of confidence} $\varepsilon$ also from the range [0,1] which is not subject to change but determines the maximal ideological distance to others which an agent is willing to take into account to revise its ideological position. 
+We consider agents to change their ideological positions because of two processes: \emph{adaptation under bounded confidence} and \emph{random opinion replacement}. 
+For each agent $i$ and each time step opinion adaptation happens with probability $1-m$ and opinion replacement happens otherwise. In the case of adaptation, another agent $j$ is picked at random. Agent $i$ interacts with it only when their distance in opinion is less than its bound of confidence $|x_i(t) - x_j(t)| < \varepsilon$. If agent $j$ is close enough agent $i$ changes its ideological position to the average of the two positions $x_i(t+1) = (x_i(t) + x_j(t))/2$. In case of opinion replacement, agent $i$ does not engage in interaction with others but reconsiders its ideological position from scratch, that mean it chooses a new random value from the interval $[0,1]$. Notice, that dynamics on the macrolevel remains unchanged if instead of picking a new random opinion the agent just switches back to its initial opinion, which was picked at random only at the beginning of the simulation. 
+Some care is necessary with respect to specifics of the simulation algorithm and model parameters. In many implementation, agents $i$ and $j$ are drawn at the time and both of their opinions are updated. In this system on average there or twice as much adaptation events per agent than in the model described here where only $i$ adapts. As a consequence the model with bilateral adaptation behaves as the model with unilateral adaptation but only half of the probability for opinion replacement, while dynamics of the former are twice as fast as dynamics of the latter. Here we use unilateral adaptation, while in \textcite{Lorenz2015ModelingEvolutionIdeological} bilateral adaptation was used. Further on, \textcite{Lorenz2015ModelingEvolutionIdeological} uses $p$ for the probability of random opinion replacement, while we use $m$ here for consistency with \textcite{Pineda.Toral.ea2009Noisycontinuous-opiniondynamics}. In comparison of the results here with the results in \textcite{Lorenz2015ModelingEvolutionIdeological} it thus holds $m = p/2$.
+
+The model is implemented in NetLogo \parencite{Wilensky1999NetLogo} for easy use \parencite{TODO}. 
+Figure~\ref{fig:snap1} shows the full screen of the Netlogo model (in a different design changed design compared to \textcite{Lorenz2012ContinuousOpinionDynamics} as cited in \textcite{Lorenz2015ModelingEvolutionIdeological}). 
+The main panel in the center shows the trajectories of opinions up to the current time step moving from left to right. For longer runs this panel turns into a ``roling'' display showing only the latest time steps. 
+At the bottom there are two observers which accompany the central panel of trajectories. 
+The left hand side panel shows the histogram of the current opinions in eleven equidistant bins, resembling the discretization of empirical opinion landscapes from the ESS. 
+The right hand side panel shows the evolution of the mean and the median opinion over the full time the simulation has been running. 
+
+\begin{sidewaysfigure}
+ \includegraphics[width=\textwidth]{figs/Screenshot.png}
+ \caption{Full screen of the Netlogo model of \textcite{TODO}. A run is shown for 500 agents with homogeneous bound of confidence $\varepsilon=0.25$ and without reconsideration ($m=0$).}\label{fig:snap1}
+\end{sidewaysfigure}
+
+To understand model dynamics, let us first look at homogeneous bounds of confidence without noise ($m=0$). 
+Large bounds of confidence (approximately $\varepsilon>0.27$) lead to \emph{consensus}. Intermediate bounds of confidence (approximately $0.18<\varepsilon<0.27$) lead to \emph{polarization} into two equally large opinion clusters, one moderately left-wing and one moderately right-wing. Small bounds of confidence ($\varepsilon<0.18$) lead to \emph{plurality} of three or more clusters. Fig.~\ref{fig:homo} shows trajectories for different bounds of confidence to demonstrate consensus, polarization and plurality. These can also be checked in the NetLogo model \parencite{TODO} through special example buttons. 
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+ \draw[->] (0,0) node[anchor=south west]{\includegraphics[viewport=0 0 133 190,clip,width=0.29\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/netlogo/homo1}}   --(2,0)node[below=2pt]{\sf time}node[above=5.5cm]{$\varepsilon=0.15$}-- (3.7,0);
+ \draw[->] (0,0) -- (0,2.75) node[rotate=90,anchor=west,above=2pt]{\sf opinion} -- (0,5.5);
+\end{tikzpicture}
+\begin{tikzpicture}
+ \draw[->] (0,0) node[anchor=south west]{\includegraphics[viewport=0 0 133 190,clip,width=0.29\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/netlogo/homo2}}  --(2,0)node[below=2pt]{\sf time}node[above=5.5cm]{$\varepsilon=0.25$}-- (3.7,0);
+ \draw[->] (0,0) -- (0,5.5);
+\end{tikzpicture}
+\begin{tikzpicture}
+ \draw[->] (0,0) node[anchor=south west]{\includegraphics[viewport=0 0 133 190,clip,width=0.29\textwidth]{/home/janlo/Documents/papers/ideologylandscapes/netlogo/homo3}}  --(2,0)node[below=2pt]{\sf time}node[above=5.5cm]{$\varepsilon=0.3$}-- (3.7,0);
+ \draw[->] (0,0) -- (0,5.5);
+\end{tikzpicture}
+\end{center} 
+\caption{Trajectories for $N=500$ agents with homogeneous $\varepsilon$ without reconsideration leading to plurality (left, $\varepsilon=0.15$), polarization (center, $\varepsilon=0.25$), and consensus  (right, $\varepsilon=0.3$).}\label{fig:homo}
+\end{figure}
+
+% The dynamical process towards stable polarization over time runs as follows: (i) Starting with initially uniformly distributed opinions, central agents (with opinions more than $\varepsilon$ away from the boundary) are equally likely to find a close enough communication partner at either side. Extremal agents close to the boundary of the opinion space instead can only find close enough communication partners slightly more central. Thus they will move closer to the center, but at most $\varepsilon/2$ as they ignore others when they are farther then $\varepsilon$ away. (ii) After a few timesteps this leads to a slightly higher concentration of agents in the region [$\varepsilon/2$,$\varepsilon$] and the opposing region on the other side of the opinion space. The concentration of agents remains the same in the center and declined at the extremes. Now, an agent between the center and $\varepsilon$ has a higher chance to find a close enough communication partner at the other side of the center because the 
+% concentration of agents is higher there. Thus, it is more likely that it moves from the center towards the region of higher concentration. The same happens on the other side of the opinion space. (iii) Regions of slightly higher concentration quickly gain higher concentration through this kind of attraction. Regions of high concentration finally converge to opinion clusters which have a distance of about $2\varepsilon$. 
+
+% Similar arguments explain the evolution of more clusters for lower bounds of confidence. Of course, the random initial conditions and the random selection of communication partners can lead to different outcomes, but even for relatively low numbers of agents the separation between consensus and polarization as attractive final opinion landscapes is quite sharp at the critical value $\varepsilon=0.27$. This means that random influence decides which of the two attractive landscapes will be reached when the bound of confidence is at such a critical value. When the bound of confidence is far away from a critical value it is almost sure that always the same pattern of clustered opinion landscape is reached. 
+% 
+% The typical locations bifurcating at the critical values into more and more clusters are shown in a bifurcation diagram in \textcite{Lorenz2007ContinuousOpinionDynamics}. Note, that in this study we ignore minor clusters of minimal size which structurally emerge at the extremes and between the major clusters, because they usually contain only zero to two agents in the sample sizes we use. 
+% 
+% From a political science perspective the view on the mean and the median opinion is interesting (see upper right panel in the model's full screen in Fig.~\ref{fig:snap1}). In uniformly distributed opinions mean and median are of course almost the same. Interestingly, in the $\varepsilon$ range of polarization the median quickly starts to deviate from the mean when opinion dynamics starts. The mean remains almost central but due to the depopulation of the center the median finally ends up to be in one of the two off-central clusters far away from the compromising position in the center. Which of the two clusters ends up slightly larger than the other is subject to random fluctuation. 
+
+Compared to the stylized facts, the model without noise is able to produce clustered opinion landscapes, but clusters are maximally pronounced peaks and not blurred peaks as we see them in the empirical opinion landscapes of the ESS data. 
+The introduction of random individual reconsideration of opinions with probability $m$ blurs the peakedness of clusters such that they visually come closer to the opinion landscapes observed empirically in the ESS data. 
+
+Fig.~\ref{fig:reconsider} shows three example trajectories in heatmap visualization and a snapshot of the histogram. As can be inferred from the trajectories, the histogram fluctuates but keeps its typical shape. The values $\varepsilon=0.15,0.25,0.3$ are taken from Fig.~\ref{fig:homo} and the values $m=0.06,0.1,0.045$ are chosen in an attempt to visually match some characteristics of ESS opinion landscapes. 
+
+\begin{figure}
+ \begin{center}
+ \textbf{A:} $\varepsilon=0.15$, $m=0.06$, $N=1000$\\
+ \includegraphics[width=0.55\textwidth]{figs/bc_lrscale_pv1.png}
+ \includegraphics[width=0.31\textwidth]{figs/bc_lrscale_ph1.png}\\[3mm]
+ \textbf{B:} $\varepsilon=0.25$, $m=0.1$, $N=1000$\\
+ \includegraphics[width=0.55\textwidth]{figs/bc_lrscale_pv2.png}
+ \includegraphics[width=0.31\textwidth]{figs/bc_lrscale_ph2.png}\\[3mm]
+ \textbf{C:} $\varepsilon=0.3$, $m=0.045$, $N=1000$\\
+ \includegraphics[width=0.55\textwidth]{figs/bc_lrscale_pv3.png}
+ \includegraphics[width=0.31\textwidth]{figs/bc_lrscale_ph3.png}
+ % bc_lrscale_pv2.png: 510x257 pixel, 72dpi, 17.99x9.07 cm, bb=0 0 510 257
+\end{center}
+\caption{Trajectories of $N=1000$ agents with closed-minded (A), open-minded (C), and intermediate bounds of confidence (B) and different probabilities of random opinion replacement $m$. The bounds of confidence are the same as in Fig.~\ref{fig:homo}.}\label{fig:reconsider}
+\end{figure}
+
+To what extent do opinion landscapes from the model in Fig.~\ref{fig:reconsider} match empirical opinion landscapes in Fig.~\ref{fig:data_lrtime}? Generally, no model specification is able to reproduce all stylized facts from empirical distributions. Thus, the development of a parameter fitting procedure is left for future models and the further discussion is exploratory and qualitatively. Nevertheless, the model distributions match the empirically observed distributions visually much better than any specification of a beta distribution or other standard distributions. As the model has also only two parameters $(\varepsilon,p)$ this is already a small success. 
+
+Going along the increasing bounds of confidence from Fig.~\ref{fig:reconsider} different stylized facts of empirical distributions are reproduced by the model. 
+
+\textbf{Closed-minded agents} (Fig.~\ref{fig:reconsider}A $\varepsilon=0.15$): Under a relatively high probability of reconsideration ($m=0.12$) an opinion landscape with three peaks is produced -- a central, a moderate left, and a moderate right cluster as we see it in many empirical landscapes; but empirical landscapes of this type usually also have extremal peaks, the moderate peaks lie a bit closer to the center and never on the bins 1 and 9 and the central peak is much more pronounced.
+
+\textbf{Intermediate agents} (Fig.~\ref{fig:reconsider}B $\varepsilon=0.25$): Under a high probability of reconsideration ($p=0.2$) the opinion landscape is still polarized as for the non-noisy case, but clusters are blurred such that their shape and location at bins 2,3 respectively 7,8 matches moderate off-center empirical clusters. In this specification a dominant central cluster as observed empirically misses completely. If it would exist it would absorb the moderate clusters quickly. Also extremal peaks as empircally found are missing. 
+
+\textbf{Open-minded agents} (Fig.~\ref{fig:reconsider}C $\varepsilon=0.3$): Under an intermediate probability of reconsideration ($p=0.09$) the opinion landscape shows a large central peak as observed empirically, also small peaks at the extremes match the emprical landscapes, although empirical extremal peaks lie more pronounced at 0 and 10 and not on 0,1 respectively 9,10 as in the model. The weak point here is that empirically we observe much more mass on the bins close to the center. 
+
+In conclusion, several stylized facts can be reproduced by this two parameter model much better than classical distributions can, but the model can not produce a large central peak, and tendencies for small and blurred moderate off-center peaks and small or tiny extremal peaks at the same time in its current form. 
+
+Agent-based models for the evolution of ideological landscapes are still in its infancy and it remains to show if they can add interesting insight to political dynamics. At least the possibility for counterfactual analysis at critical values seems promising for studying and understanding self-driven abrupt changes in political landscapes. 
+
+
+\paragraph{Systemic effects in opinion dynamics and opinion pattern diagrams}
+
+<<ODP-tipping, echo=FALSE, fig.height=3>>=
+library(ggplot2)
+library(reshape2)
+suppressMessages(library(dplyr))
+library(RColorBrewer)
+Delta <- 0.2
+ias <- function(y,fac) {
+  Om0 <- fac*Delta
+  OmX <- 0.25*fac*Delta
+  y <- c( (1-Delta)*y[1] + (Om0*y[1] + OmX*y[2])*(1-abs(y[1])) ,
+          (1-Delta)*y[2] + (OmX*y[1] + Om0*y[2])*(1-abs(y[2])) )
+  return(y)
+}
+init_y <- c(0.5,-0.4)
+fix_ias <- function(init_y,fac) {
+  repeat {
+    y <- ias(init_y,fac)
+    if (sum(abs(init_y - y)) < 10^-12) break
+    else init_y <- y
+  }
+  return(y)
+}
+FAC <- seq(0.1,3,by=0.02)
+if (FALSE) {
+  R <- matrix(nrow = length(FAC), ncol = 2)
+  for (i in 1:length(FAC)) R[i,] <- fix_ias(init_y,FAC[i])
+  save(FAC,R,file = "R/ODP_ias.RData")
+} else {
+  load(file = "R/ODP_ias.RData")
+}
+M <- tbl_df(cbind(c(FAC,FAC),c(R)))
+names(M) <- c("fac","y")
+ggplot(M,aes(fac,y)) + annotate("rect", xmin = 0.1, xmax = 3.02, ymin = -1, ymax = 1, fill="#3288BD") +
+  stat_bin2d(binwidth = c(0.01999, 0.02), drop=FALSE) + ylim(-1,1) +
+  scale_fill_distiller(palette = "Spectral", limits=c(0, 2)) +
+  labs(x=expression(Delta (Diffusivity)),y="y (stable opinions)") +
+  annotate("point", x=c(0,0), y=init_y, shape=21, fill="#FFFFBF", color="black", size=3) + 
+  annotate("text", x=c(0.1,0.1), y=init_y, label = c('y[1] (initial)','y[2] (initial)'),hjust = 0, parse=TRUE)
+@
+
+
+
+<<OPD-partyID, fig.height=2.5, echo=FALSE>>=
+n <- 10
+num_attach <- 0:n
+Q <- seq(0,1,length.out = 51)
+M <- matrix(NA, nrow = length(num_attach), ncol=length(Q))
+for (i in 1:length(Q)) {
+  M[,i] <- choose(n,num_attach) * beta(num_attach + Q[i], n - num_attach + 1-Q[i])/beta(Q[i],1-Q[i])
+  # bb <- choose(n,K) * beta(K + a, n - K + b)/beta(a,b)
+}
+R <- melt(M)
+names(R) <- c("number of attachments","interest in politics","frequency")
+R$`number of attachments` <- num_attach[R$`number of attachments`]
+R$`interest in politics` <- Q[R$`interest in politics`]
+ggplot(filter(R), aes(`interest in politics`, `number of attachments`)) +
+  geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral", na.value = "maroon", limits=c(0,0.33)) +
+  labs(x="q (Interest in Politics)") + scale_y_continuous(breaks=seq(0,10,by=1))
+@
+
+<<ODP-ratings, echo=FALSE, fig.height=3>>=
+source("R/Ratings.r")
+MU <- seq(2,10,by=0.5)
+M <- matrix(NA, nrow = length(x), ncol=length(MU))
+for (i in 1:length(MU)) M[,i] <- confinedLevySkewAlphaStablePdf(MU[i])
+R <- melt(M)
+names(R) <- c("stars","mu","frequency")
+R$star <- num_attach[R$stars]
+R$mu <- MU[R$mu]
+ggplot(filter(R), aes(mu, stars)) + geom_raster(aes(fill=frequency)) + 
+  scale_fill_distiller(palette = "Spectral", limits=c(0, 0.33), na.value = "maroon") + scale_y_continuous(breaks=1:10) +
+  labs(x=expression(mu-"fitted (Movie Quality)"))
+@
+
+<<OPD-boundedconfidence, echo=FALSE, fig.height=3.5>>=
+E = seq(0.1,0.4,by=0.002)
+Ops = seq(0,1,length.out = 101)
+getR <- function(m) {
+  load(paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))
+  R <- melt(M)
+  names(R) <- c("opinion","confidencebound","frequency")
+  R$opinion <- Ops[R$opinion]
+  R$confidencebound <- E[R$confidencebound]
+  return(R)
+}
+# ggplot(getR(0.06), aes(confidencebound, opinion)) + 
+#   geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral") + 
+#   labs(x = expression(paste(epsilon," (bound of confidence)")))
+ggplot(getR(0.1), aes(confidencebound, opinion)) + 
+  geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral") +
+  labs(x = expression(paste(epsilon," (Bound of Confidence)")))
+# ggplot(getR(0.12), aes(confidencebound, opinion)) + 
+#  geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral")
+@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 3 %%%%%%%%%%%%%%%%%
 \chapter{Societal Growth}
 \mbox{}\\[-1cm]
 {\footnotesize
@@ -334,7 +709,7 @@ Growth is fundamental to all living organisms.
  An experimental study \parencite{Lorenz.Paetzel.ea2016JustDontCall} on framing of collective decisions about redistribution shows an important aspect of the answer to this question There is a higher propensity to high tax rates  
 \bigskip
 
-\paragraph{How innovation and imitation drive productivity growth?} \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
+\paragraph{How innovation and imitation drive growth of productivity.} \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
 
 \begin{figure}[tbp]
  \centering%
@@ -345,6 +720,49 @@ deviation of the $\log$-TFP, with fitted regression lines.}
 \label{fig:ODEFR}
 \end{figure}
 
+
+
+\begin{figure}[tbp]
+ \centering%
+ \includegraphics[width=0.6\textwidth]{figs/fig_examplesQ-eps-converted-to}
+ \caption{Examples of numerical solutions of the system of ODEs in Equation (%
+\ref{}) with different values of $q.$ In
+all cases we set $\log \bar{A}=1$ and $p=0.1.$ The top left panel shows an
+economy where growth is driven by innovation only ($q=0$). The top right
+panel shows the case in which $p=q=0.1.$ The bottom panels show,
+respectively, the case of $q=0.2$ and $q=0.5.$}
+\label{sdf}
+\end{figure}
+
+\begin{figure}[tbp]
+ \centering%
+ \includegraphics[width=0.6\textwidth]{figs/fig_ODEsimple_tfpFR}
+\caption{Comparison of the empirical distributions of Figure \ref{} with 
+the calibrated model ($p=0.0049$ and $q=0.106$) for the
+years $1995$, $1999$ and $2003$. The empirical productivity values have been
+binned to produce the histogram shown in the figure, using $11$ bins across
+all observed productivity values.}
+\label{fig:fit}
+\end{figure}
+
+
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.32\textwidth]{figs/fig_contourlambdaIbeta4} 
+\includegraphics[width=0.32\textwidth]{figs/fig_contournuIbeta4} 
+\includegraphics[width=0.32\textwidth]{figs/fig_contourrhoIbeta4} 
+\caption{Exploration of impact of innovation probability $p$, imitation
+probability $q$, on the dependent power-law parameters $\lambda$,
+and $\rho$, and on the productivity growth rate $\nu$. The
+contour plots are based on numerical computation of solutions of the system
+of ODEs in Eq. (\ref{eq:evol-log-prod-beta-finite}). The black dots
+mark the calibrated $(p,q)$-points.}
+\label{fig:contour_pq}
+\end{figure}
+
+
+
 \emph{Short description of model and results.}
 
 
@@ -354,19 +772,82 @@ deviation of the $\log$-TFP, with fitted regression lines.}
 \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
 \emph{Short description of model and results.}
 
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{figs/fig1-crop}
+\caption{}\label{}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{figs/fig2-crop}
+\caption{}\label{}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{figs/fig3-crop}
+\caption{}\label{}
+\end{figure}
+
+
+
+
+
+
+
 
 \bigskip
 
-\paragraph{How framing of a redistributive decision matters?}
+\paragraph{Taxrate vs. minimal income -- how framing of a redistributive decision can change the level of redistribution.}
 \textcite{Lorenz.Paetzel.ea2016JustDontCall}\emph{Short description of model and results.}
 
 
+\begin{figure}
+ \includegraphics[width=\textwidth]{figs/fig1_dists}
+ \caption{Distributions of endowments used and predictions on subjects egoistic preferences.}\label{fig:dists}
+\end{figure}
+
+\begin{compactenum}
+ \item \textbf{Information about endowments and ideally preferred decision.} Subjects were informed about their own endowments and the endowment of all other group members and about the average endowment (1700 tokens in each round). Further on, subjects were privately asked to enter their ideally preferred minimum income resp.~tax rate. Only valid values were accepted. The MIN frame instructions told subjects these were values between the endowment of the poorest group member and the average income. The TAX frame instructions stated that tax rates could be between 0\% and 100\%.
+ \item \textbf{Communication stage.} Each subject had to make ten proposals which appeared in a five-column table visible to all group members. The first proposals appeared in the table after the last group member confirmed its proposal. All other proposals appeared immediately after confirmation. The endowments were displayed throughout the whole communication stage. Subjects could only communicate by numbers to coordinate their final decisions.
+ \item \textbf{Collective decision stage.} After the tenth proposal, a decision box appeared where subjects had to enter their final decision privately. A group decision was achieved when at least three subjects decided for the same number (majority rule). The net income was then computed using the redistributive mechanism explained in Section 2. If the group failed to reach a collective decision, the income was either 50\% of the endowment or half of the average endowment whichever was lower.
+ \item \textbf{Information payoff.} Subjects were informed about the result of the collective decision and about their total net income at the end of the sixth period. The payoff in Euro was defined by a subject's average earnings over six periods with an exchange rate of 1 experimental token = \EUR{0.005}.
+\end{compactenum}
+
+Subjects were recruited from the University of Oldenburg using the software ORSEE \parencite{Greiner2015Subjectpoolrecruitment}. Implementing a between subjects design (two sessions for each frame) and a total of four sessions with twenty subjects each, delivered a dataset of 480 individual observations, six from each subject. The dataset is publicly available % \parencite{ANONYMIZED}.
+
+\begin{figure}[htb]
+\begin{tikzpicture}
+\node[text width = \textwidth, text centered] at (0,0) {
+  \includegraphics[trim=0 15 20 20,clip,scale=0.6]{figs/fig2_hist_obs_tax_taxideal}
+  \includegraphics[trim=0 15 20 20,clip,scale=0.6]{figs/fig2_hist_obs_min_taxideal} \\
+  \includegraphics[trim=0 10 20 20,clip,scale=0.6]{figs/fig2_hist_obs_rational}
+};
+\path(-5.4,4.7)node{\sf \textbf{A}}+(5.7,0)node{\sf \textbf{B}}+(0.5,-5.3)node{\sf \textbf{C}};
+\end{tikzpicture}
+\caption{\textbf{Ideally preferred tax rates.} Histograms for the TAX (A) and the MIN (B) frame with 240 observations each. (C) shows rational egoistic preferences in the same 240 cases based on the distributions in Fig.~\ref{fig:dists}. Bin intervals are right-closed. Example: 50\% belongs to bin $(40,50]$. }\label{fig:hist_ideal}
+\end{figure}
+
+The dependent variable is the level of redistribution which we quantify as the tax rate $\tau$.  Groups decided implicitly about $\tau$ via Eq.~(\ref{eq:MINtaxrate}) in the MIN frame and directly in the TAX frame. Individuals' preferred $\tau$ is stated by subjects when they saw their own endowment, the average endowment, and the endowments of the other four members of the group, but before any communication, decision or implementation. %For the purpose of the empirical analysis $m$ has been translated into $\tau$.
+
+\begin{figure}[tb]
+\begin{tikzpicture}
+\node[text width = \textwidth, text centered] at (0,0) {
+  \includegraphics[trim=0 10 20 20,clip,width=0.49\textwidth]{figs/fig2_hist_groups_tax_taxGroupDecision}
+  \includegraphics[trim=0 10 20 20,clip,width=0.49\textwidth]{figs/fig2_hist_groups_min_taxGroupDecision}\\
+  \includegraphics[trim=0 10 20 20,clip,scale=0.6]{figs/fig2_hist_groups_rational}
+};
+\path(-5.5,4.7)node{\sf \textbf{A}}+(5.8,0)node{\sf \textbf{B}}+(0.6,-5.3)node{\sf \textbf{C}};
+\end{tikzpicture}
+\caption{\textbf{Tax rates implemented in groups.} Histograms for the TAX (A) and the MIN (B) frame with 48 groups each. (C) shows rational egoistic preferences of the median member of groups for the 48 groups. }\label{fig:hist_decision}
+\end{figure}
 
 
 
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 4 %%%%%%%%%%%%%%%%%
 \chapter{The Wisdom of Crowds}
 \mbox{}\\[-1cm]
 {\footnotesize
@@ -397,22 +878,39 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 
 \bigskip
 
-\paragraph{How social influence undermines the wisdom of the crowd?}
+\paragraph{How social influence undermines the wisdom of the crowd.}
 \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} 
-plus letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+plus letter: \textcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
+
 \emph{Short description of model and results.}
 
-
-\bigskip
-
-\paragraph{How framing of a redistributive decision matters?}
-\textcite{Rauhut.Lorenz2010wisdomofcrowds}\emph{Short description of model and results.}
+Focus on the range reduction effect as the systemic effect! 
 
 
 \bigskip
 
-\paragraph{How majoritarian democracy undermines collective truth-finding?}
-\textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}\emph{Short description of model and results.}
+\paragraph{How individuals can simulate the knowledge of diverse societies to reach better decisions.}
+\textcite{Rauhut.Lorenz2010wisdomofcrowds}
+
+
+
+\bigskip
+
+\paragraph{How majoritarian democracy undermines collective truth-finding.}
+\textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
+
+
+The interplay of decision rules and communcation in collective judgment tasks have an effect on the chances for bias correction or bias increase on the group level. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 5 %%%%%%%%%%%%%%%%%
+\chapter{Conclusions}
+
+
 
 
 
