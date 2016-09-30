@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{rotating}
+\usepackage[table]{xcolor}
 \usepackage{titlesec, blindtext, color}
 \definecolor{gray75}{gray}{0.75}
 \newcommand{\hsp}{\hspace{20pt}}
@@ -137,7 +138,7 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 \item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
 \item \fullcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
 \item \fullcite{Groeber.Lorenz.ea2014Dissonanceminimizationas}
-\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\item \fullcite{Koenig.Lorenz.ea2016Innovationvsimitation}
 \item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
 \end{compactenum}
 
@@ -177,14 +178,14 @@ Parts of the Habilitation Work: \\[-1.5mm]
 \vspace{1.3cm}
 
 \textbf{Systemic effects} are system-wide effects which are triggered through local interaction. 
-That means, systemic effects in a system can not be boiled down to a simple aggregate of properties of its units but only through more complex ones. 
-Thus, the understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
+That means, systemic effects in a system can not be boiled down to a simple aggregate of properties of its units but only to more complex ones. 
+The understanding of systemic effects in socio-economic systems is crucial for good anticipation of potential societal change and the proper design of societal institutions. 
 Entanglement and understanding of some relations of microscopic action and interaction and macroscopic effects is the core contributions of this habilitation. 
 
 Studying potential systemic effects scientifically requires a well-suited description of the units of a system and their action and interaction. 
-For socio-economic systems that means the development of an agent-based model with humans (or human driven organisations) as the agents. 
-\textbf{Agent-based models} are studied with computer simulations. 
-How this generally works and how it is used to tackle political science research questions is the subject of \textcite{Lorenz2012ZurMethodeder} as part of habilitation work.
+For socio-economic systems that means the development of an agent-based model with humans (or organisations or humans) as the agents. 
+\textbf{Agent-based models} are studied with computer simulation. 
+The work flow and how it is used to tackle political science research questions is the subject of \textcite{Lorenz2012ZurMethodeder} which is part of the habilitation work.
 % \begin{center}
 %   \begin{minipage}{0.9\textwidth}
 %     \begin{flushleft}
@@ -194,13 +195,16 @@ How this generally works and how it is used to tackle political science research
 % \end{center}
 The basis of simulation is formal modeling, which is to map the real world in a simplifying way to a mathematical framework and ultimately into an algorithm to be implemented for simulation. 
 
-The actions and interactions of agents in the model are defined through behavioral rules which are usually modeled in a simple direct way and not necessarily based on utility maximization. 
-Agents apply these rules repeatedly in response to the societal context they observe. 
-In that regard, agent-based models are typically not seen as rational choice models where the theoretical goal is to study equilibria of actions and not which equilibria the system reaches in which way and if at all. The idea of rational-choice is that rational actors anticipate the potential rational moves of others which implies that all immediately switch to rational play. 
-Some agent-based modelers therefore emphasize to study systems dynamics where systems are ``out of equilibrium''.  
+The actions and interactions of agents in the model are defined through behavioral rules which are usually modeled in a simple direct way and not necessarily based on utility maximization. This distinguishes agent-based models from game-theoretic ones which are based on rational choice decision making. 
+Agents in typical agent-based models apply these rules repeatedly in response to the changing societal context they observe. 
+The idea of rational-choice models is that rational actors anticipate the potential rational moves of others which implies that all immediately switch to rational play such that action form a certain type of game-theoretic equilibrium. In game-theory, the existance and uniqueness of equilibrium solutions is of first interest and not so much, if and how an equilibrium is reached and which if this is not uniqueness. 
+
+Some agent-based modelers therefore emphasize that they are able to study systems dynamics ``out of equilibrium''.  
 Although the dynamical perspective is indeed lacking to a large extent in rational choice theories like game theory, the oppositional view of agent-based and rational choice models is mostly overstated.
-First, every dynamical model has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic.  
+First, every dynamical model -- also with the simplest behavioral rules -- has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic.  
 Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can be identical. This is further discussed in \textcite{Lorenz2012ZurMethodeder}.
+
+Finally, game theoretic reasoning can also be fed into a dynamical agent-based model through an evolutionary or boundedly rational setting, where actors do rational-choice decision only with respect to information from a smaller subset players and anticipate only with a limited time horizon. In that sense, also rational-choice models give rise to systemic effects which go beyond the scope of the individual. 
 
 \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} (another part of the habilitation work) show an example how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response of an individual to minimize opinion dissonance within its social context. In particular, the paper shows under what conditions of the dissonance function, dissonance minimization can serve as a microfoundation of averaging as the behavioral rule in opinion dynamics models. In that sense, agents in many opinion dynamics models appear as boundedly rational agents which links agent-based modeling back to decision and game theory. 
 \smallskip 
@@ -224,7 +228,7 @@ Topic            & theoretically & based on data & experimentally \\ \midrule\mi
                  &               & \textcite{Lorenz2009Universalityofmovie} &  \\   
 Opinion Dynamics & \textcite{Shin.Lorenz2010TippingDiffusivityin} & \textcite{Metz.Lorenz2013Becomewhoyou} & \\
                  &               & \textcite{Lorenz2015ModelingEvolutionIdeological} & \\  \midrule
-Societal Growth  & \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth} & \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} & \textcite{Lorenz.Paetzel.ea2016JustDontCall} \\ \midrule
+Societal Growth  & \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth} & \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} & \textcite{Lorenz.Paetzel.ea2016JustDontCall} \\ \midrule
                  & & & \textcite{Rauhut.Lorenz2010wisdomofcrowds} \\
 Wisdom of Crowds & & & \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\ 
                  & & & \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} \\ \bottomrule
@@ -238,7 +242,7 @@ Wisdom of Crowds & & & \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CHAPTER 2 %%%%%%%%%%%%%%%%%
-\chapter{Opinion Dynamics}
+\chapter{Opinion Dynamics}\label{ch:od}
 \mbox{}\\[-1cm]
 {\footnotesize
 Parts of the Habilitation Work: \\[-1.5mm]
@@ -606,7 +610,8 @@ names(M) <- c("fac","y")
 ggplot(M,aes(fac,y)) + annotate("rect", xmin = 0.1, xmax = 3.02, ymin = -1, ymax = 1, fill="#3288BD") +
   stat_bin2d(binwidth = c(0.01999, 0.02), drop=FALSE) + ylim(-1,1) +
   scale_fill_distiller(palette = "Spectral", limits=c(0, 2)) +
-  labs(x=expression(Delta (Diffusivity)),y="y (stable opinions)") +
+  labs(x=expression(Omega~"(Diffusivity measured in"~Delta~"with"~Omega[X]==0.25*Omega~"and"~Omega[0]==Omega~")"),
+       y="y (stable opinions)") +
   annotate("point", x=c(0,0), y=init_y, shape=21, fill="#FFFFBF", color="black", size=3) + 
   annotate("text", x=c(0.1,0.1), y=init_y, label = c('y[1] (initial)','y[2] (initial)'),hjust = 0, parse=TRUE)
 @
@@ -681,13 +686,13 @@ ggplot(getR(0.1), aes(confidencebound, opinion)) +
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CHAPTER 3 %%%%%%%%%%%%%%%%%
-\chapter{Societal Growth}
+\chapter{Societal Growth}\label{ch:growth}
 \mbox{}\\[-1cm]
 {\footnotesize
 Parts of the Habilitation Work: \\[-1.5mm]
 \begin{compactenum}
 \setcounter{enumi}{6}
-\item \fullcite{Koenig.Lorenz.ea2016Innovationvs.Imitation}
+\item \fullcite{Koenig.Lorenz.ea2016Innovationvsimitation}
 \item \fullcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
 \item \fullcite{Lorenz.Paetzel.ea2016JustDontCall}
 \end{compactenum}
@@ -700,7 +705,7 @@ Growth is fundamental to all living organisms.
  Whether a society or economy experiences growth or decline, can critically depend on this coupling of individual growth process. 
  The three   two contributions to systemic effects on societal growth. 
 
- First, \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology optimizes productivity growth in an economy of independent firms. 
+ First, \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} show how innovation together with imitation of technology optimizes productivity growth in an economy of independent firms. 
  The second contribution \parencite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}, shows how redistribution of wealth through proportional taxation and redistribution as equal lump-sums can spur growth. 
  
  
@@ -709,7 +714,7 @@ Growth is fundamental to all living organisms.
  An experimental study \parencite{Lorenz.Paetzel.ea2016JustDontCall} on framing of collective decisions about redistribution shows an important aspect of the answer to this question There is a higher propensity to high tax rates  
 \bigskip
 
-\paragraph{How innovation and imitation drive growth of productivity.} \textcite{Koenig.Lorenz.ea2016Innovationvs.Imitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
+\paragraph{How innovation and imitation drive growth of productivity.} \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
 
 \begin{figure}[tbp]
  \centering%
@@ -848,7 +853,7 @@ The dependent variable is the level of redistribution which we quantify as the t
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CHAPTER 4 %%%%%%%%%%%%%%%%%
-\chapter{The Wisdom of Crowds}
+\chapter{The Wisdom of Crowds}\label{ch:woc}
 \mbox{}\\[-1cm]
 {\footnotesize
 Parts of the Habilitation Work: \\[-1.5mm]
@@ -865,16 +870,256 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 
  The wisdom of the crowd phenomenon is when the aggregate of several individual estimates is close to the true value although most estimates are far away from it. 
  
- The seminal example is the weight-judging competition at the West England Fat Stock and Poultry Exhibition for which \textcite{Galton1907Voxpopuli} collected 787 card on which competitors estimated the weight of the meat of an ox (after it has been slaughtered and dressed). The 5\%-percentile and the 95\%-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. Galton concludes: \textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
+ The seminal example is due to one founding father of statistics, Francis Galton. At the weight-judging competition at the West of England Fat Stock and Poultry Exhibition he collected 787 cards on which competitors estimated the weight of the meat of an ox after it has been slaughtered and dressed. 
+ In his paper in \emph{Nature}, \textcite{Galton1907Voxpopuli} reported that the 5-percentile and the 95-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. 
+ \textcite{Galton1907Voxpopuli} concludes: \textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
+
+<<Galton-Data,echo=FALSE>>=
+G <- c(read.csv("R/galton_data.csv",header = FALSE)[[1]])
+truth_G <- 1198
+@
  
- % An even more drastic example is a follow up of this 
+ Just recently, Kenneth W. Wallis dug out the full sample of estimates from Galton's notes out of the archive and made it publically available\footnote{\url{https://www2.warwick.ac.uk/fac/soc/economics/staff/academic/wallis/publications/galton_data.xlsx}}. He also found some small errors in Galtons computation \parencite{Wallis2014RevisitingFrancisGaltons} with a 5-percentile of \Sexpr{format(quantile(G,0.05),digits=4,big.mark=",")} and a median of \Sexpr{format(median(G),big.mark=",")}. Figure \ref{fig:galton} shows the histogram of estimates together with the truth, the median and the mean of estimates. 
  
- % Which aggregate (e.g. arithmetic mean, the geometric mean, the median, or the mode) is used is sometimes crucial for the existence of the phenomenon. 
+ Interestingly, the mean of estimates \Sexpr{format(mean(G), digits=5,big.mark=",")} is even more accurate than the median  which Galton reported. \textcite{Hooker1907MeanorMedian} already made that point in a letter to \emph{Nature}. He estimated the mean as 1,196 based on the percentiles reported by \textcite{Galton1907Voxpopuli} and \textcite{Galton1907Ballot-Box} reported it to be 1,197. Hooker as well as Galton referred to another paper, where \textcite{Galton1907Onevoteone} argued that for ``democratic'' aggregation always the median shall be used and not the mean, because it would give \emph{``voting power to `cranks' in proportion to their crankiness.''} Ultimately, it turns out that the arguments for using the median as democratic means against cranks has its value in its own right, although it is not of key importance in estimation tasks. The malicious power of cranks under aggregation of the mean would be to over- or understate estimates to steer the mean towards a certain direction. 
+ Obviously, this does not play such an important role in guestimation games, first because there is no incentive to do, and second because the number of participants is large. 
+
+\begin{figure}
+<<Galton-Plot,echo=FALSE, fig.height=3.5>>=
+ggplot(tbl_df(G), aes(value)) + geom_histogram(binwidth = 5) + 
+  scale_x_continuous(breaks=seq(900,1500,by=100)) + theme_bw() + labs(x="Estimates: weight ox' meat (pounds)") +
+  annotate("pointrange", x=median(G), y = 45, ymin = 0, ymax = 45, colour = "red", size = 1) +
+  annotate("text", label="Median", x=median(G)+15, y = 45, colour = "red", hjust=0) +
+  annotate("pointrange", x=mean(G), y = 55, ymin = 0, ymax = 55, colour = "blue", size = 1)+
+  annotate("text", label="Mean", x=mean(G)+15, y = 55, colour = "blue", hjust=0) +
+  annotate("pointrange", x=mean(truth_G), y = 50, ymin = 0, ymax = 50, colour = "violet", size = 1) +
+  annotate("text", label="Truth", x=truth_G+15, y = 50, colour = "violet", hjust=0) 
+@
+\caption{Histogram of estimates for the weight-judging competition at the West of England Fat Stock and Poultry Exhibition in Plymouth 1907 ($N=787$). }\label{fig:galton}
+\end{figure}
+
+ The question of mean vs. median, or -- more general -- the choice of the aggregation function can be elaborated further with another impressive example for the wisdom of the crowd phenomenon. This time it involves data in which collection I was involved. 
+ The lottery ``Haste mal 'nen Euro? -- Tombola''\footnote{Meaning something like ``Would you spend one Euro? -- Tombola''.} happened at the festival ``ViertelFest'' August 22-24, 2008 in Bremen. The tombola was an ordinary one, where people could buy lots which could bring them prices. As the topic of the festival was ``Swarm Intelligence'', I asked the organizers to include a guestimation task similar to the one West of England Fat Stock and Poultry Exhibition. 
+ Each buyer of a lot also got another chance to win: 
+ They could estimate the number of lots which would have been sold in total during after the three days of the festival. The estimates closest to the true value got tickets for the circus. Further on, before the lottery the organizers asked an expert, the organizer of Bremen's biggest lottery (Bürgerpark-Tombola) about his estimate for reference. The data is accessible online\footnote{Blog post in German: \url{http://janlo.de/wp/2010/06/22/die-weisheit-der-bremer/}. Direct link to the data: \url{http://spreadsheets.google.com/pub?key=0AqRUj58gkTakcDIybDYtYTRBOHozTDVtRkhCX1N4Rnc&hl=de&single=true&gid=0&output=csv}}. 
+<<Viertelfest-Data,echo=FALSE>>=
+D <- tbl_df(read.csv("R/Viertelfest.csv")) %>% mutate(Estimate=Schätzung)
+sD <- D$Estimate
+truth <- 10788
+expert <- 19100
+@
+ In total, \Sexpr{format(nrow(D), big.mark=",")} estimates of the number of lots were handed in. The true value was that \Sexpr{format(truth, big.mark=",")} lots had been sold\footnote{Thus, \Sexpr{format(100*nrow(D)/truth, digits=3)}\% of the lots were used to participate in the guestimation game.}, and the expert estimated \Sexpr{format(expert, big.mark=",")} lots. 
+ The 5- and 95-percentiles span values from \Sexpr{format(round(quantile(D$Schätzung,0.05)), big.mark=",")} to \Sexpr{format(round(quantile(D$Schätzung,0.95)), big.mark=",")}, and thus almost three orders of magnitude. 
+ The median of estimates is \Sexpr{format(median(D$Schätzung),big.mark=",")} and comes much closer to the true value than the expert. 
+ Figure \ref{fig:viertelfest} shows the truth, the experts estimate, the mean\footnote{The arithmetic mean is meant here. }, the median and the histogram of estimates with the x-axis clipped such that all estimates larger than 150,000 are not visible. 
+ There were \Sexpr{format(sum(D$Schätzung>150000),big.mark=",")} estimates larger than 150,000 (\Sexpr{format(100*sum(D$Schätzung>150000)/nrow(D),digits=2)}\%) ranging from \Sexpr{format(min(D[D$Estimate>150000,"Estimate"]),big.mark=",")} to \Sexpr{format(max(D[D$Estimate>150000,"Estimate"]),big.mark=",")}.
+ These large estimates (especially the maximal one) make the mean such a bad aggregation function in this case.  Nevertheless, even when these \Sexpr{format(sum(D$Schätzung>150000),big.mark=",")} values were removed the mean would be \Sexpr{format(round(mean(D$Estimate[D$Estimate<=150000])),big.mark=",")} and way too high. 
+
+\begin{figure}
+<<Viertelfest-Hist, echo=FALSE, fig.height=3.5>>=
+suppressMessages(library(fitdistrplus))
+Dfit <- fitdist(D$Estimate,"lnorm")
+br <- seq(0,150000,by=1000)
+ggplot(filter(D,Estimate<150000),aes(Estimate)) + geom_histogram(binwidth = 1000) + 
+  scale_x_continuous(breaks=seq(0,150000, by=20000)) + theme_bw() +
+  labs(x="Estimates: number of lots") +
+  annotate("pointrange", x=expert, y = 30, ymin = 0, ymax = 30, colour = "green", size = 1) +
+  annotate("text", label="Expert", x=expert+3000, y = 30, colour = "green", hjust=0) +
+  annotate("pointrange", x=median(D$Estimate), y = 100, ymin = 0, ymax = 100, colour = "red", size = 1) +
+  annotate("text", label="Median", x=median(D$Estimate)+3000, y = 100, colour = "red", hjust=0) +
+  annotate("pointrange", x=exp(mean(log(D$Estimate))), y = 90, ymin = 0, ymax = 90, colour = "brown", size = 1)+
+  annotate("text", label="Geometric Mean", x=exp(mean(log(D$Estimate)))+3000, y = 90, colour = "brown", hjust=0) +
+  annotate("pointrange", x=mean(D$Estimate), y = 10, ymin = 0, ymax = 10, colour = "blue", size = 1)+
+  annotate("text", label="Arithmetic Mean", x=mean(D$Estimate)+3000, y = 10, colour = "blue", hjust=0) +
+  annotate("pointrange", x=mean(truth), y = 80, ymin = 0, ymax = 80, colour = "violet", size = 1) +
+  annotate("text", label="Truth", x=truth+3000, y = 80, colour = "violet", hjust=0) 
+@
+\caption{Histogram of estimates for the guestimation task ``How many lots will be sold at the end of the festival'' at the Viertelfest Aug 22-24, 2008 in Bremen. ($N=\Sexpr{format(nrow(D), big.mark=",")}$, x-axis clipped at 150,000)}\label{fig:viertelfest}
+\end{figure}
+
+ Here, the median performs quite well, as in Galton's data. 
+ The mean insteadt performs bad!
+ A reason is that the distribution is heavily right-skew with a fat right tail.  
+ This is typical for distributions when numbers are bounded by zero but span several orders of magnitude. 
+ In this situation humans face a problem of logarithmic nature. 
+ That means they firstly cope with finding the right magnitude. 
+ Logarithmic thinking also seems to be the natural human intuition for mapping numbers to a line, while the linear mapping is a cultural invention needing formal education \parencite{Dehaene.Izard.ea2008LogorLinear}. 
+ In these situation typically the logarithm of estimates looks more like a normal distribution. 
+ Thus, the log-normal distribution is a better fitting distribution and the geometric mean\footnote{The geometric mean is the exponential of the arithmetic mean of the logarithmized sample data. } is a better measure of central tendency than the arithmetic mean. 
+ The geometric mean is \Sexpr{format(exp(mean(log(D$Estimate))), digits=5,big.mark=",")} and thus only \Sexpr{format(truth-exp(mean(log(D$Estimate))), digits=3,big.mark=",")} less than the correct answer. 
+ 
+ The former discussion gives rise to the claim that the shape of the distribution can advise the choice of the right measure of aggregation. Figure \ref{fig:WoCdistr} shows density estimates and best fits for a normal and a log-normal distribution for both samples. For Galton's data the normal distribution is the better fit according to all goodness-of-fit measures\footnote{All measures provided by \texttt{gofstat} in the R-package \texttt{fitdistr}.}. For the Viertelfest data instead the log-normal fit is better by all goodness-of-fit measures. 
+ The median of a normally distributed random variable coincides with the arithmetic mean, while the median of a lognormally distributed random variable coincides with the geometric mean. This further underpins that the different choices of the arithmetic and the geometric mean for the two samples is quite reasonable. 
+ 
+ Inference of the best measure of central tendency for the aggregation of the wisdom of the crowd from measurements of other aspects of the distribution is an interesting task, which needs further theoretical and empirical exploration. One way is to use the augmented quincunx model of sequential and probabilistic cue categorization presented by \textcite{Nash2014CuriousAnomalySkewed}. In particular, he argues that left-skewness in Galton's sample is due to the fact that most judgers had a lot of professional knowledge and the fact that the ox was comparably heavy. According to the theory, extremeness of the true value in comparison to a typical value known by judgers triggers a skew distribution, which is skew on the side of the typical and steep on the side of the extreme.  
+ 
+ The set of options for measures of aggregtion is well described by \emph{abstract means} as outlined by \textcite{Hegselmann.Krause2005OpinionDynamicsDriven}\footnote{\textcite{Hegselmann.Krause2005OpinionDynamicsDriven} extend the concept to partial abstract means which they use to generalize bounded confidence models of opinion dynamics as treated in Chapter \ref{ch:od}. }. An abstract mean is a function which maps a set of real numbers to a certain number between the maximum and the minimum of that set.
+ Within this framework it is always possible to find an abstract mean which aggregates the truth correctly as long as the truth is sandwiched between the minimal and the maximal estimate. 
+ This excercise is of little practical relevance. 
+ The real challenge is to infer a good generalized mean from the distribution of estimates without knowing the truth. 
+ 
+\begin{figure}
+<<WoC-Distr, echo=FALSE,fig.height=3>>=
+suppressMessages(library(fitdistrplus))
+suppressMessages(library(gridExtra))
+LOGNfit <- fitdist(G,"lnorm")
+NORMfit <- fitdist(G,"norm")
+br <- seq(850,1550,by=1)
+DISTS <- data_frame(x=br, ylogn=dlnorm(br,meanlog=LOGNfit$estimate[1],sdlog=LOGNfit$estimate[2]),
+                    ynorm=dnorm(br,mean=NORMfit$estimate[1],sd=NORMfit$estimate[2]))
+gG <- ggplot(tbl_df(G),aes(value)) + geom_density(bw=5) + 
+  geom_line(data=DISTS,mapping=aes(x=x, y=ylogn), color="brown") +
+  geom_line(data=DISTS,mapping=aes(x=x, y=ynorm), color="blue") +
+  scale_x_continuous(breaks=seq(900,1500,by=100)) + theme_bw() + 
+  labs(x="Estimates: weight of ox' meat (pounds)")
+LOGNfit <- fitdist(D$Estimate,"lnorm")
+NORMfit <- fitdist(D$Estimate,"norm")
+br <- seq(0,150000,by=100)
+DISTS <- data_frame(x=br, ylogn=dlnorm(br,meanlog=LOGNfit$estimate[1],sdlog=LOGNfit$estimate[2]),
+                    ynorm=dnorm(br,mean=NORMfit$estimate[1],sd=NORMfit$estimate[2]))
+gD <- ggplot(filter(D,Estimate<150000),aes(Estimate)) + geom_density(bw=1000) + 
+  geom_line(data=DISTS,mapping=aes(x=x, y=ylogn), color="brown") +
+  geom_line(data=DISTS,mapping=aes(x=x, y=ynorm), color="blue") +
+  scale_x_continuous(breaks=seq(0,100000, by=50000)) + theme_bw() +
+  labs(x="Estimates: number of lots")
+grid.arrange(gG,gD,ncol=2)
+@
+\caption{Density plots (black) and Maximum-Likelihood fits for normal (blue) and log-normal (brown) distributions of Galton's data (left, with density bandwidth 1,000) and the Viertelfest data (right, with density bandwidth 5). The x-axis for Viertelfest data is clipped at 150,000 and the normal distribution there looks almost flat because it has a very large variance. }\label{fig:WoCdistr}
+\end{figure}
+
+ An example for a sample of estimates which shows little crowd wisdom is another dataset collected by me on another occasion. At the ``Lange Nacht der Wissenschaft''\footnote{Literally ``Long Night of Science''} at Carl von Ossietzky Universität Oldenburg on September 24, 2010, I collected, with the help of others, estimates in a guestimation game\footnote{See a report in German here \url{http://janlo.de/wp/2010/09/07/schatzquiz-oldenburg/}. Link to the data: \url{https://docs.google.com/spreadsheets/d/1Bqe4yeb26lKIoaCqYfq4ZaK5jefSHGSRCpHlyWOiMQ4/edit?usp=sharing}} similar to the one of the Viertel-Fest. 
+ Visitors were asked how many estimation tickets will be handed in between 17:00 and 20:00. 
+<<OL-data,echo=FALSE>>=
+O <- read.csv("R/ol_data.csv")
+sO <- O[!is.na(O$Frage1),"Frage1"]
+truth_O <- nrow(O)
+powermean <- function(x,p) {
+  if (p==0) {return(exp(mean(log(x),na.rm=T)))}
+  else {return(mean(x^p, na.rm=T)^(1/p))}
+}
+@
+ I collected \Sexpr{truth_O} tickets, that was the correct answer\footnote{For some reason, I reported 271 as the correct answer directly after the game. The reason is probably that I forgot to ultimately update the computation after entering the data from the final ticket. There was time pressure, because the winner had to be announced shortly after in the context of a science slam talk.}. From the tickets, I extracted \Sexpr{sum(!is.na(O$Frage1))} valid estimates which 5- to 95 percentile spanned values from \Sexpr{format(round(quantile(O$Frage1,0.05,na.rm=T)), big.mark=",")} to \Sexpr{format(round(quantile(O$Frage1,0.95,na.rm=T)), big.mark=",")}, and thus also almost three orders of magnitude. 
+ The mean of estimates is \Sexpr{format(mean(O$Frage1,na.rm=T),digits=5,big.mark=",")}, the geometric mean is \Sexpr{format(exp(mean(log(O$Frage1),na.rm=T)),digits=4,big.mark=",")}, and the median is \Sexpr{format(median(O$Frage1,na.rm=T),big.mark=",")}. All are way to high compared to the true value. 
+ Taking the median's closeness to the truth a good rough proxy for some crowd wisdom, we do not find much in this dataset. 
+ The skewness and dispersion of the estimates over orders of magnitude is similar to the estimates from the Viertelfest. Thus, there is little indication coming from the data to use another aggregation function than the geometric mean, and it is reasonable to attribute this deviation to a systematic error caused by a collective cognitive bias to overestimate. 
+ 
+ Nevertheless, there is an speculative interpretation of the estimation task which could give rise to another measure of aggregation which performs better. On the tickets, the time span 17:00-20:00 was clearly indicated. Based on this, we may interprete that people estimated how much time the collection takes per ticket. If we assume that people saw my three helpers and me, they might have thought about four times 180 minutes summing up to 720 collector minutes. The collection time per ticket was such 720/272 = 2.65 minutes. Estimates of 1000, or 5000 by other people would thus transform 720/1000=0.72 and 720/5000=0.14 minutes. With the assumption of this mindset, the arithmetic mean of these ratios might elicit some crowd wisdom, and the reciprocal value of this times 720 minutes would by the aggregation of crowd. This description coincides with taking the harmonic mean. The harmonic mean is the reciprocal value of the arithmetic mean of the reciprocal values of the sample data. The harmonic, the geometric and the arithmetic mean are special cases of $p$-means (also called power means or generalized means). \footnote{For positive numbers $x_1,\dots,x_n$ and a real number $p$, the $p$-mean is $(\frac{1}{n}\sum x_i^p)^\frac{1}{p}$. The arithmetic mean is represented by $p=1$, the harmonic mean by $p=-1$. The geometric mean appears as the limit for $p\to 0$. The minimum and the maximum are the limits for $p\to -\infty$ and $p\to\infty$ respectively. $p$-mean of the same sample are monotonously decreasing with $p$.}. The harmonic mean of the estimates of the number of tickets is \Sexpr{format(powermean(O$Frage1,-1),digits=4,big.mark=",")} and comes close to the true value of \Sexpr{truth_O}. This interpretation would also be valid for the number of lots at the Viertelfest, although it was not prominently communicated to participants. There is one very mild indication from data that a $p$-mean below the geometric mean should be used. In the Viertelfest data the median is at \Sexpr{format(100*median(D$Estimate)/powermean(D$Estimate,0),digits=3,big.mark=",")}\% of the geometric mean, while in the data from Oldenburg it is only at \Sexpr{format(100*median(O$Frage1,na.rm=T)/powermean(O$Frage1,0),digits=3,big.mark=",")}\%. As this is tiny and the median is also far away from the truth, it is more reasonable to assume that a systematic error is the reason. 
+ 
+ Figure \ref{fig:OL} shows the histogram of estimates with the x-axis clipped such that all estimates larger than 5,000 are not visible. 
+ There were \Sexpr{format(sum(O$Frage1>5000,na.rm=T),big.mark=",")} estimates larger than 5,000 (\Sexpr{format(100*sum(O$Frage1>5000,na.rm=T)/sum(!is.na(O$Frage1)),digits=2)}\%) ranging from \Sexpr{format(min(O[O$Frage1>5000,"Frage1"],na.rm=T),big.mark=",")} to \Sexpr{format(max(O[O$Frage1>5000,"Frage1"],na.rm=T),big.mark=",")}.
+\begin{figure}
+<<OL-Plot,echo=FALSE, fig.height=3.5>>=
+ggplot(filter(tbl_df(O),Frage1<=5000), aes(Frage1)) + geom_histogram(binwidth = 50) + 
+  scale_x_continuous(breaks=seq(0,5000,by=500)) + theme_bw() + labs(x="Estimates: number of estimation tickets") +
+  annotate("pointrange", x=median(O$Frage1,na.rm=T), y = 16, ymin = 0, ymax = 16, colour = "red", size = 1) +
+  annotate("text", label="Median", x=median(O$Frage1,na.rm=T)+110, y = 16, colour = "red", hjust=0) +
+  annotate("pointrange", x=mean(O$Frage1,na.rm=T), y = 7, ymin = 0, ymax = 7, colour = "blue", size = 1)+
+  annotate("text", label="Mean", x=mean(O$Frage1,na.rm=T)+110, y = 7, colour = "blue", hjust=0) +
+  annotate("pointrange", x=mean(truth_O), y = 18, ymin = 0, ymax = 18, colour = "violet", size = 1) +
+  annotate("text", label="Truth", x=truth_O+110, y = 18, colour = "violet", hjust=0) +
+  annotate("pointrange", x=exp(mean(log(O$Frage1),na.rm=T)), y = 15, ymin = 0, ymax = 15, colour = "brown", size = 1) +
+  annotate("text", label="Geometric Mean", x=exp(mean(log(O$Frage1),na.rm=T))+110, y = 15, colour = "brown", hjust=0) +
+  annotate("pointrange", x=powermean(O$Frage1,-1), y = 17, ymin = 0, ymax = 17, colour = "cyan3", size = 1) +
+  annotate("text", label="Harmonic Mean", x=powermean(O$Frage1,-1)+110, y = 17, colour = "cyan3", hjust=0) 
+@
+\caption{Histogram of estimates for the number of estimation tickets at the Lange Nacht der Wissenschaft at Carl von Ossietzky Universität Oldenburg 2010 ($N=\Sexpr{sum(!is.na(O$Frage1))}$, x-axis clipped at 5,000). }\label{fig:OL}
+\end{figure}
+
+\begin{table}
+\small
+\begin{tabular}{>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}} \toprule 
+ & Galton & Viertelfest & Oldenburg \\ \midrule\midrule
+Collection time & 1906 or 1907 & 2008-08-22 to 24 & 2010-09-24 17:00-20:00 \\
+Place & West of England Fat Stock and Poultry Exhibition, Plymouth, UK & Viertelfest Bremen, DE & Lange Nacht der Wissenschaft, Carl von Ossietzky Universität Oldenburg, DE \\
+Collected by & Francis Galton & Volunteers from the lottery, passed to Jan Lorenz & Jan Lorenz with volunteers \\
+Number of estimates $N$ & \Sexpr{length(G)} & \Sexpr{format(length(sD),big.mark=",")} & \Sexpr{length(sO)} \\
+Guestimation task & Weight of ox's meat after slaughtered and dressed & Number of lots sold at festival & Number of estimation tickets handed in \\
+True value & \cellcolor{violet!20}\Sexpr{format(truth_G,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth_O,big.mark=",")} \\
+Minimum & \cellcolor{red!20}\Sexpr{format(min(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sO),big.mark=",")} \\
+5-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.05)),big.mark=",")} \\
+Harmonic mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,-1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,-1)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sO,-1)),big.mark=",")} \\
+Median & \cellcolor{yellow!20}\Sexpr{format(round(median(G)),big.mark=",")} & \cellcolor{yellow!20}\Sexpr{format(round(median(sD)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(median(sO)),big.mark=",")} \\
+Geometric mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,0)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sD,0)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,0)),big.mark=",")} \\
+Arithmetic mean & \cellcolor{green!20}\Sexpr{format(round(powermean(G,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,1)),big.mark=",")} \\
+95-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.95)),big.mark=",")} \\
+Maximum & \cellcolor{red!20}\Sexpr{format(max(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sO),big.mark=",")} \\
+Deviation best mean from truth & -\Sexpr{format(100*abs(powermean(G,1)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(powermean(sD,0)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(powermean(sO,-1)-truth_O)/truth_O,digits=3)}\% \\
+Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(median(sD)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(median(sO)-truth_O)/truth_O,digits=3)}\% \\
+\# estimates closer to truth then best mean & \Sexpr{format(sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) & \Sexpr{format(sum(abs(powermean(sD,0)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sD,0)-truth)>abs(sD-truth))/length(sD),digits=2)}\%)  & \Sexpr{format(sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O))/length(sO),digits=2)}\%)  \\
+\# estimates closer to truth then median & \Sexpr{format(sum(abs(median(G)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(median(G)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) & \Sexpr{format(sum(abs(median(sD)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(median(sD)-truth)>abs(sD-truth))/length(sD),digits=2)}\%)  & \Sexpr{format(sum(abs(median(sO)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(median(sO)-truth_O)>abs(sO-truth_O))/length(sO),digits=3)}\%)  \\
+ \bottomrule
+\end{tabular}
+\caption{Overview about the three example datasets on the wisdom of the crowd. For better alignment all values have been rounded to full integers. }
+\end{table}
+
+
+
+
+
+%' 
+%' 
+%' <<>>=
+%' p=seq(-40,40,by=0.1)
+%' x1=G
+%' x2=D$Estimate
+%' x3=O$Frage1
+%' m1=rep(NA,length(p))
+%' m2=rep(NA,length(p))
+%' m3=rep(NA,length(p))
+%' for (i in 1:length(p)) {
+%'   m1[i] <- powermean(x1,p[i])
+%'   m2[i] <- powermean(x2,p[i])
+%'   m3[i] <- powermean(x3,p[i])
+%' }
+%' plot(p,m1)
+%' plot(p,m2)
+%' plot(p,m3)
+%' @
+
+
+
+Not all samples of estimates for a particular judgment task can elicit wisdom of the crowd. Let us distinguish two extreme cases which can serve to assess when crowds are wise and when not. 
+ \begin{compactenum}[(i)]
+ \item When all individuals estimate correctly, then the crowd is not wiser than the individual. Thus, there is no crowd wisdom which goes beyond individual wisdom. More gradual version: If the sample's central tendancy is close to the truth but estimates show little dispersion, then there is not much crowd wisdom. 
+ \item When the truth is not sandwiched between the minimal and maximal estimate, then there is no wisdom in the crowd but a systematic error in the sample. More gradual version: When every reasonable central tendency of the sample is far away from the truth, then there is no crowd wisdom. 
+ \end{compactenum}
+ 
+
+
+
+
+% # 
+
+
+
+% Pictures of whole range and core range. 
+
+% WoC is a systemic effect of the right choice of aggregation, no bias, and large dispersion
+
+
+% Paper 1:In one mind: Diversity prediction thm. It works in one mind but not as good as first announced! Cite some papers?
+
+% What about social influence?
+% Paper 2: Focus on the concenptional thing. 
+
+% Paper 3: 
+
+ 
+ 
  
  The wisdom of the crowd effect appears surprising to most individuals although it is a natural statistical property when we see individual estimates as independent random draws a distribution which is unbiased in the sense that the aggregate measure coincides with the correct value. 
 
 
  % Systematic error
+
+\bigskip
+
+\paragraph{How individuals can simulate the knowledge of diverse societies to reach better decisions.}
+\textcite{Rauhut.Lorenz2010wisdomofcrowds}
+
+
+
+
 
 \bigskip
 
@@ -885,13 +1130,6 @@ plus letter: \textcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 \emph{Short description of model and results.}
 
 Focus on the range reduction effect as the systemic effect! 
-
-
-\bigskip
-
-\paragraph{How individuals can simulate the knowledge of diverse societies to reach better decisions.}
-\textcite{Rauhut.Lorenz2010wisdomofcrowds}
-
 
 
 \bigskip
