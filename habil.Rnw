@@ -1,47 +1,25 @@
 \documentclass[a4paper,10pt]{report}
+\usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}
-\usepackage{amsfonts, eurosym}
+\usepackage{amsfonts, amsmath, eurosym}
+\usepackage{authblk}
+\usepackage{paralist} 
+\usepackage{tikz}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{rotating}
-\usepackage[table]{xcolor}
-\usepackage{titlesec, blindtext, color}
+\usepackage{palatino}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{beramono}
+\usepackage{titlesec, blindtext}
 \definecolor{gray75}{gray}{0.75}
 \newcommand{\hsp}{\hspace{20pt}}
 \titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter}{15pt}{\Huge\bfseries}
 \usepackage[bookmarks=true,linkcolor=blue!80!black,
  citecolor=blue!80!black,urlcolor=blue!80!black,colorlinks=true,
  breaklinks=true, bookmarksopen=true]{hyperref}
-\usepackage{authblk}  % support footnote style author/affiliation
-\usepackage{paralist}  % very flexible & customisable lists (eg. enumerate/itemize, etc.), including inparaenum
-\usepackage{tikz}
-% \usetikzlibrary{mindmap}
-% % \usetikzlibrary{shapes.geometric,shapes.symbols,shapes.misc,shapes.callouts}
-% \usetikzlibrary{fadings}
-% \usetikzlibrary{fit}
-% \usetikzlibrary{backgrounds}
-% \tikzset{
-% persp/.style={very thick,text centered},
-% edge/.style={very thick,text centered},
-% individual/.style={draw,ellipse},
-% formulation/.style={draw,cloud,aspect=2.2, cloud puff arc=100,cloud puffs=13},
-% society/.style={draw,starburst,starburst points=13},
-% analysis/.style={draw=violet!50,top color=white,bottom color=violet!10},
-% descriptive/.style={draw=black!50,top color=white,bottom color=black!10},
-% statistical/.style={draw=brown!50,top color=white,bottom color=brown!10},
-% axiomatic/.style={draw=green!50,top color=white,bottom color=green!10}
-% }
-% \colorlet{shaping}{red!75!black}
-% \newcommand{\micro}{\tikz\node[persp,individual,statistical,text width=12mm,font=\scriptsize] {Empirics \\ \textbf{Microlevel}};}
-% \newcommand{\macro}{\tikz\node[persp,society,statistical,text width=12mm,font=\scriptsize,inner sep=1pt,starburst point height=0.2cm] {Empirics \\ \textbf{Macrolevel}};}
-% \newcommand{\model}{\tikz\node[persp,formulation,descriptive,text width=12mm,font=\scriptsize,aspect=1.5,inner sep=0pt] {{\normalsize\textbf{Model}} \\ {\scriptsize Procedure} };}
-% \newcommand{\normative}{\tikz\node[persp,formulation,axiomatic,text width=12mm,font=\scriptsize,inner sep=1pt] {\textbf{Normative} \\ Intention};}
-% \newcommand{\rational}{\tikz\node[persp,individual,analysis,text width=12mm,font=\scriptsize] {\textbf{Rationality} \\ Strategy};}
-% \newcommand{\system}{\tikz\node[persp,society,analysis,text width=12mm,font=\scriptsize,inner sep=1pt,starburst point height=0.2cm] {\textbf{Systems} \\ Dynamics};}
-
-
 \usepackage[backend=biber, hyperref=auto, style=alphabetic, citestyle=authoryear ]{biblatex}
 \addbibresource{../literature/lit_lorenz.bib}
 \defbibenvironment{bibliography}
@@ -74,12 +52,49 @@
 \affil{Jacobs University Bremen, Campus Ring 1, 28759 Bremen, post@janlo.de}
 \date{\today}
 
+
+\renewcommand{\baselinestretch}{1.15}
 \begin{document}
+
+<<R-setup, echo=FALSE, warn=FALSE>>=
+## Packages
+suppressPackageStartupMessages(library(tidyverse, warn.conflicts = FALSE))
+suppressPackageStartupMessages(library(fitdistrplus))
+library(grid)
+library(RColorBrewer)
+library(reshape2)
+
+# Scripts for certain topics
+source("R/informationaccumulationsystem.r")
+source("R/Ratings.r")
+source("R/bc_markovchain.r")
+source("R/woc.r")
+source("R/wiserthancrowd.r")
+
+# Recompute lengthy stuff? (Warning: Takes hours!)
+compute_OPDboundedconfidence <- FALSE # Warning: Computation takes hours!
+compute_OPDias <- FALSE # Warning: Computation takes hours!
+
+# Load Data
+G <- c(read.csv("R/galton_data.csv",header = FALSE)[[1]]) # Galton-Data
+truth_G <- 1198
+D <- tbl_df(read.csv("R/Viertelfest.csv")) %>% mutate(Estimate=Schätzung)
+sD <- D$Estimate # Viertelfest-Data
+rm(D)
+truth <- 10788
+expert <- 19100
+O <- read.csv("R/ol_data.csv")
+invalid_O <- sum(is.na(O$Frage1))
+sO <- O[!is.na(O$Frage1),"Frage1"] # Oldenburg-Data
+truth_O <- nrow(O)
+rm(O)
+@
+
 
 \begin{titlepage}
 \begin{center}
 {\Huge \bf Systemic Effects in \\ Models of \\
-Opinion Dynamics, \\ Societal Growth, \\ and the Wisdom of the Crowds \\}
+Opinion Dynamics, \\ Societal Growth, \\ and the Wisdom of Crowds \\}
 \vspace{7mm}
 \Large
 Cumulative Habilitation Work \\ 
@@ -161,7 +176,7 @@ The particular contributions and some common findings and conclusions are outlin
 Each chapter starts with the a list of the parts of the habilitation work which it describes. These lists are ordered in order of appearance in the text as well as in the habilitation work itself. 
 
 
-
+\tableofcontents
 
 
 
@@ -201,10 +216,8 @@ The idea of rational-choice models is that rational actors anticipate the potent
 
 Some agent-based modelers therefore emphasize that they are able to study systems dynamics ``out of equilibrium''.  
 Although the dynamical perspective is indeed lacking to a large extent in rational choice theories like game theory, the oppositional view of agent-based and rational choice models is mostly overstated.
-First, every dynamical model -- also with the simplest behavioral rules -- has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic.  
-Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can be identical. This is further discussed in \textcite{Lorenz2012ZurMethodeder}.
-
-Finally, game theoretic reasoning can also be fed into a dynamical agent-based model through an evolutionary or boundedly rational setting, where actors do rational-choice decision only with respect to information from a smaller subset players and anticipate only with a limited time horizon. In that sense, also rational-choice models give rise to systemic effects which go beyond the scope of the individual. 
+First, every dynamical model -- bei it with complex or simple behavioral rules -- has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic. Thus, the notion ``out-of-equilibrium'' transfers to either the study of transition, or a restricted definition of equilibrium. 
+Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can even be identical. Game theoretic reasoning can also be fed into a dynamical agent-based model through an evolutionary or boundedly rational setting, where actors do rational-choice decision only with respect to information from a smaller subset of players and anticipate only with a limited time horizon. In that sense, also rational-choice models give rise to systemic effects which go beyond the scope of the individual. 
 
 \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} (another part of the habilitation work) show an example how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response of an individual to minimize opinion dissonance within its social context. In particular, the paper shows under what conditions of the dissonance function, dissonance minimization can serve as a microfoundation of averaging as the behavioral rule in opinion dynamics models. In that sense, agents in many opinion dynamics models appear as boundedly rational agents which links agent-based modeling back to decision and game theory. 
 \smallskip 
@@ -216,6 +229,8 @@ Either way, the idea is to explain macroscopic phenomana through human interacti
 Models always simplify the real-world therefore in some sense every model is wrong in capturing reality. The art of modeling lies in the selection of relevant aspects in relevant relations such that the phenomena of interest are captured most appropriate by few variables and few parameters. 
 
 Lastly, systemic effects in social systems are also explored through controlled \textbf{group experiments} (four works). 
+
+% TODO (optional) distinguish also see experimental work as data-driven modeling, see simulation and experiments as data-generation!
 
 Table \ref{tab:habilworks} outlines the main focus of the further ten parts of the habilitation work grouped by the topics of the following three chapters. 
 
@@ -266,7 +281,9 @@ The focus of the \emph{opinion dynamics} goes beyond the individual and studies 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 1, Tipping Diffusivity %%%%%%%%%%%%%%%%%%%
-\paragraph{Tipping diffusivity and why more links can lead to less consensus.} The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
+\section{Tipping diffusivity and why more links can lead to less consensus} 
+
+The first habilitation work on opinion dynamics is another theoretical contribution: \textcite{Shin.Lorenz2010TippingDiffusivityin}. 
 We model a situation of two equally sized communities of agents which both are characterized by a typical number of intra-community links between agents of the same community and a typically lower number of inter-community links of members from different communities. 
 All agents hold an opinion which is a real numbers between -1 and +1. It might represent a tendency towards different opposing cultures, while zero represents no opinion on this. 
 Our point of analysis is to further assume that initially all agents of each community hold the same opinion, while 
@@ -303,7 +320,7 @@ The following three parts of the habilitation are data-driven modeling works on 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, PAPER 2, Political Partisanship %%%%%%%%%%%%%%%%%%%
-\paragraph{How political partisanship forms through self-reinforcement.} The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
+\section{How political partisanship forms through self-reinforcement} The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
 Figure \ref{fig:MetzLorenz} is a histogram of these 965 individuals showing how many individuals made which amounts of announcement for a left (SPD and Grüne) and right (CDU/CSU and FDP) party. In particular, the histogram shows, that there are about 100 people who made 27 announcements of attachments to a left party (leftmost bin). Also about 100 people announced 27 times an attachment to a right party (rightmost bin). About 40 people never announced any party attachment (most backward bin). People announcing an attachment toa left (right) party but not all the time exist in large magnitude. People who announce a large number announcements for left and right parties are rare. For example there is only one person which announced eleven times a left party and also eleven times a right party. This histogram is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
 
 \begin{figure}[tb]
@@ -369,9 +386,9 @@ For smaller interest in politics $q<0.641$ the distribution would lead to a U-sh
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 3, Movie ratings %%%%%%%%%%%%%%%%%%%
-\paragraph{Average and deviate -- how movie rating histograms take shape.} 
+\section{Average and deviate -- how movie rating histograms take shape} 
 
-Nowadays, $\bigstar$-based rating systems are ubiquitous. Almost everything can be rated with some $\bigstar$'s. The costs of rating is just one click. Movies gain several 10,000 or even 100,000 ratings on popular sites. The ``Internet Movie Database'' (\url{IMDb.com} uses a 10$\bigstar$-scale. Of most interest to users is the average number of $\bigstar$s, which is prominently displayed in the website. This number influences the decisions of other to watch the movie. Further on, the user-movie-matrix of ratings is the basis for personalized recommendation systems. Besides the average, also the histogram of the number of $\bigstar$s is accessible. \textcite{Lorenz2009Universalityofmovie} analyzes histograms of all movies with more than 20,000 ratings\footnote{These were 1,086 movies by March 2008. For an impression of the trend: By Sep 6, 2016 IMDb has 1,403 titles with more than 100,000 votes. This includes series now.}, and tries to identify universal characteristics which say something about underlying processes of continuous opinion dynamics. 10$\bigstar$-rating scales are a good approximation of continuous opinions because ratings are adjustable and fairly fine-grained. 
+Nowadays, $\bigstar$-based rating systems are ubiquitous. Almost everything can be rated with some $\bigstar$'s. The costs of rating is just one click. Movies gain several 10,000 or even 100,000 ratings on popular sites. The ``Internet Movie Database'' (\texttt{\href{http://imdb.com}{IMDb.com} }uses a 10$\bigstar$-scale. Of most interest to users is the average number of $\bigstar$s, which is prominently displayed in the website. This number influences the decisions of other to watch the movie. Further on, the user-movie-matrix of ratings is the basis for personalized recommendation systems. Besides the average, also the histogram of the number of $\bigstar$s is accessible. \textcite{Lorenz2009Universalityofmovie} analyzes histograms of all movies with more than 20,000 ratings\footnote{These were 1,086 movies by March 2008. For an impression of the trend: By Sep 6, 2016 IMDb has 1,403 titles with more than 100,000 votes. This includes series now.}, and tries to identify universal characteristics which say something about underlying processes of continuous opinion dynamics. 10$\bigstar$-rating scales are a good approximation of continuous opinions because ratings are adjustable and fairly fine-grained. 
 
 The main stylized facts are:
 \begin{compactenum}[(i)]
@@ -380,7 +397,6 @@ The main stylized facts are:
 \end{compactenum}
 Consequently, movie histograms have either three or two peaks. When there are three peaks two are at the extremes. When there are two peaks one or both are at the extremes. There are only 5 movies (0.5\%) exemptions\footnote{In 4 cases the 2$\bigstar$-bin is slightly higher than 3$\bigstar$-bin but less than the 1$\bigstar$-bin. One movie has an almost invisible additional peak at the 3$\bigstar$-bin.} Nine examples are shown in Figure \ref{fig:IMDbexamples}.
 These observations contradict assumptions on the shape from the literature: for example the uniform, U-like, or single-peaked shape. These assumptions were either made ad hoc for theoretical reasons, or on the basis of data on the coarser grained 5$\bigstar$-scale.
-
 
 \begin{figure}[htbp]
 \includegraphics[width=0.32\textwidth]{/home/janlo/Documents/posters/2009_Rome/figs/margin/imdb2}
@@ -439,7 +455,7 @@ is relatively constant at around $\frac{4}{3}$ with respect to $\mu$. Skewness s
 \caption{Fitted Levy-skew $\alpha$-stable parameters of all 1,086 movies with respect to the location parameter $\mu$ (also fitted). Blue lines show averages between gridlines. Green lines show constant, linear and quadratic fits.}\label{fig:LevyParams}
 \end{figure}
 
-The $\mu$-fit in comparison to the original empirical histograms is shown for the nine example movies in Figure \ref{fig:IMDbexamples}. Over all the quality of the one parameter fit is impressive. The average coefficient of determination $R^2$ is 0.943.
+The $\mu$-fit in comparison to the original empirical histograms is shown for the nine example movies in Figure \ref{fig:IMDbexamples}. In summary, the quality of the one parameter fit is impressive. The average coefficient of determination $R^2$ is 0.943.
 
 In conclusion see ratings as discretised and confined pre-averaged continuous opinions leads to very good approximations of real-world rating histograms. The underlying {opinion distribution is not normal but fat-tailed}. The one-parameter $\mu$-fit is still good and shows surprising regularities: an average movie ($\mu\approx 7.5$) has most narrow distribution and no skewness. Deviation from an average movie makes the opinion distribution broader and skew pronouncing the deviation. The surprising accuracy achieved with a non-trival model but only one parameter points to strong non-trivial regularities in the process of opinion formation for movie ratings.
 Despite these indication of universality, the results can also be used to {characterise movies} in a new way by quantifying the differences from theoretical histograms with a given quality.
@@ -448,7 +464,7 @@ Despite these indication of universality, the results can also be used to {chara
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 4, Ideology Landscapes %%%%%%%%%%%%%%%%%%%
-\paragraph{How clusters in ideology space emerge through opinion dynamics under bounded confidence.} 
+\section{How clusters in ideology space emerge through opinion dynamics under bounded confidence} 
 
 
 My dissertation \textcite{Lorenz2007RepeatedAveragingand, Lorenz2006Consensusstrikesback,Lorenz2006ContinuousOpinionDynamics,Lorenz2008ManagingComplexityInsights} and derived works \parencite{Lorenz2007ContinuousOpinionDynamics,Lorenz2010Heterogeneousboundsof} have extensively studied the bounded confidence model of continuous opinion dynamics through agent-based simulation as well as through numerical integration of its density-based description. These were theoretical works. \textcite{Lorenz2015ModelingEvolutionIdeological} (part of the habilitation work) is a first attempt to apply the model ``as is'' to explain the shape of real-world opinion landscapes in the political/ideological realm.
@@ -495,7 +511,7 @@ We consider agents to change their ideological positions because of two processe
 For each agent $i$ and each time step opinion adaptation happens with probability $1-m$ and opinion replacement happens otherwise. In the case of adaptation, another agent $j$ is picked at random. Agent $i$ interacts with it only when their distance in opinion is less than its bound of confidence $|x_i(t) - x_j(t)| < \varepsilon$. If agent $j$ is close enough agent $i$ changes its ideological position to the average of the two positions $x_i(t+1) = (x_i(t) + x_j(t))/2$. In case of opinion replacement, agent $i$ does not engage in interaction with others but reconsiders its ideological position from scratch, that mean it chooses a new random value from the interval $[0,1]$. Notice, that dynamics on the macrolevel remains unchanged if instead of picking a new random opinion the agent just switches back to its initial opinion, which was picked at random only at the beginning of the simulation. 
 Some care is necessary with respect to specifics of the simulation algorithm and model parameters. In many implementation, agents $i$ and $j$ are drawn at the time and both of their opinions are updated. In this system on average there or twice as much adaptation events per agent than in the model described here where only $i$ adapts. As a consequence the model with bilateral adaptation behaves as the model with unilateral adaptation but only half of the probability for opinion replacement, while dynamics of the former are twice as fast as dynamics of the latter. Here we use unilateral adaptation, while in \textcite{Lorenz2015ModelingEvolutionIdeological} bilateral adaptation was used. Further on, \textcite{Lorenz2015ModelingEvolutionIdeological} uses $p$ for the probability of random opinion replacement, while we use $m$ here for consistency with \textcite{Pineda.Toral.ea2009Noisycontinuous-opiniondynamics}. In comparison of the results here with the results in \textcite{Lorenz2015ModelingEvolutionIdeological} it thus holds $m = p/2$.
 
-The model is implemented in NetLogo \parencite{Wilensky1999NetLogo} for easy use \parencite{TODO}. 
+The model is implemented in NetLogo \parencite{Wilensky1999NetLogo} for easy use TOCITE. 
 Figure~\ref{fig:snap1} shows the full screen of the Netlogo model (in a different design changed design compared to \textcite{Lorenz2012ContinuousOpinionDynamics} as cited in \textcite{Lorenz2015ModelingEvolutionIdeological}). 
 The main panel in the center shows the trajectories of opinions up to the current time step moving from left to right. For longer runs this panel turns into a ``roling'' display showing only the latest time steps. 
 At the bottom there are two observers which accompany the central panel of trajectories. 
@@ -504,11 +520,11 @@ The right hand side panel shows the evolution of the mean and the median opinion
 
 \begin{sidewaysfigure}
  \includegraphics[width=\textwidth]{figs/Screenshot.png}
- \caption{Full screen of the Netlogo model of \textcite{TODO}. A run is shown for 500 agents with homogeneous bound of confidence $\varepsilon=0.25$ and without reconsideration ($m=0$).}\label{fig:snap1}
+ \caption{Full screen of the Netlogo model of TODO. A run is shown for 500 agents with homogeneous bound of confidence $\varepsilon=0.25$ and without reconsideration ($m=0$).}\label{fig:snap1}
 \end{sidewaysfigure}
 
 To understand model dynamics, let us first look at homogeneous bounds of confidence without noise ($m=0$). 
-Large bounds of confidence (approximately $\varepsilon>0.27$) lead to \emph{consensus}. Intermediate bounds of confidence (approximately $0.18<\varepsilon<0.27$) lead to \emph{polarization} into two equally large opinion clusters, one moderately left-wing and one moderately right-wing. Small bounds of confidence ($\varepsilon<0.18$) lead to \emph{plurality} of three or more clusters. Fig.~\ref{fig:homo} shows trajectories for different bounds of confidence to demonstrate consensus, polarization and plurality. These can also be checked in the NetLogo model \parencite{TODO} through special example buttons. 
+Large bounds of confidence (approximately $\varepsilon>0.27$) lead to \emph{consensus}. Intermediate bounds of confidence (approximately $0.18<\varepsilon<0.27$) lead to \emph{polarization} into two equally large opinion clusters, one moderately left-wing and one moderately right-wing. Small bounds of confidence ($\varepsilon<0.18$) lead to \emph{plurality} of three or more clusters. Fig.~\ref{fig:homo} shows trajectories for different bounds of confidence to demonstrate consensus, polarization and plurality. These can also be checked in the NetLogo model TODO through special example buttons. 
 
 \begin{figure}
 \begin{center}
@@ -573,34 +589,15 @@ In conclusion, several stylized facts can be reproduced by this two parameter mo
 Agent-based models for the evolution of ideological landscapes are still in its infancy and it remains to show if they can add interesting insight to political dynamics. At least the possibility for counterfactual analysis at critical values seems promising for studying and understanding self-driven abrupt changes in political landscapes. 
 
 
-\paragraph{Systemic effects in opinion dynamics and opinion pattern diagrams}
+\section{Systemic effects in opinion dynamics and opinion pattern diagrams}
 
 <<ODP-tipping, echo=FALSE, fig.height=3>>=
-library(ggplot2)
-library(reshape2)
-suppressMessages(library(dplyr))
-library(RColorBrewer)
 Delta <- 0.2
-ias <- function(y,fac) {
-  Om0 <- fac*Delta
-  OmX <- 0.25*fac*Delta
-  y <- c( (1-Delta)*y[1] + (Om0*y[1] + OmX*y[2])*(1-abs(y[1])) ,
-          (1-Delta)*y[2] + (OmX*y[1] + Om0*y[2])*(1-abs(y[2])) )
-  return(y)
-}
 init_y <- c(0.5,-0.4)
-fix_ias <- function(init_y,fac) {
-  repeat {
-    y <- ias(init_y,fac)
-    if (sum(abs(init_y - y)) < 10^-12) break
-    else init_y <- y
-  }
-  return(y)
-}
 FAC <- seq(0.1,3,by=0.02)
-if (FALSE) {
+if (compute_OPDias) {
   R <- matrix(nrow = length(FAC), ncol = 2)
-  for (i in 1:length(FAC)) R[i,] <- fix_ias(init_y,FAC[i])
+  for (i in 1:length(FAC)) R[i,] <- fix_ias(init_y,FAC[i],Delta)
   save(FAC,R,file = "R/ODP_ias.RData")
 } else {
   load(file = "R/ODP_ias.RData")
@@ -610,8 +607,8 @@ names(M) <- c("fac","y")
 ggplot(M,aes(fac,y)) + annotate("rect", xmin = 0.1, xmax = 3.02, ymin = -1, ymax = 1, fill="#3288BD") +
   stat_bin2d(binwidth = c(0.01999, 0.02), drop=FALSE) + ylim(-1,1) +
   scale_fill_distiller(palette = "Spectral", limits=c(0, 2)) +
-  labs(x=expression(Omega~"(Diffusivity measured in"~Delta~"with"~Omega[X]==0.25*Omega~"and"~Omega[0]==Omega~")"),
-       y="y (stable opinions)") +
+  labs(y="y (stable opinions)", x=expression(
+    Omega~"(Diffusivity measured in"~Delta~"with"~Omega[X]==0.25*Omega~"and"~Omega[0]==Omega~")")) +
   annotate("point", x=c(0,0), y=init_y, shape=21, fill="#FFFFBF", color="black", size=3) + 
   annotate("text", x=c(0.1,0.1), y=init_y, label = c('y[1] (initial)','y[2] (initial)'),hjust = 0, parse=TRUE)
 @
@@ -625,9 +622,8 @@ Q <- seq(0,1,length.out = 51)
 M <- matrix(NA, nrow = length(num_attach), ncol=length(Q))
 for (i in 1:length(Q)) {
   M[,i] <- choose(n,num_attach) * beta(num_attach + Q[i], n - num_attach + 1-Q[i])/beta(Q[i],1-Q[i])
-  # bb <- choose(n,K) * beta(K + a, n - K + b)/beta(a,b)
 }
-R <- melt(M)
+R <- reshape2::melt(M)
 names(R) <- c("number of attachments","interest in politics","frequency")
 R$`number of attachments` <- num_attach[R$`number of attachments`]
 R$`interest in politics` <- Q[R$`interest in politics`]
@@ -637,11 +633,10 @@ ggplot(filter(R), aes(`interest in politics`, `number of attachments`)) +
 @
 
 <<ODP-ratings, echo=FALSE, fig.height=3>>=
-source("R/Ratings.r")
 MU <- seq(2,10,by=0.5)
 M <- matrix(NA, nrow = length(x), ncol=length(MU))
 for (i in 1:length(MU)) M[,i] <- confinedLevySkewAlphaStablePdf(MU[i])
-R <- melt(M)
+R <- reshape2::melt(M)
 names(R) <- c("stars","mu","frequency")
 R$star <- num_attach[R$stars]
 R$mu <- MU[R$mu]
@@ -651,36 +646,16 @@ ggplot(filter(R), aes(mu, stars)) + geom_raster(aes(fill=frequency)) +
 @
 
 <<OPD-boundedconfidence, echo=FALSE, fig.height=3.5>>=
-E = seq(0.1,0.4,by=0.002)
-Ops = seq(0,1,length.out = 101)
-getR <- function(m) {
-  load(paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))
-  R <- melt(M)
-  names(R) <- c("opinion","confidencebound","frequency")
-  R$opinion <- Ops[R$opinion]
-  R$confidencebound <- E[R$confidencebound]
-  return(R)
-}
-# ggplot(getR(0.06), aes(confidencebound, opinion)) + 
-#   geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral") + 
-#   labs(x = expression(paste(epsilon," (bound of confidence)")))
+E <- seq(0.1,0.4,by=0.002)
+d <- 101 # discretization of opinion space
+P_init <- rep(1/d,d) # initial distribution
+Ops = seq(0,1,length.out = d) # labels of opinions
+# Computation takes several HOURS!!! (when R/bc_opinion_pattern_diagram_m0.1 has to be built anew)
+if (compute_OPDboundedconfidence) {makeM(m = 0.1, P_init, E, prec=10^-14)}
 ggplot(getR(0.1), aes(confidencebound, opinion)) + 
   geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral") +
   labs(x = expression(paste(epsilon," (Bound of Confidence)")))
-# ggplot(getR(0.12), aes(confidencebound, opinion)) + 
-#  geom_raster(aes(fill=frequency)) + scale_fill_distiller(palette = "Spectral")
 @
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -714,7 +689,7 @@ Growth is fundamental to all living organisms.
  An experimental study \parencite{Lorenz.Paetzel.ea2016JustDontCall} on framing of collective decisions about redistribution shows an important aspect of the answer to this question There is a higher propensity to high tax rates  
 \bigskip
 
-\paragraph{How innovation and imitation drive growth of productivity.} \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
+\section{How innovation and imitation drive growth of productivity.} \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} show how innovation together with imitation of technology maximized productivity growth in an economy of firms. The theory reproduces the empirical fact that the productivity distribution of domestic firms in existing economies are travelling waves with left and right tails following power laws. 
 
 \begin{figure}[tbp]
  \centering%
@@ -773,7 +748,7 @@ mark the calibrated $(p,q)$-points.}
 
 \bigskip
 
-\paragraph{How redistribution can spur growth?}
+\section{How redistribution can spur growth?}
 \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}
 \emph{Short description of model and results.}
 
@@ -801,7 +776,7 @@ mark the calibrated $(p,q)$-points.}
 
 \bigskip
 
-\paragraph{Taxrate vs. minimal income -- how framing of a redistributive decision can change the level of redistribution.}
+\section{Taxrate vs. minimal income -- how framing of a redistributive decision can change the level of redistribution.}
 \textcite{Lorenz.Paetzel.ea2016JustDontCall}\emph{Short description of model and results.}
 
 
@@ -868,17 +843,20 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 \vspace{1.3cm}
 
 
- The wisdom of the crowd phenomenon is when the aggregate of several individual estimates is close to the true value although most estimates are far away from it. 
+ The wisdom of the crowd phenomenon is when the aggregate of several individual estimates is close to the true value although most estimates are far away from it. Thus, crowd wisdom is something which goes beyond individual wisdom on the same subject. 
  
- The seminal example is due to one founding father of statistics, Francis Galton. At the weight-judging competition at the West of England Fat Stock and Poultry Exhibition he collected 787 cards on which competitors estimated the weight of the meat of an ox after it has been slaughtered and dressed. 
+ The seminal example is due to one founding father of statistics --quote  Francis Galton. At the weight-judging competition at the West of England Fat Stock and Poultry Exhibition he collected 787 cards on which competitors estimated the weight of the meat of an ox after it has been slaughtered and dressed. 
  In his paper in \emph{Nature}, \textcite{Galton1907Voxpopuli} reported that the 5-percentile and the 95-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. 
- \textcite{Galton1907Voxpopuli} concludes: \textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
-
-<<Galton-Data,echo=FALSE>>=
-G <- c(read.csv("R/galton_data.csv",header = FALSE)[[1]])
-truth_G <- 1198
-@
+ \textcite{Galton1907Voxpopuli} concludes: %\textit{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''} 
+\begin{quote}
+This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.
+\end{quote}
  
+ 
+
+
+\section{Three guestimation games}
+
  Just recently, Kenneth W. Wallis dug out the full sample of estimates from Galton's notes out of the archive and made it publically available\footnote{\url{https://www2.warwick.ac.uk/fac/soc/economics/staff/academic/wallis/publications/galton_data.xlsx}}. He also found some small errors in Galtons computation \parencite{Wallis2014RevisitingFrancisGaltons} with a 5-percentile of \Sexpr{format(quantile(G,0.05),digits=4,big.mark=",")} and a median of \Sexpr{format(median(G),big.mark=",")}. Figure \ref{fig:galton} shows the histogram of estimates together with the truth, the median and the mean of estimates. 
  
  Interestingly, the mean of estimates \Sexpr{format(mean(G), digits=5,big.mark=",")} is even more accurate than the median  which Galton reported. \textcite{Hooker1907MeanorMedian} already made that point in a letter to \emph{Nature}. He estimated the mean as 1,196 based on the percentiles reported by \textcite{Galton1907Voxpopuli} and \textcite{Galton1907Ballot-Box} reported it to be 1,197. Hooker as well as Galton referred to another paper, where \textcite{Galton1907Onevoteone} argued that for ``democratic'' aggregation always the median shall be used and not the mean, because it would give \emph{``voting power to `cranks' in proportion to their crankiness.''} Ultimately, it turns out that the arguments for using the median as democratic means against cranks has its value in its own right, although it is not of key importance in estimation tasks. The malicious power of cranks under aggregation of the mean would be to over- or understate estimates to steer the mean towards a certain direction. 
@@ -892,8 +870,8 @@ ggplot(tbl_df(G), aes(value)) + geom_histogram(binwidth = 5) +
   annotate("text", label="Median", x=median(G)+15, y = 45, colour = "red", hjust=0) +
   annotate("pointrange", x=mean(G), y = 55, ymin = 0, ymax = 55, colour = "blue", size = 1)+
   annotate("text", label="Mean", x=mean(G)+15, y = 55, colour = "blue", hjust=0) +
-  annotate("pointrange", x=mean(truth_G), y = 50, ymin = 0, ymax = 50, colour = "violet", size = 1) +
-  annotate("text", label="Truth", x=truth_G+15, y = 50, colour = "violet", hjust=0) 
+  annotate("pointrange", x=mean(truth_G), y = 50, ymin = 0, ymax = 50, colour = "darkviolet", size = 1) +
+  annotate("text", label="Truth", x=truth_G+15, y = 50, colour = "darkviolet", hjust=0) 
 @
 \caption{Histogram of estimates for the weight-judging competition at the West of England Fat Stock and Poultry Exhibition in Plymouth 1907 ($N=787$). }\label{fig:galton}
 \end{figure}
@@ -902,37 +880,32 @@ ggplot(tbl_df(G), aes(value)) + geom_histogram(binwidth = 5) +
  The lottery ``Haste mal 'nen Euro? -- Tombola''\footnote{Meaning something like ``Would you spend one Euro? -- Tombola''.} happened at the festival ``ViertelFest'' August 22-24, 2008 in Bremen. The tombola was an ordinary one, where people could buy lots which could bring them prices. As the topic of the festival was ``Swarm Intelligence'', I asked the organizers to include a guestimation task similar to the one West of England Fat Stock and Poultry Exhibition. 
  Each buyer of a lot also got another chance to win: 
  They could estimate the number of lots which would have been sold in total during after the three days of the festival. The estimates closest to the true value got tickets for the circus. Further on, before the lottery the organizers asked an expert, the organizer of Bremen's biggest lottery (Bürgerpark-Tombola) about his estimate for reference. The data is accessible online\footnote{Blog post in German: \url{http://janlo.de/wp/2010/06/22/die-weisheit-der-bremer/}. Direct link to the data: \url{http://spreadsheets.google.com/pub?key=0AqRUj58gkTakcDIybDYtYTRBOHozTDVtRkhCX1N4Rnc&hl=de&single=true&gid=0&output=csv}}. 
-<<Viertelfest-Data,echo=FALSE>>=
-D <- tbl_df(read.csv("R/Viertelfest.csv")) %>% mutate(Estimate=Schätzung)
-sD <- D$Estimate
-truth <- 10788
-expert <- 19100
-@
- In total, \Sexpr{format(nrow(D), big.mark=",")} estimates of the number of lots were handed in. The true value was that \Sexpr{format(truth, big.mark=",")} lots had been sold\footnote{Thus, \Sexpr{format(100*nrow(D)/truth, digits=3)}\% of the lots were used to participate in the guestimation game.}, and the expert estimated \Sexpr{format(expert, big.mark=",")} lots. 
- The 5- and 95-percentiles span values from \Sexpr{format(round(quantile(D$Schätzung,0.05)), big.mark=",")} to \Sexpr{format(round(quantile(D$Schätzung,0.95)), big.mark=",")}, and thus almost three orders of magnitude. 
- The median of estimates is \Sexpr{format(median(D$Schätzung),big.mark=",")} and comes much closer to the true value than the expert. 
+
+ In total, \Sexpr{format(length(sD), big.mark=",")} estimates of the number of lots were handed in. The true value was that \Sexpr{format(truth, big.mark=",")} lots had been sold\footnote{Thus, \Sexpr{format(100*length(sD)/truth, digits=3)}\% of the lots were used to participate in the guestimation game.}, and the expert estimated \Sexpr{format(expert, big.mark=",")} lots. 
+ The 5- and 95-percentiles span values from \Sexpr{format(round(quantile(sD,0.05)), big.mark=",")} to \Sexpr{format(round(quantile(sD,0.95)), big.mark=",")}, and thus almost three orders of magnitude. 
+ The median of estimates is \Sexpr{format(median(sD),big.mark=",")} and comes much closer to the true value than the expert. 
  Figure \ref{fig:viertelfest} shows the truth, the experts estimate, the mean\footnote{The arithmetic mean is meant here. }, the median and the histogram of estimates with the x-axis clipped such that all estimates larger than 150,000 are not visible. 
- There were \Sexpr{format(sum(D$Schätzung>150000),big.mark=",")} estimates larger than 150,000 (\Sexpr{format(100*sum(D$Schätzung>150000)/nrow(D),digits=2)}\%) ranging from \Sexpr{format(min(D[D$Estimate>150000,"Estimate"]),big.mark=",")} to \Sexpr{format(max(D[D$Estimate>150000,"Estimate"]),big.mark=",")}.
- These large estimates (especially the maximal one) make the mean such a bad aggregation function in this case.  Nevertheless, even when these \Sexpr{format(sum(D$Schätzung>150000),big.mark=",")} values were removed the mean would be \Sexpr{format(round(mean(D$Estimate[D$Estimate<=150000])),big.mark=",")} and way too high. 
+ There were \Sexpr{format(sum(sD>150000),big.mark=",")} estimates larger than 150,000 (\Sexpr{format(100*sum(sD>150000)/length(sD),digits=2)}\%) ranging from \Sexpr{format(min(sD[sD>150000]),big.mark=",")} to \Sexpr{format(max(sD[sD>150000]),big.mark=",")}.
+ These large estimates (especially the maximal one) make the mean such a bad aggregation function in this case.  Nevertheless, even when these \Sexpr{format(sum(sD>150000),big.mark=",")} values were removed the mean would be \Sexpr{format(round(mean(sD[sD<=150000])),big.mark=",")} and way too high. 
 
 \begin{figure}
 <<Viertelfest-Hist, echo=FALSE, fig.height=3.5>>=
-suppressMessages(library(fitdistrplus))
 Dfit <- fitdist(D$Estimate,"lnorm")
 br <- seq(0,150000,by=1000)
-ggplot(filter(D,Estimate<150000),aes(Estimate)) + geom_histogram(binwidth = 1000) + 
+ggplot(filter(tbl_df(sD),value<150000),aes(value)) + geom_histogram(binwidth = 1000) + 
   scale_x_continuous(breaks=seq(0,150000, by=20000)) + theme_bw() +
   labs(x="Estimates: number of lots") +
-  annotate("pointrange", x=expert, y = 30, ymin = 0, ymax = 30, colour = "green", size = 1) +
-  annotate("text", label="Expert", x=expert+3000, y = 30, colour = "green", hjust=0) +
-  annotate("pointrange", x=median(D$Estimate), y = 100, ymin = 0, ymax = 100, colour = "red", size = 1) +
-  annotate("text", label="Median", x=median(D$Estimate)+3000, y = 100, colour = "red", hjust=0) +
-  annotate("pointrange", x=exp(mean(log(D$Estimate))), y = 90, ymin = 0, ymax = 90, colour = "brown", size = 1)+
-  annotate("text", label="Geometric Mean", x=exp(mean(log(D$Estimate)))+3000, y = 90, colour = "brown", hjust=0) +
-  annotate("pointrange", x=mean(D$Estimate), y = 10, ymin = 0, ymax = 10, colour = "blue", size = 1)+
-  annotate("text", label="Arithmetic Mean", x=mean(D$Estimate)+3000, y = 10, colour = "blue", hjust=0) +
-  annotate("pointrange", x=mean(truth), y = 80, ymin = 0, ymax = 80, colour = "violet", size = 1) +
-  annotate("text", label="Truth", x=truth+3000, y = 80, colour = "violet", hjust=0) 
+  annotate("pointrange", x=expert, y = 30, ymin = 0, ymax = 30, colour = "darkgreen", size = 1) +
+  annotate("text", label="Expert", x=expert+3000, y = 30, colour = "darkgreen", hjust=0) +
+  annotate("pointrange", x=median(sD), y = 100, ymin = 0, ymax = 100, colour = "red", size = 1) +
+  annotate("text", label="Median", x=median(sD)+3000, y = 100, colour = "red", hjust=0) +
+  annotate("pointrange", x=exp(mean(log(sD))), y = 90, ymin = 0, ymax = 90, colour = "brown", size = 1)+
+  annotate("text", label="Geometric Mean", x=exp(mean(log(sD)))+3000, y = 90, 
+           colour = "brown", hjust=0) +
+  annotate("pointrange", x=mean(sD), y = 10, ymin = 0, ymax = 10, colour = "blue", size = 1)+
+  annotate("text", label="Arithmetic Mean", x=mean(sD)+3000, y = 10, colour = "blue", hjust=0) +
+  annotate("pointrange", x=mean(truth), y = 80, ymin = 0, ymax = 80, colour = "darkviolet", size = 1) +
+  annotate("text", label="Truth", x=truth+3000, y = 80, colour = "darkviolet", hjust=0) 
 @
 \caption{Histogram of estimates for the guestimation task ``How many lots will be sold at the end of the festival'' at the Viertelfest Aug 22-24, 2008 in Bremen. ($N=\Sexpr{format(nrow(D), big.mark=",")}$, x-axis clipped at 150,000)}\label{fig:viertelfest}
 \end{figure}
@@ -946,22 +919,13 @@ ggplot(filter(D,Estimate<150000),aes(Estimate)) + geom_histogram(binwidth = 1000
  Logarithmic thinking also seems to be the natural human intuition for mapping numbers to a line, while the linear mapping is a cultural invention needing formal education \parencite{Dehaene.Izard.ea2008LogorLinear}. 
  In these situation typically the logarithm of estimates looks more like a normal distribution. 
  Thus, the log-normal distribution is a better fitting distribution and the geometric mean\footnote{The geometric mean is the exponential of the arithmetic mean of the logarithmized sample data. } is a better measure of central tendency than the arithmetic mean. 
- The geometric mean is \Sexpr{format(exp(mean(log(D$Estimate))), digits=5,big.mark=",")} and thus only \Sexpr{format(truth-exp(mean(log(D$Estimate))), digits=3,big.mark=",")} less than the correct answer. 
+ The geometric mean is \Sexpr{format(exp(mean(log(sD))), digits=5,big.mark=",")} and thus only \Sexpr{format(truth-exp(mean(log(sD))), digits=3,big.mark=",")} less than the correct answer. 
  
  The former discussion gives rise to the claim that the shape of the distribution can advise the choice of the right measure of aggregation. Figure \ref{fig:WoCdistr} shows density estimates and best fits for a normal and a log-normal distribution for both samples. For Galton's data the normal distribution is the better fit according to all goodness-of-fit measures\footnote{All measures provided by \texttt{gofstat} in the R-package \texttt{fitdistr}.}. For the Viertelfest data instead the log-normal fit is better by all goodness-of-fit measures. 
  The median of a normally distributed random variable coincides with the arithmetic mean, while the median of a lognormally distributed random variable coincides with the geometric mean. This further underpins that the different choices of the arithmetic and the geometric mean for the two samples is quite reasonable. 
  
- Inference of the best measure of central tendency for the aggregation of the wisdom of the crowd from measurements of other aspects of the distribution is an interesting task, which needs further theoretical and empirical exploration. One way is to use the augmented quincunx model of sequential and probabilistic cue categorization presented by \textcite{Nash2014CuriousAnomalySkewed}. In particular, he argues that left-skewness in Galton's sample is due to the fact that most judgers had a lot of professional knowledge and the fact that the ox was comparably heavy. According to the theory, extremeness of the true value in comparison to a typical value known by judgers triggers a skew distribution, which is skew on the side of the typical and steep on the side of the extreme.  
- 
- The set of options for measures of aggregtion is well described by \emph{abstract means} as outlined by \textcite{Hegselmann.Krause2005OpinionDynamicsDriven}\footnote{\textcite{Hegselmann.Krause2005OpinionDynamicsDriven} extend the concept to partial abstract means which they use to generalize bounded confidence models of opinion dynamics as treated in Chapter \ref{ch:od}. }. An abstract mean is a function which maps a set of real numbers to a certain number between the maximum and the minimum of that set.
- Within this framework it is always possible to find an abstract mean which aggregates the truth correctly as long as the truth is sandwiched between the minimal and the maximal estimate. 
- This excercise is of little practical relevance. 
- The real challenge is to infer a good generalized mean from the distribution of estimates without knowing the truth. 
- 
-\begin{figure}
+ \begin{figure}
 <<WoC-Distr, echo=FALSE,fig.height=3>>=
-suppressMessages(library(fitdistrplus))
-suppressMessages(library(gridExtra))
 LOGNfit <- fitdist(G,"lnorm")
 NORMfit <- fitdist(G,"norm")
 br <- seq(850,1550,by=1)
@@ -972,123 +936,512 @@ gG <- ggplot(tbl_df(G),aes(value)) + geom_density(bw=5) +
   geom_line(data=DISTS,mapping=aes(x=x, y=ynorm), color="blue") +
   scale_x_continuous(breaks=seq(900,1500,by=100)) + theme_bw() + 
   labs(x="Estimates: weight of ox' meat (pounds)")
-LOGNfit <- fitdist(D$Estimate,"lnorm")
-NORMfit <- fitdist(D$Estimate,"norm")
+LOGNfit <- fitdist(sD,"lnorm")
+NORMfit <- fitdist(sD,"norm")
 br <- seq(0,150000,by=100)
 DISTS <- data_frame(x=br, ylogn=dlnorm(br,meanlog=LOGNfit$estimate[1],sdlog=LOGNfit$estimate[2]),
                     ynorm=dnorm(br,mean=NORMfit$estimate[1],sd=NORMfit$estimate[2]))
-gD <- ggplot(filter(D,Estimate<150000),aes(Estimate)) + geom_density(bw=1000) + 
+gD <- ggplot(filter(tbl_df(sD),sD<150000),aes(value)) + geom_density(bw=1000) + 
   geom_line(data=DISTS,mapping=aes(x=x, y=ylogn), color="brown") +
   geom_line(data=DISTS,mapping=aes(x=x, y=ynorm), color="blue") +
   scale_x_continuous(breaks=seq(0,100000, by=50000)) + theme_bw() +
-  labs(x="Estimates: number of lots")
-grid.arrange(gG,gD,ncol=2)
+  labs(x="Estimates: number of lots", y="")
+grid.newpage()
+grid.draw(cbind(ggplotGrob(gG),ggplotGrob(gD), size="first"))
 @
 \caption{Density plots (black) and Maximum-Likelihood fits for normal (blue) and log-normal (brown) distributions of Galton's data (left, with density bandwidth 1,000) and the Viertelfest data (right, with density bandwidth 5). The x-axis for Viertelfest data is clipped at 150,000 and the normal distribution there looks almost flat because it has a very large variance. }\label{fig:WoCdistr}
 \end{figure}
 
- An example for a sample of estimates which shows little crowd wisdom is another dataset collected by me on another occasion. At the ``Lange Nacht der Wissenschaft''\footnote{Literally ``Long Night of Science''} at Carl von Ossietzky Universität Oldenburg on September 24, 2010, I collected, with the help of others, estimates in a guestimation game\footnote{See a report in German here \url{http://janlo.de/wp/2010/09/07/schatzquiz-oldenburg/}. Link to the data: \url{https://docs.google.com/spreadsheets/d/1Bqe4yeb26lKIoaCqYfq4ZaK5jefSHGSRCpHlyWOiMQ4/edit?usp=sharing}} similar to the one of the Viertel-Fest. 
- Visitors were asked how many estimation tickets will be handed in between 17:00 and 20:00. 
-<<OL-data,echo=FALSE>>=
-O <- read.csv("R/ol_data.csv")
-sO <- O[!is.na(O$Frage1),"Frage1"]
-truth_O <- nrow(O)
-powermean <- function(x,p) {
-  if (p==0) {return(exp(mean(log(x),na.rm=T)))}
-  else {return(mean(x^p, na.rm=T)^(1/p))}
-}
-@
- I collected \Sexpr{truth_O} tickets, that was the correct answer\footnote{For some reason, I reported 271 as the correct answer directly after the game. The reason is probably that I forgot to ultimately update the computation after entering the data from the final ticket. There was time pressure, because the winner had to be announced shortly after in the context of a science slam talk.}. From the tickets, I extracted \Sexpr{sum(!is.na(O$Frage1))} valid estimates which 5- to 95 percentile spanned values from \Sexpr{format(round(quantile(O$Frage1,0.05,na.rm=T)), big.mark=",")} to \Sexpr{format(round(quantile(O$Frage1,0.95,na.rm=T)), big.mark=",")}, and thus also almost three orders of magnitude. 
- The mean of estimates is \Sexpr{format(mean(O$Frage1,na.rm=T),digits=5,big.mark=",")}, the geometric mean is \Sexpr{format(exp(mean(log(O$Frage1),na.rm=T)),digits=4,big.mark=",")}, and the median is \Sexpr{format(median(O$Frage1,na.rm=T),big.mark=",")}. All are way to high compared to the true value. 
- Taking the median's closeness to the truth a good rough proxy for some crowd wisdom, we do not find much in this dataset. 
- The skewness and dispersion of the estimates over orders of magnitude is similar to the estimates from the Viertelfest. Thus, there is little indication coming from the data to use another aggregation function than the geometric mean, and it is reasonable to attribute this deviation to a systematic error caused by a collective cognitive bias to overestimate. 
+ Inference of the best measure of central tendency for the aggregation of the wisdom of the crowd from measurements of other aspects of the distribution is an interesting task, which needs further theoretical and empirical exploration. One way is to use the augmented quincunx model of sequential and probabilistic cue categorization presented by \textcite{Nash2014CuriousAnomalySkewed}. In particular, he argues that left-skewness in Galton's sample is due to the fact that most judgers had a lot of professional knowledge and the fact that the ox was comparably heavy. According to the theory, extremeness of the true value in comparison to a typical value known by judgers triggers a skew distribution, which is skew on the side of the typical and steep on the side of the extreme.  
  
- Nevertheless, there is an speculative interpretation of the estimation task which could give rise to another measure of aggregation which performs better. On the tickets, the time span 17:00-20:00 was clearly indicated. Based on this, we may interprete that people estimated how much time the collection takes per ticket. If we assume that people saw my three helpers and me, they might have thought about four times 180 minutes summing up to 720 collector minutes. The collection time per ticket was such 720/272 = 2.65 minutes. Estimates of 1000, or 5000 by other people would thus transform 720/1000=0.72 and 720/5000=0.14 minutes. With the assumption of this mindset, the arithmetic mean of these ratios might elicit some crowd wisdom, and the reciprocal value of this times 720 minutes would by the aggregation of crowd. This description coincides with taking the harmonic mean. The harmonic mean is the reciprocal value of the arithmetic mean of the reciprocal values of the sample data. The harmonic, the geometric and the arithmetic mean are special cases of $p$-means (also called power means or generalized means). \footnote{For positive numbers $x_1,\dots,x_n$ and a real number $p$, the $p$-mean is $(\frac{1}{n}\sum x_i^p)^\frac{1}{p}$. The arithmetic mean is represented by $p=1$, the harmonic mean by $p=-1$. The geometric mean appears as the limit for $p\to 0$. The minimum and the maximum are the limits for $p\to -\infty$ and $p\to\infty$ respectively. $p$-mean of the same sample are monotonously decreasing with $p$.}. The harmonic mean of the estimates of the number of tickets is \Sexpr{format(powermean(O$Frage1,-1),digits=4,big.mark=",")} and comes close to the true value of \Sexpr{truth_O}. This interpretation would also be valid for the number of lots at the Viertelfest, although it was not prominently communicated to participants. There is one very mild indication from data that a $p$-mean below the geometric mean should be used. In the Viertelfest data the median is at \Sexpr{format(100*median(D$Estimate)/powermean(D$Estimate,0),digits=3,big.mark=",")}\% of the geometric mean, while in the data from Oldenburg it is only at \Sexpr{format(100*median(O$Frage1,na.rm=T)/powermean(O$Frage1,0),digits=3,big.mark=",")}\%. As this is tiny and the median is also far away from the truth, it is more reasonable to assume that a systematic error is the reason. 
- 
- Figure \ref{fig:OL} shows the histogram of estimates with the x-axis clipped such that all estimates larger than 5,000 are not visible. 
- There were \Sexpr{format(sum(O$Frage1>5000,na.rm=T),big.mark=",")} estimates larger than 5,000 (\Sexpr{format(100*sum(O$Frage1>5000,na.rm=T)/sum(!is.na(O$Frage1)),digits=2)}\%) ranging from \Sexpr{format(min(O[O$Frage1>5000,"Frage1"],na.rm=T),big.mark=",")} to \Sexpr{format(max(O[O$Frage1>5000,"Frage1"],na.rm=T),big.mark=",")}.
+ The set of options for measures of aggregtion is well described by \emph{abstract means} as outlined by \textcite{Hegselmann.Krause2005OpinionDynamicsDriven}\footnote{\textcite{Hegselmann.Krause2005OpinionDynamicsDriven} extend the concept to partial abstract means which they use to generalize bounded confidence models of opinion dynamics as treated in Chapter \ref{ch:od}. }. An abstract mean is a function which maps a set of real numbers to a certain number between the maximum and the minimum of that set.
+ Within this framework it is always possible to find an abstract mean which aggregates the truth correctly as long as the truth is sandwiched between the minimal and the maximal estimate. 
+ This excercise is of little practical relevance. 
+ The real challenge is to infer a good generalized mean from the distribution of estimates without knowing the truth. 
+
 \begin{figure}
 <<OL-Plot,echo=FALSE, fig.height=3.5>>=
-ggplot(filter(tbl_df(O),Frage1<=5000), aes(Frage1)) + geom_histogram(binwidth = 50) + 
-  scale_x_continuous(breaks=seq(0,5000,by=500)) + theme_bw() + labs(x="Estimates: number of estimation tickets") +
-  annotate("pointrange", x=median(O$Frage1,na.rm=T), y = 16, ymin = 0, ymax = 16, colour = "red", size = 1) +
-  annotate("text", label="Median", x=median(O$Frage1,na.rm=T)+110, y = 16, colour = "red", hjust=0) +
-  annotate("pointrange", x=mean(O$Frage1,na.rm=T), y = 7, ymin = 0, ymax = 7, colour = "blue", size = 1)+
-  annotate("text", label="Mean", x=mean(O$Frage1,na.rm=T)+110, y = 7, colour = "blue", hjust=0) +
-  annotate("pointrange", x=mean(truth_O), y = 18, ymin = 0, ymax = 18, colour = "violet", size = 1) +
-  annotate("text", label="Truth", x=truth_O+110, y = 18, colour = "violet", hjust=0) +
-  annotate("pointrange", x=exp(mean(log(O$Frage1),na.rm=T)), y = 15, ymin = 0, ymax = 15, colour = "brown", size = 1) +
-  annotate("text", label="Geometric Mean", x=exp(mean(log(O$Frage1),na.rm=T))+110, y = 15, colour = "brown", hjust=0) +
-  annotate("pointrange", x=powermean(O$Frage1,-1), y = 17, ymin = 0, ymax = 17, colour = "cyan3", size = 1) +
-  annotate("text", label="Harmonic Mean", x=powermean(O$Frage1,-1)+110, y = 17, colour = "cyan3", hjust=0) 
+ggplot(filter(tbl_df(sO),value<=5000), aes(value)) + geom_histogram(binwidth = 50) + 
+  scale_x_continuous(breaks=seq(0,5000,by=500)) + theme_bw() + 
+  labs(x="Estimates: number of estimation tickets") +
+  annotate("pointrange", x=median(sO,na.rm=T), y = 16, ymin = 0, ymax = 16, colour = "red", size = 1) +
+  annotate("text", label="Median", x=median(sO,na.rm=T)+110, y = 16, colour = "red", hjust=0) +
+  annotate("pointrange", x=mean(sO,na.rm=T), y = 7, ymin = 0, ymax = 7, colour = "blue", size = 1)+
+  annotate("text", label="Mean", x=mean(sO,na.rm=T)+110, y = 7, colour = "blue", hjust=0) +
+  annotate("pointrange", x=mean(truth_O), y = 18, ymin = 0, ymax = 18, colour = "darkviolet", size = 1) +
+  annotate("text", label="Truth", x=truth_O+110, y = 18, colour = "darkviolet", hjust=0) +
+  annotate("pointrange", x=exp(mean(log(sO),na.rm=T)), y = 15, ymin = 0, ymax = 15, 
+           colour = "brown", size = 1) +
+  annotate("text", label="Geometric Mean", x=exp(mean(log(sO),na.rm=T))+110, y = 15, 
+           colour = "brown", hjust=0) +
+  annotate("pointrange", x=powermean(sO,-1), y = 17, ymin = 0, ymax = 17, colour = "darkcyan", size = 1) +
+  annotate("text", label="Harmonic Mean", x=powermean(sO,-1)+110, y = 17, colour = "darkcyan", hjust=0) 
 @
-\caption{Histogram of estimates for the number of estimation tickets at the Lange Nacht der Wissenschaft at Carl von Ossietzky Universität Oldenburg 2010 ($N=\Sexpr{sum(!is.na(O$Frage1))}$, x-axis clipped at 5,000). }\label{fig:OL}
+\caption{Histogram of estimates for the number of estimation tickets at the Lange Nacht der Wissenschaft at Carl von Ossietzky Universität Oldenburg 2010 ($N=\Sexpr{length(sO)}$, x-axis clipped at 5,000). }\label{fig:OL}
 \end{figure}
+
+ An example for a sample of estimates which shows little crowd wisdom is another dataset collected by me on another occasion. At the ``Lange Nacht der Wissenschaft''\footnote{Literally ``Long Night of Science''} at Carl von Ossietzky Universität Oldenburg on September 24, 2010, I collected, with the help of others, estimates in a guestimation game\footnote{See a report in German here \url{http://janlo.de/wp/2010/09/07/schatzquiz-oldenburg/}. Link to the data: \url{https://docs.google.com/spreadsheets/d/1Bqe4yeb26lKIoaCqYfq4ZaK5jefSHGSRCpHlyWOiMQ4/edit?usp=sharing}} similar to the one of the Viertel-Fest. 
+ Visitors were asked how many estimation tickets will be handed in between 17:00 and 20:00. 
+
+ I collected \Sexpr{truth_O} tickets, that was the correct answer\footnote{For some reason, I reported 271 as the correct answer directly after the game. The reason is probably that I forgot to ultimately update the computation after entering the data from the final ticket. There was time pressure, because the winner had to be announced shortly after in the context of a science slam talk.}. From the tickets, I extracted \Sexpr{length(sO)} valid estimates which 5- to 95 percentile spanned values from \Sexpr{format(round(quantile(sO,0.05,na.rm=T)), big.mark=",")} to \Sexpr{format(round(quantile(sO,0.95,na.rm=T)), big.mark=",")}, and thus also almost three orders of magnitude. 
+ The mean of estimates is \Sexpr{format(mean(sO,na.rm=T),digits=5,big.mark=",")}, the geometric mean is \Sexpr{format(exp(mean(log(sO),na.rm=T)),digits=4,big.mark=",")}, and the median is \Sexpr{format(median(sO,na.rm=T),big.mark=",")}. All are way to high compared to the true value. 
+ Taking the median's closeness to the truth a good rough proxy for some crowd wisdom, we do not find much in this dataset. 
+ The skewness and dispersion of the estimates over orders of magnitude is similar to the estimates from the Viertelfest. Thus, there is little indication coming from the data to use another aggregation function than the geometric mean, and it is reasonable to attribute this deviation to a systematic error caused by a collective cognitive bias to overestimate. 
+
+ Nevertheless, there is an speculative interpretation of the estimation task which could give rise to another measure of aggregation which performs better. On the tickets, the time span 17:00-20:00 was clearly indicated. Based on this, we may interprete that people estimated how much time the collection takes per ticket. If we assume that people saw my three helpers and me, they might have thought about four times 180 minutes summing up to 720 collector minutes. The collection time per ticket was such 720/272 = 2.65 minutes. Estimates of 1000, or 5000 by other people would thus transform 720/1000=0.72 and 720/5000=0.14 minutes. With the assumption of this mindset, the arithmetic mean of these ratios might elicit some crowd wisdom, and the reciprocal value of this times 720 minutes would by the aggregation of crowd. This description coincides with taking the harmonic mean. The harmonic mean is the reciprocal value of the arithmetic mean of the reciprocal values of the sample data. The harmonic, the geometric and the arithmetic mean are special cases of $p$-means (also called power means or generalized means).\footnote{For positive numbers $x_1,\dots,x_n$ and a real number $p$, the $p$-mean is $(\frac{1}{n}\sum x_i^p)^\frac{1}{p}$. The arithmetic mean is represented by $p=1$, the harmonic mean by $p=-1$. The geometric mean appears as the limit for $p\to 0$. The minimum and the maximum are the limits for $p\to -\infty$ and $p\to\infty$ respectively. $p$-mean of the same sample are monotonously decreasing with $p$.}. The harmonic mean of the estimates of the number of tickets is \Sexpr{format(powermean(sO,-1),digits=4,big.mark=",")} and comes close to the true value of \Sexpr{truth_O}. As a side note, this interpretation would in principle also be valid for the number of lots at the Viertelfest, but the timespan for collection and number of collectors were not prominently communicated to participants. 
+ As there is little indivication from the data to use the harmonic mean and the median is also far away from the truth, it is more reasonable to assume that a systematic error is the reason. 
+ 
+ Figure \ref{fig:OL} shows the histogram of estimates with the x-axis clipped such that all estimates larger than 5,000 are not visible. 
+ There were \Sexpr{format(sum(sO>5000,na.rm=T),big.mark=",")} estimates larger than 5,000 (\Sexpr{format(100*sum(sO>5000,na.rm=T)/length(sO),digits=2)}\%) ranging from \Sexpr{format(min(sO[sO>5000],na.rm=T),big.mark=",")} to \Sexpr{format(max(sO[sO>5000],na.rm=T),big.mark=",")}.
 
 \begin{table}
 \small
 \begin{tabular}{>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}>{\raggedleft\arraybackslash}m{0.22\textwidth}} \toprule 
  & Galton & Viertelfest & Oldenburg \\ \midrule\midrule
-Collection time & 1906 or 1907 & 2008-08-22 to 24 & 2010-09-24 17:00-20:00 \\
-Place & West of England Fat Stock and Poultry Exhibition, Plymouth, UK & Viertelfest Bremen, DE & Lange Nacht der Wissenschaft, Carl von Ossietzky Universität Oldenburg, DE \\
-Collected by & Francis Galton & Volunteers from the lottery, passed to Jan Lorenz & Jan Lorenz with volunteers \\
-Number of estimates $N$ & \Sexpr{length(G)} & \Sexpr{format(length(sD),big.mark=",")} & \Sexpr{length(sO)} \\
-Guestimation task & Weight of ox's meat after slaughtered and dressed & Number of lots sold at festival & Number of estimation tickets handed in \\
-True value & \cellcolor{violet!20}\Sexpr{format(truth_G,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth_O,big.mark=",")} \\
-Minimum & \cellcolor{red!20}\Sexpr{format(min(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sO),big.mark=",")} \\
-5-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.05)),big.mark=",")} \\
-Harmonic mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,-1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,-1)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sO,-1)),big.mark=",")} \\
-Median & \cellcolor{yellow!20}\Sexpr{format(round(median(G)),big.mark=",")} & \cellcolor{yellow!20}\Sexpr{format(round(median(sD)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(median(sO)),big.mark=",")} \\
-Geometric mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,0)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sD,0)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,0)),big.mark=",")} \\
-Arithmetic mean & \cellcolor{green!20}\Sexpr{format(round(powermean(G,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,1)),big.mark=",")} \\
-95-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.95)),big.mark=",")} \\
-Maximum & \cellcolor{red!20}\Sexpr{format(max(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sO),big.mark=",")} \\
-Deviation best mean from truth & -\Sexpr{format(100*abs(powermean(G,1)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(powermean(sD,0)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(powermean(sO,-1)-truth_O)/truth_O,digits=3)}\% \\
-Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(median(sD)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(median(sO)-truth_O)/truth_O,digits=3)}\% \\
-\# estimates closer to truth then best mean & \Sexpr{format(sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) & \Sexpr{format(sum(abs(powermean(sD,0)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sD,0)-truth)>abs(sD-truth))/length(sD),digits=2)}\%)  & \Sexpr{format(sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O))/length(sO),digits=2)}\%)  \\
-\# estimates closer to truth then median & \Sexpr{format(sum(abs(median(G)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(median(G)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) & \Sexpr{format(sum(abs(median(sD)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(median(sD)-truth)>abs(sD-truth))/length(sD),digits=2)}\%)  & \Sexpr{format(sum(abs(median(sO)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(median(sO)-truth_O)>abs(sO-truth_O))/length(sO),digits=3)}\%)  \\
+Collection date & 1906 or 1907 & 2008-08-22 to 24 & 2010-09-24 17:00-20:00 \\ \addlinespace[0.5ex]
+Place & West of England Fat Stock and Poultry Exhibition, Plymouth, UK & Viertelfest Bremen, DE & Lange Nacht der Wissenschaft, Carl von Ossietzky Universität Oldenburg, DE \\ \addlinespace[0.5ex]
+Collected by & Passed to Francis Galton by organizers & Volunteers from the lottery, passed to Jan Lorenz & Jan Lorenz with volunteers \\ \addlinespace[0.5ex]
+Number of estimates $N$ & \Sexpr{length(G)} & \Sexpr{format(length(sD),big.mark=",")} & \Sexpr{length(sO)} \\ \addlinespace[0.5ex]
+Guestimation task & Weight of ox's meat after slaughtered and dressed & Number of lots sold at festival & Number of estimation tickets handed in \\ \addlinespace[0.5ex]
+True value & \cellcolor{violet!20}\Sexpr{format(truth_G,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth,big.mark=",")} & \cellcolor{violet!20}\Sexpr{format(truth_O,big.mark=",")} \\ \addlinespace[0.5ex]
+Minimum & \cellcolor{red!20}\Sexpr{format(min(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(min(sO),big.mark=",")} \\ \addlinespace[0.5ex]
+5-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.05)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.05)),big.mark=",")} \\ \addlinespace[0.5ex]
+Harmonic mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,-1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,-1)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sO,-1)),big.mark=",")} \\ \addlinespace[0.5ex]
+Median & \cellcolor{yellow!20}\Sexpr{format(round(median(G)),big.mark=",")} & \cellcolor{yellow!20}\Sexpr{format(round(median(sD)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(median(sO)),big.mark=",")} \\ \addlinespace[0.5ex]
+Geometric mean & \cellcolor{yellow!20}\Sexpr{format(round(powermean(G,0)),big.mark=",")} & \cellcolor{green!20}\Sexpr{format(round(powermean(sD,0)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,0)),big.mark=",")} \\ \addlinespace[0.5ex]
+Arithmetic mean & \cellcolor{green!20}\Sexpr{format(round(powermean(G,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sD,1)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(powermean(sO,1)),big.mark=",")} \\ \addlinespace[0.5ex]
+95-percentile & \cellcolor{red!20}\Sexpr{format(round(quantile(G,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sD,0.95)),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(round(quantile(sO,0.95)),big.mark=",")} \\ \addlinespace[0.5ex]
+Maximum & \cellcolor{red!20}\Sexpr{format(max(G),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sD),big.mark=",")} & \cellcolor{red!20}\Sexpr{format(max(sO),big.mark=",")} \\ \addlinespace[0.5ex]
+Deviation best mean from truth & -\Sexpr{format(100*abs(powermean(G,1)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(powermean(sD,0)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(powermean(sO,-1)-truth_O)/truth_O,digits=3)}\% \\ \addlinespace[0.5ex]
+Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,digits=3)}\% & -\Sexpr{format(100*abs(median(sD)-truth)/truth,digits=3)}\% & +\Sexpr{format(100*(median(sO)-truth_O)/truth_O,digits=3)}\% \\ \addlinespace[0.5ex]
  \bottomrule
 \end{tabular}
-\caption{Overview about the three example datasets on the wisdom of the crowd. For better alignment all values have been rounded to full integers. }
+\caption{Overview about the three example datasets on the wisdom of the crowd. For better alignment most values have been rounded to full integers. Color code: violet = true values, red = far away from true value, yellow = close to true value, green = closest to true value.} \label{tab:WoC}
+\end{table}
+
+ Table \ref{tab:WoC} summarizes information and measures for the three samples from Galton, the Viertelfest, and Oldenburg. 
+ The table concludes with measures reporting the number of estimates which were closer to the true value than the wisdom of crowd measure. The second last row shows how many people were better than the best aggregating mean (the arithmetic, geometric, and harmonic for Galton, Viertelfest, and Galton respectively). The last row shows how many people were better than the median, which is the measure which performs best over all three datasets, with at least delivering results close to the truth for two of the three datasets. 
+ 
+ 
+ \section{Quantifying the degree of crowd wisdom}
+ 
+ We defined crowd wisdom as going beyond individual wisdom. Not all samples of estimates for a particular guestimation task can elicit wisdom of the crowd. Let us distinguish two extreme cases which can serve to assess when crowds are wise and when not. 
+\begin{compactenum}[(i)]
+ \item When all individuals estimate correctly, then the crowd is not wiser than the individual. Thus, there is no crowd wisdom which goes beyond individual wisdom. More general statement: If the sample's central tendancy is close to the truth but estimates show little dispersion, then there is not much crowd wisdom. 
+ \item When the truth is not sandwiched between the minimal and maximal estimate, then there is no wisdom in the crowd but a systematic error in the sample. More general statement: When the reasonable measure of central tendency of the sample is far away from the truth, then there is no crowd wisdom. 
+\end{compactenum}
+
+ Let us rephrase this with the notions of the International Organization for Standardization (ISO) described in ISO 5725 (six parts) ``Accuracy (trueness and precision) of measurement methods and results''. 
+ We see estimates draw from a crowd as a measurement method for a particular fact, here the true value. According to ISO 5725 \emph{accuracy} of a measurement method is characterized by trueness and precision. 
+ \emph{Trueness} is the closeness of agreement between the arithmetic mean of a large number of measurements the true or accepted reference value. 
+ \emph{Precision} instead is the closeness of agreement between different measurements. 
+ According to this terminology, the wisdom-of-crowd phenomenon appears when estimates from a crowd show high trueness, but low precision. 
+
+ In terms of statistics the measure of aggregation of estimates is a \emph{statistical estimator of the true value}. 
+ The estimating crowd shows crowd wisdom when the estimator has a very small statistical bias, but very high variance and mean squared error. 
+ In terms of measurement error, the statistical bias is caused by \emph{systematic error} variance (analogously low precision) is caused by \emph{random error}. 
+ The term statistical bias is purely statistical and should not be confused with systemic or cognitive bias which relate bias to institutional or mental processes which cause the statistical bias. 
+ 
+ A fundamental mathematical relation of the mean squared error, the variance and the statistical bias is the \emph{bias-variance decompostion of squared error} which states that the mean of squared errors is the equal to the squared bias plus the variance of estimates. More suggestive of the wisdom of crowds, \textcite{Page2007DifferenceHowPower} calls it the \emph{diversity prediction theorem}, which states
+ \begin{quote} 
+ Collective Error = Average Individual Error -- Diversity,
+ \end{quote}
+ where \emph{collective error} is squared bias, \emph{average individual error} is the mean of squared errors, and \emph{diversity} is the variance.  
+ This theorem implies that higher diversity deceryases the collective error. This message is a bit suggestive as it blurs over the fact that increased variance (diversity) naturally also implies an increase of the average individual error. For example if we add a number for a normal distribution to each estimate in a sample we increase both, the diversity but also the average individual error, while the collective error remains the same. 
+ A less suggestive message to extract from the theorem is that in case a large average individual error, large diversity is needed for small collective error. 
+ 
+ All the notions mentioned above are listed in Table \ref{tab:WoCNotions}. These notions apply to the arithmetic mean as the measure of aggregation for the crowd's estimates. In line with \textcite{Page2007DifferenceHowPower}, we use the squared distance of the aggregate to the true value as the definition for the collective error. The square makes some mathematics easier but is not a standard definition. Instead, the definitions of variance and mean squared error are standard.
+
+\begin{table}[htb]
+\footnotesize
+\def\tabularxcolumn#1{m{#1}}
+\begin{tabularx}{\textwidth}{@{}m{24mm}  >{\centering\arraybackslash}m{30mm} >{\centering\arraybackslash}X >{\centering\arraybackslash}m{27mm} @{}} \toprule
+\textbf{Predicting Crowd} \newline \parencite{Page2007DifferenceHowPower}        & as $\{x_1,\dots,x_N\}$ \newline with truth $y$ & as a \newline Statistical Estimator  & as an ISO 5752 \newline Measurment Method  \\ \midrule
+\textbf{Collective Error =}  &    $(y - \frac{1}{N}\sum\limits_{i=1}^N x_i)^2$ & (squared) \newline Statistical Bias$\mbox{}^\ast$ \newline (by systematic error) &  (an inverse of)  \newline Trueness \\ \midrule
+\textbf{Average \newline Individual Error =}    & $\frac{1}{N}\sum\limits_{i=1}^N(y - x_i)^2$ &  Mean Squared Error & \\ \midrule 
+\textbf{Diversity =}  & $\frac{1}{N}\sum\limits_{i=1}^N(x_i - \frac{1}{N}\sum\limits_{i=1}^Nx_i)^2$ & Variance \newline (by random error)  & (an inverse of) \newline Precision \\ 
+\midrule
+& \multicolumn{3}{l}{\scriptsize $\mbox{}^\ast$ called \emph{Population Bias} by \textcite{Vul.Pashler2008MeasuringCrowdWithin}} 
+\end{tabularx}
+\caption{Notions to quantify the wisdom of crowds in guestimation games based on the notions of the diversity prediction theorem of \textcite{Page2007DifferenceHowPower}. }\label{tab:WoCNotions}
 \end{table}
 
 
 
 
-
-%' 
-%' 
-%' <<>>=
-%' p=seq(-40,40,by=0.1)
-%' x1=G
-%' x2=D$Estimate
-%' x3=O$Frage1
-%' m1=rep(NA,length(p))
-%' m2=rep(NA,length(p))
-%' m3=rep(NA,length(p))
-%' for (i in 1:length(p)) {
-%'   m1[i] <- powermean(x1,p[i])
-%'   m2[i] <- powermean(x2,p[i])
-%'   m3[i] <- powermean(x3,p[i])
-%' }
-%' plot(p,m1)
-%' plot(p,m2)
-%' plot(p,m3)
-%' @
-
-
-
-Not all samples of estimates for a particular judgment task can elicit wisdom of the crowd. Let us distinguish two extreme cases which can serve to assess when crowds are wise and when not. 
+ \section{Repeated guestimation}
+ 
+ What happens to crowd wisdom when people participate more than once in the same guestimation game and moreover get exchange information about the estimates of others? This general question lead me to propose a controlled group estimation experiment where subjects sit in cubicles infront of computers. The experiment is documented in the supplemtary material of \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
+ 
+ Subjects had to estimate facts. For each estimate, subjects could earn money based on the closeness of their individual estimate to the true value. From each subject we requested five consecutive estimates for each question. We used three different treatments for the exchange of estimates among subjects. 
  \begin{compactenum}[(i)]
- \item When all individuals estimate correctly, then the crowd is not wiser than the individual. Thus, there is no crowd wisdom which goes beyond individual wisdom. More gradual version: If the sample's central tendancy is close to the truth but estimates show little dispersion, then there is not much crowd wisdom. 
- \item When the truth is not sandwiched between the minimal and maximal estimate, then there is no wisdom in the crowd but a systematic error in the sample. More gradual version: When every reasonable central tendency of the sample is far away from the truth, then there is no crowd wisdom. 
+\item \textbf{No information:} Subjects got no information about the estimates of other subjects. Thus, they estimated five times in a row without further information. This treatment served on the one hand as a control treatment for the other two treatments, and on the other hand it was used to assess what \textcite{Vul.Pashler2008MeasuringCrowdWithin} call the ``crowd within''. 
+\item \textbf{Aggregated information:} After each round of individual estimates subjects were informed about the arithmetic mean of all estimates. Thus, subjects were confronted with a crowd estimate but not with the crowd's diversity. 
+\item \textbf{Full information:} Subjects got information about the estimates of all other subjects, including a graphical visualisation. Here, subjects could observe the diversity of estimates among the crowd as well as changes of estimates of individuals. 
+\end{compactenum}
+Further on, in each treatment and for each question subjects were asked about their subjective certainty about their first and about their fifth and last estimate. 
+
+\paragraph{On the wisdom of the crowd within.} 
+ \textcite{Vul.Pashler2008MeasuringCrowdWithin} showed that humans can simulate a diverse crowd in their brain by repeated estimation. 
+ They gave people guestimation tasks and after their estimates they asked them to estimate again. They also had a treatment, where subjects were asked again three weeks later, which made the effect stronger. 
+ They showed that the mean squared error of the average of these two guesses is lower then that of the first as well as the second guess. 
+ From that they concluded that, knowledge has a probabilistic representation in the brain, because if the first guess is a deterministic best guess, then a second guess would only add noise with no decreasing effect on the mean squared error. 
+ They also computed that one would on average need to ask 1.11 (1.32 in the delayed treatment) different people to achieve the same decrease of mean squared error than asking the same person twice. 
+
+ We \parencite{Rauhut.Lorenz2010wisdomofcrowds} used the ``no information'' condition of the experiment to elicits how the result of \textcite{Vul.Pashler2008MeasuringCrowdWithin} extends to asking oneself more than two times. 
+ We embedded the analysis in the framework of the diversity predicition theorem and developed a method to compute the \emph{average number of different individuals one needs to ask to achieve the same improvement than asking oneself $T$ times}. 
+ The method coincides with the concept of \textcite{Vul.Pashler2008MeasuringCrowdWithin} for two consecutive estimates, but deviates for more estimates. 
+ The method can also be used to quantify the average number of different individuals one needs to ask to achieve the same improvement than asking oneself ad infinitum.
+ 
+ We found that asking oneself ad infinitum does on average not outperform asking only one other person. Over all our six question we could confirm the effect and also the magnitude 1.1 for asking oneself twice. Asking oneself ad infinitum (without a long delay) was on avarage as good as asking 1.28 different people. 
+ Further on, we found variation regarding guestimation task. 
+ For some of our questions we found no improvement through asking oneself twice or often. For one question we even found worsening. 
+ Thus, the hypothesis that people sample from a ``mental'' distribution when they estimate several times is questionable in these cases. 
+ For other questions instead, we found that asking oneself ad infinitum had the same benefit as asking up to 2.7 different people. 
+ Finally, we also extendend the formal measurement framework for the size of the crowd within of \textcite{Vul.Pashler2008MeasuringCrowdWithin} to more than one estimate. We found that their idea (as extended by us) overestimates the effects dramatically. 
+ An open question remains the characterization of the type of guestimation tasks for which improvements through repeatedly asking oneself are beneficial and for which tasks it is not. 
+ Another open question is to what extend our incentives impact the results. 
+ As each estimate triggered a payment based on closeness to the truth, some subjects probably placed their five different values in an attempt to cover all potential areas were they could imagine the true value. This behavior would increased the variance of estimates from one individual. 
+ 
+\paragraph{On social influence and the wisdom of the crowd.}
+ We \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence} found that the exchange of information substantially lowers the diversity of estimates while the collective error decreases only very mildly. The decrease of diversity from initial to later rounds of estimates was statistically significant, the decrease of collective error was not. In the ``no information'' treatment we found no significant change of diversity and collective error from initial to later estimates. 
+ We interprete the information exchange in our experiment as a very mild form of social influence, because there were no options and no incentives to persuade others. 
+ Our first empirical finding is thus, that even this mild form of social influence decreases diversity without substantially decreasing collective error. 
+ In terms of using the crowd as a measurement device, we increase precision, without increasing trueness, and as a wise crowd is a crowd with high trueness and low precision, social influence undermines the wisdom of crowd effect. 
+ 
+ \textcite{Farrell2011Socialinfluencebenefits} pointed out that also the mean squared error decreases and as a consequence average payoff of individuals rises. Our result is thus, not that individuals can not benefit from social influence, but that the amount of crowd wisdom which goes beyond individual wisdom can be overestimated when the crowd exchanged information beforehand, through collective tunnel vision \parencite{Rauhut.Lorenz.ea2011ReplytoFarrell}. 
+ 
+ \section{Wisdom-of-crowd indicator and range reduction} \label{sec:wocindicator}
+
+
+ The quantification of crowd wisdom in a sample has to simultaneously quantify low collective error and high diversity to a degree such that the accuracy of the aggregated groups estimates is ``surprisingly'' good. For example, Galton's sample shows a lower collective error then the Viertelfest sample, but the Viertelfest data shows higher diversity. 
+ The answer to the question, which of the two datasets shows more crowd wisdom, depends thus on our assessment of the degree of ``surprisingness''. 
+ 
+ One way to measure this is to take the absolute value of the standard score (z-score) of the truth. As that is the distance of the mean to the truth divided by the standard deviation this measure depends on aggregation of a collective estimate by the arithmetic mean. In Galton's sample the standard score of the truth is \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)}, meaning that distance of the arithmetic mean to the truth is just \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)} standard deviations. Unfortunatelly, generalizations of this method to other aggregation functions like the geometric or the harmonic means rely on transformations of the data and an appropriate definition of the z-score, including a the definition of something like a geometric or harmonic standard deviation, which altogether seems not straightforward and consequently difficult to compare\footnote{The most straightforward way to quantify adjuted standard scores when the geometric (respectively the harmonic) mean are used for aggregation is to compute standard score of the logarithm (respectively the reciprocal) of truth with respect to the logarithms (respectively the reciprocals) of the sample values. In the Viertelfest sample the logarithm of the truth is \Sexpr{format(standardScoreTruth(sD,truth),digits=3)} standard deviations away from the logarithms of estimates. In the Oldenburg sample the reciprocal of the truth is \Sexpr{format(standardScoreTruth(sO,truth_O),digits=3)} standard deviations away form the reciprocals of estimates. }. 
+
+  The arithmetic mean, the geometric mean, the harmonic mean, as well as standard score, variance, collective error and mean of squared error, and thus the whole reasoning of the diversity predicition theorem rely on statistics based on moments. 
+  The order statistics as the median are the typical alternative. 
+  In the limited amount of sample presented here the median has turned out as most robust aggregation function because it aggregates good collective estimates for two samples (Galton and Viertelfest). It has also show to deliver good collective estimates in \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence}.
+
+ The wisdom-of-crowd indicator introduced by \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} relies on the median as the aggregation function for collective assessments. 
+ For a sample of numbers $\{{x}_1,\dots,{x}_N\}$ we consider the sequence $\{\hat{x}_1,\dots,\hat{x}_N\}$ in ascending order the \emph{wisdom-of-crowd indicator} is
+ \begin{equation} 
+  \textrm{WoC}(x,\textrm{truth}) = \frac{\max\{ i \,|\, \hat{x}_i \leq \textrm{truth} \leq \hat{x}_{N-i+1}\} }{\lceil N/2 \rceil}
+ \end{equation}
+ if the set in the nominator is not empty and zero if it is empty. 
+ The brackets $\lceil \cdot \rceil$ are rounding to the next upper integer. 
+ The idea of the indicator is to bracket the truth with two estimates from the sample which are equally close and as close as possible to the median estimate. 
+ The division by $\lceil N/2 \rceil$ is done because this is the index of the median value of an ordered odd sample of size $N$ and the first of the two median values of an even sample. Consequently, $\lceil N/2 \rceil$ is the maximal possible value of $\max\{ i \,|\, \hat{x}_i \leq \textrm{truth} \leq \hat{x}_{N-i+1}\}$.\footnote{In \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} the indicator is defined without the division by $\lceil N/2 \rceil$, because all samples were of equal size. It makes more sense to introduce it in the normalized form here to compare samples of different sizes.}
+ The wisdom-of-crowd estimator equals one when the truth is bracketed between the two median estimates (for a sample of even size) or lies exactly at the median (for an odd sample). The wisdom-of-crowd indicator equals zero when the truth is outside of the range of estimates -- either below the minimal or above the maximal estimate. 
+ The wisdom-of-crowd indicator can be described as the fraction of ordered estimates outside of the smallest centered truth-bracketing set of estimates. 
+ 
+ Our experiment \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence} showed that the wisdom-of-crowd indicator in the experimental groups in rounds 2 to 5 (after the round of initial estimates is on average 0.65 under the control treatment with no information exchange. It was 0.23 less after feedback of aggregated information and 0.16 less after feedback of full information.\footnote{In \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} the values are 3.92, 1.39 and 0.98. In this text we report the normalized values, which are a sixth of the original values, because groups' size was always twelve.} 
+ The effects were statistically significant ($p<0.05$ and $p<0.01$). 
+ We call this reduction of the wisdom of the crowd the \emph{range reduction effect} because the range of estimates reduces through exchange of estimates. The reduction is such that the truth tends to lie in more peripheral regions and a larger fraction of the inner estimates is needed to bracket it. 
+ 
+ In the samples of Galton and the Viertelfest the median has turned out to be an acceptable measure of aggregation, while it is far off in the Oldenburg sample (cf. Table \ref{tab:WoC}). The wisdom-of-crowd indicators are \Sexpr{format(WoCIndicator(G,truth_G),digits=3)} for Galton's sample, \Sexpr{format(WoCIndicator(sD,truth),digits=3)} for the Viertelfest, and \Sexpr{format(WoCIndicator(sO,truth_O),digits=3)} for the sample from Oldenburg. Hence, the Viertelfest sample shows the highest degree of crowd wisdom, because \Sexpr{format(100*(1-WoCIndicator(sD,truth)),digits=2)}\% of the inner estimates are enough to bracket the truth. In Galton's sample \Sexpr{format(100*(1-WoCIndicator(G,truth_G)),digits=3)}\% are needed. 
+
+ The wisdom-of-crowd indicator helped to show that the range reduction effect through even mild social influence is strong enough to bring the truth to more periperal regions of samples  of estimates \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
+ Further on, its application for the larger samples of Galton and the Viertelfest shows that the wisdom-of-crowd indicator can quantify the degree of crowd wisdom quite well. 
+ Intuitively, both samples show a high degree of crowd wisdom because they can be aggregated by the median to a surprisingly good collective estimate.
+ The wisdom-of-crowd indicator captures this intuition because it computes similar values for both samples despite very different magnitudes of bias and dispersion and different shapes of the distribution. 
+
+ 
+ \section{How many people are wiser than the crowd?}
+
+ This section presents two ideas how one can derive optimal sizes of guestimation teams and how one should sample them based on the statistical the conception of crowd wisdom. 
+ The questions underlying the two ideas are:
+ \begin{compactenum}
+ \item How many people are wiser than the crowd?
+ \item Can we be better than random sampling by focussing on diversity or conformity while composing the guestimation team?
  \end{compactenum}
  
+ 
+ \paragraph{How many people are wiser than the crowd?}
+ Let us start with the example of Galton's sample. 
+ The mean estimate for the weight of the meat of the ox was \Sexpr{format(mean(G),digits=5,big.mark = ",")} pound, and the distance to the correct value of \Sexpr{format(truth_G,digits=4,big.mark = ",")} is just the as tiny as \Sexpr{format(abs(mean(G)-truth_G),digits=2)} pounds. 
+ Nevertheless, there was one person estimating 1,197 and two estimating 1,199 pounds. 
+ In some sense, these three individuals were ``wiser than the crowd''!
+ If we had asked one of these persons for a judgment, we would have had better information than by collecting and aggregating the judgments of all. 
+ The problem is, that it is likely that these persons estimated well partly by chance and it is not easy or even impossible to detect it before we know the truth.\footnote{\textcite{Tetlock.Gardner2015SuperforcastingArtand} reports research based on the ``Good Judgement Project'' which is about how to do exactly that. They present results and ten commandments how to make good predictions.}
+
+ Let us call an individual whose estimate is closer to the truth than a collective estimate an \emph{expert}.     This definition of an expert does not rely on an assessment of deep competence in judgment but just declares good de facto estimators as de facto experts.\footnote{A de facto expert according to the definition in this section is by no means necessarily a ``superforcaster'' in the sense of \textcite{Tetlock.Gardner2015SuperforcastingArtand}. }
+  Can we expect experts to exist for every guestimation task? 
+  What is the role of population bias?
+  Do the answers to these questions inform us about optimal sample size for the aggregation of the wisdom of the crowd? 
+  
+  Let us approach the answers to these questions theoretically. 
+  To that end, we consider a individual with its particular estimates to be random draws from a population. 
+  A collective estimate of a crowd of $k$ individuals is the aggregate of $k$ independent draws from the same population. 
+  An estimate is thus a random variable $X$ with a certain probability density function $f_X$. 
+  A collective estimate of $k$ independent estimates $\bar{X}_k$ is another random variable which is a function of $k$ independent draws of from random variables identically distributed as $X$. 
+  Consequently, its probability density function $f_{\bar{X}_k}$ can thus be derived from $f_X$ and the aggregation function for the collective estimate.   
+  The \emph{probability that a single estimate is closer to the truth as the collection $k$ estimates} is thus 
+  \begin{equation} 
+     P(|X-\textrm{truth}| < |\bar{X}_k-\textrm{truth}|). \label{eq:Pr1}
+  \end{equation}
+  
+  In the following we consider $X$ to be normally distributed with mean $\mu$ and standard deviation $\sigma$ and the aggregation function for $k$ estimates to be the arithmetic mean. 
+  For the sake of statistical simplicity we also assume that we draw the estimates of people with replacement. This assumption might seem unrealistic when we think of a competetion of a single individual against $k$ others from the same population. 
+  Statistically, sampling with or without replacement would only make a big difference for very small populations. 
+  Let us further assume without loss of generality that $\sigma = 1$ and $\textrm{truth}=0$.
+  Then, $b = \mu$ is the (unsquared) bias in the population and $f_X(x) = \phi(x-b)$, with $\phi(x) = \frac{e^{-x^2/2}}{\sqrt{2\pi}}$ being the probability density function of the standard normal distribution with mean zero and standard deviation one. 
+  Due to the rules for means of independent normally distributed random variables, it holds that $\bar{X}_k$ is also normally distributed with standard deviation $\frac{1}{\sqrt{k}}$. Hence, it holds $f_{\bar{X}_k}(x) = \frac{1}{\sqrt{k}}\phi(\frac{x-b}{\sqrt{k}})$.
+  Now, the probability of receiving a better answer from one randomly selected person than with the average of $k$ persons (\ref{eq:Pr1}) is 
+  \begin{align} P(|X| < |\bar{X}_k|) &= P(|X| - |\bar{X}_k| < 0) = \int_{-\infty}^0 f_{|X| - |\bar{X}_k|}(x) dx \nonumber \\ 
+  & = \int_{-\infty}^0 f_{|X|}\ast f_{-|\bar{X}_k|}(x) dx\label{eq:Pr2}
+  \end{align}
+  where `$\ast$' is the convolution of the two functions\footnote{The convolution of functions $f$ and $g$ is defined for any $x$ as $f\ast g(x) = \int dy\, f(y)g(x-y)$}. The two functions in the convolution of (\ref{eq:Pr2}) are
+  \begin{equation} 
+    f_{|X|} = \begin{cases} \phi(x-b) + \phi(-x+b) & \text{if $x-b\geq 0$,} \\ 0 & \text{otherwise,} \end{cases}
+  \end{equation}
+and   
+  \begin{equation} 
+    f_{-|\bar{X}_k|} = \begin{cases} 0 & \text{if $x-b\geq 0$,} \\ \frac{1}{\sqrt{k}}\left(\phi(-\frac{x-b}{\sqrt{k}}) + \phi(\frac{x-b}{\sqrt{k}})\right) & \text{otherwise.} \end{cases}
+  \end{equation}
+\begin{figure}
+<<WiserThanCrowdTheory, echo=F, fig.height=4>>=
+b <- 0.5
+k <- 11
+fX <- function(x) dnorm(x,mean=b)
+fXk <- function(x) dnorm(x,mean=b,sd=1/sqrt(k))
+fabsX <- function(x) H(x)*fX(x)+H(x)*fX(-x)
+fmabsXk <- function(x) H(-x)*fXk(x)+H(-x)*fXk(-x)
+dx=0.01 # discretization
+x=seq(-5,5,dx)
+f=dx*convolution(fabsX(x),fmabsXk(x))[(length(x)-(length(x)-1)/2):(length(x)+(length(x)-1)/2)]
+p1 <- ggplot(data.frame(x=c(-5,5)), mapping = aes(x)) + theme_bw() + 
+  stat_function(fun=fX, aes(color="X")) + 
+  stat_function(fun=fXk, aes(color="X10"), n=301) +
+  annotate("pointrange", x=0, y = 1, ymin = 0, ymax = 1, colour = "darkviolet", size = 1) +
+  annotate("text", label="Truth", x=0-0.3, y = 1, colour = "darkviolet", hjust=1) + ylab("probability density") +
+  scale_colour_manual("Random Variables",values=c("red","blue"), breaks = c("X","X10"),
+                      labels=c(paste0("X with b=",b),paste0("X",k," (mean ",k," draws)")))
+p2 <- ggplot(data.frame(x=c(-5,5)), mapping = aes(x)) + theme_bw() +
+  geom_area(data=data.frame(x=x[x<0],f=f[x<0]), aes(x=x,y=f), fill="black", alpha=0.2) + 
+  stat_function(fun=fabsX, aes(color="X"), n=3001) + 
+  stat_function(fun=fmabsXk, aes(color="X10"), n=3001) +
+  geom_line(data=data.frame(x,f), aes(x=x,y=f,color="conv")) + ylab("probability density") +
+  scale_colour_manual("Random Variables",
+                      breaks = c("X","X10","conv"),
+                      values=c("black","red","blue"), 
+                      labels=c(paste0("|X|"),paste0("-|X",k,"|"), paste0("|X|-|X",k,"|"))) 
+grid.newpage()
+grid.draw(rbind(ggplotGrob(p1),ggplotGrob(p2), size="first"))
+@
+\caption{Example for the probability density functions of $X$ (standard normal distribution with bias $b=\Sexpr{b}$), $\bar{X}_k$ (average of $k=\Sexpr{k}$ versions of $X$, labelled X\Sexpr{k}), $|X|$, $-|\bar{X}_k|$, and $|X|-|\bar{X}_k|$. }\label{fig:WiserThanCrowdTheory}
+\end{figure}
+  Figure \ref{fig:WiserThanCrowdTheory} shows an example of these function for $b=\Sexpr{b}$. The gray area represents the probability that $|X|<|\bar{X}_k|$.  
+  In the following we compute the values of the integral over the convolution of Equation (\ref{eq:Pr2}) by numerical convolution and integration using a fine discretization $dx=\Sexpr{dx}$. 
+  The precise computation is documented in \textcite{Lorenz2016Sourcefilesand}. 
+  
+  Now, we have a framework to analyse the impact of bias and crowd size on the probability to select an expert by chance. 
+  This probability also gives us a measure for the number of experts which we should expect in a sample of $k$ individuals. 
+  We just have to multiply the probability by $k$. 
+  Let us first look at the case of no population bias $b=0$.
+  \begin{figure}
+<<WiserThanCrowdTheory2, echo=F, fig.height=3>>=
+b <- 0
+k <- 1:1000
+if (file.exists("R/WiserThanCrowdTheory2.RData")) {
+  load("R/WiserThanCrowdTheory2.RData")
+} else {
+  Probability <- rep(NA,length(k))
+  for (ik in 1:length(k)) { Probability[ik] <- prob_1_better_k_normal(b, k[ik]) }
+  save(Probability,file = "R/WiserThanCrowdTheory2.RData")
+}
+NumExperts <- Probability*k
+p1 <- ggplot(data=data.frame(k,Probability), aes(x=k,y=Probability)) + theme_bw() + geom_line() + 
+  ylab("Probability to Draw Expert") + xlab("Crowd Size k") +
+  scale_x_continuous(expand=c(0,0), limits=c(0,1000)) + scale_y_continuous(expand=c(0,0), limits=c(0,0.5))
+p2 <- ggplot(data=data.frame(k,NumExperts), aes(x=k,y=NumExperts)) + theme_bw() + geom_line() + 
+  ylab("Expected Number of Experts") + xlab("Crowd Size k") +
+  scale_x_continuous(expand=c(0,0), limits=c(0,1000)) + scale_y_continuous(expand=c(0,0), limits=c(0,21))
+library(grid)
+grid.newpage()
+grid.draw(cbind(ggplotGrob(p1),ggplotGrob(p2), size="first"))
+@
+\caption{Probability of drawing an expert against a sample of $k$ individuals and number of experts in a sample of size $k$ when there is no bias ($b=0$). }\label{fig:WiserThanCrowdTheory2}
+\end{figure}
+  Figure \ref{fig:WiserThanCrowdTheory2} shows that the probability to draw an expert converges to zero with $k\to\infty$, while at the same the expected number of experts increases without staturation. 
+  For a group of 1000 agents the probability to find a single agent which is better is $\Sexpr{round(Probability[1000],digits=3)}$, and consequently the expected number of experts among these thousand is about $\Sexpr{round(NumExperts[1000])}$. 
+ 
+\begin{figure}
+<<WiserThanCrowdTheory3, echo=F, fig.height=3>>=
+b <- 0.5
+k <- 1:100
+if (file.exists("R/WiserThanCrowdTheory3.RData")) {
+  load("R/WiserThanCrowdTheory3.RData")
+} else {
+  Probability <- rep(NA,length(k))
+  for (ik in 1:length(k)) { Probability[ik] <- prob_1_better_k_normal(b, k[ik]) }
+  save(Probability,file = "R/WiserThanCrowdTheory3.RData")
+}
+NumExperts <- Probability*k
+q1in <- ggplotGrob(
+  ggplot(data=data.frame(k=k[10:60],P=Probability[10:60]), aes(x=k,y=P)) + theme_bw() + geom_line() +
+  geom_point(data=data.frame(x=19,y=Probability[19]), aes(x=x,y=y)) + 
+  labs(subtitle="Detail") +
+  theme(axis.title.x=element_blank(), axis.title.y=element_blank()) +
+  scale_x_continuous(expand=c(0,0)) + scale_y_continuous(expand=c(0,0), limits=c(0.336,0.341))
+)
+q1 <- ggplot(data=data.frame(k,Probability), aes(x=k,y=Probability)) + theme_bw() + geom_line() +
+  ylab("Probability to Draw Expert") + xlab("Crowd Size k") +
+  scale_x_continuous(expand=c(0,0), limits=c(0,100)) + scale_y_continuous(expand=c(0,0), limits=c(0,0.5)) +
+  annotation_custom(grob=q1in, xmin=37,xmax=98,ymin=0,ymax=0.3)
+q2 <- ggplot(data=data.frame(k,NumExperts), aes(x=k,y=NumExperts)) + theme_bw() + geom_line() +
+  ylab("Expected Number of Experts") + xlab("Crowd Size k") +
+  scale_x_continuous(expand=c(0,0), limits=c(0,100)) + scale_y_continuous(expand=c(0,0), limits=c(0,35))
+library(grid)
+grid.newpage()
+grid.draw(cbind(ggplotGrob(q1),ggplotGrob(q2), size="first"))
+@
+\caption{Probability of drawing an expert against a sample of $k$ individuals and number of experts in a sample of size $k$ when there is a bias of $b = \Sexpr{b}$.}\label{fig:WiserThanCrowdTheory3}
+\end{figure}
+ This picture changes with bias. 
+ Figure \ref{fig:WiserThanCrowdTheory3} shows an example for the bias $b=\Sexpr{b}$. 
+ In the limit of $k\to\infty$ the probability to draw an expert now saturates at $\Sexpr{round(prob_1_better_k_normal(b, Inf),digits=3)}$. 
+ Consequently, the number of experts increase linearly for large $k$. 
+ Interestingly, the probability to draw an expert does not decline monotonically. 
+ There is an interior minimum at $k=\Sexpr{which(Probability==min(Probability))}$ for which the probability is lowest.
+ Thus, for a bias of \Sexpr{b} it is in some sense optimal to ask \Sexpr{which(Probability==min(Probability))} individuals and take their avergae estimate.
+ The explanation for this surprising intermediate optimum under some bias is the following. 
+ For lower crowd size the group is just not large enough to optimally outperform a randomly drawn individual. 
+ Larger groups are better for the same reason as in the unbiased situation. 
+ With bias another phenomenon occurs. 
+ For large groups the dispersion of the collective estimate vanishes, such that we end up with a collective estimate very close to the bias with high certainty.  
+ In contrast, for a draw of a single individual there is a chance to receive the almost correct answer. 
+ The optimal crowd size is achieved when the variance decreasing effect is balanced optimally against the effect that larger groups will deliver a wrong answer for sure. 
+ 
+\begin{figure}
+<<WiserThanCrowdTheory4, echo=F, fig.height=3>>=
+b <- seq(0.1,2.5,by=0.01)
+k <- Inf
+limProb <- rep(NA,length(b))
+for (ib in 1:length(b)) { limProb[ib] <- prob_1_better_k_normal(b[ib], k) }
+if (file.exists("R/WiserThanCrowdTheory4.RData")) {
+  load("R/WiserThanCrowdTheory4.RData")
+} else {
+  opt_k <- rep(1,length(b))
+  min_P <- rep(1,length(b))
+  for (ib in rev(1:length(b))) {
+    tmp <- optimal_k_normal(b[ib], initial_k = opt_k[min(ib+1,length(b))])
+    opt_k[ib] <- tmp$k
+    min_P[ib] <- tmp$P
+  }
+  save(opt_k,min_P,file = "R/WiserThanCrowdTheory4.RData")
+}
+D <- data.frame(b,limProb,opt_k,min_P)
+D1 <- gather(D,key=key,value=Prob,limProb,min_P)
+r1 <- ggplot(data=D1, aes(x=b,y=Prob,color=key)) + theme_bw() + geom_line() +
+  scale_y_continuous(expand=c(0,0), limits=c(0,0.51)) + scale_x_continuous(expand=c(0,0),limits=c(0,max(b))) +     scale_colour_manual("Probability to draw expert", breaks = c("limProb","min_P"),
+                      values=c("blue","black"), labels=c("For k=Inf ","For optimal k")) +
+  theme(legend.position = c(0.6,.2), legend.direction="vertical") +
+  ylab("Probability") + xlab("bias b")
+r2in <- ggplotGrob(ggplot(filter(D,b<1.5,b>0.5), aes(x=b,y=opt_k), color="black") + theme_bw() + geom_line() +
+                     scale_y_continuous(expand=c(0,0),limits=c(1,20)) + scale_x_continuous(expand=c(0,0)) + 
+                     labs(subtitle="Detail") + ylab("") + xlab("")
+)
+r2 <- ggplot(D, aes(x=b,y=opt_k), color="black") + theme_bw() + geom_line() +
+  scale_y_continuous(expand=c(0,0)) + scale_x_continuous(expand=c(0,0),limits=c(0,max(b))) +
+  annotation_custom(grob=r2in, xmin=0.5,xmax=2.4,ymin=300,ymax=1100) +
+  ylab("Optimal Crowd Size k") + xlab("bias b")
+grid.newpage()
+grid.draw(cbind(ggplotGrob(r1),ggplotGrob(r2), size="first"))
+@
+\caption{The impact of the bias $b$ on the probability to draw an expert (first panel) and the optimal crowd size for which this probability is lowest. The blue line in the first panel is the probability for large groups ($k=\infty$), the black line the probability for the optimal $k$ as plotted in the second panel. The deviation of the blue and the black lines represents the risk of having worse collective estimates by collecting too many estimates. This region ($0.5<b<1.5$) is focussed in the inset in the second panel. }\label{fig:WiserThanCrowdTheory4}
+\end{figure}
+
+ In Figure \ref{fig:WiserThanCrowdTheory4} we further analyse the impact of the bias on the probability to draw an expert and the optimal crowd size. 
+ From this Figure and the results before we derive the following insights:
+ \begin{compactitem}
+ \item In a large crowd with a large bias, half of the people are ``experts'' because they outperform the mean estimate\footnote{Note, that this result generalizes in its strict form only for symmetric distributions.}. Precisely, with increasing bias the probability to draw an expert from a large crowd increases and saturates at 0.5. For a bias of 1.5 standard deviations of estimates the probability is already $\Sexpr{round(D[round(D$b,digits=2)==1.5,"limProb"],digits=3)}$.  
+ \item In a large crowd with small bias, experts are rare, and the optimal size of a group is very large. For $b<\Sexpr{max(D[D$opt_k>=100,"b"])}$ the optimal crowd size is larger than 100, for $b<\Sexpr{max(D[D$opt_k>=500,"b"])}$ it is larger than 500 and for $b<\Sexpr{max(D[D$opt_k>=1000,"b"])}$ larger than 1,000. 
+ \item In a crowd with no bias, the share of experts goes to zero, although their number still increases slowly. 
+ \item When the bias is between 0.5 and 1.5 times the standard deviations of estimates , the optimal crowd size is between $\Sexpr{D[round(D$b,digits=2)==0.5,"opt_k"]}$ and $\Sexpr{D[round(D$b,digits=2)==1.5,"opt_k"]}$. In this range of bias there is also a notable difference of the probability to draw expert which is better than a large crowd ($k\to\infty$) and a crowd of optimal size. Thus, in this range of bias there is a risk of drawing to many estimates and receive worse results with high likelihood. 
+ \end{compactitem}
+
+ The theory and results so far were presented and computed under the assumptions that estimates are normally distributed and that the arithmetic mean is used for the aggregation of collective estimates. 
+ The results for other distributions of estimates and other appropriate measures of aggregation are probabily essentially similar regarding the general characteristics. 
+ Firstly, the mean of several draws from the same distribution, even when this distribution is not normal, converges to be normally distributed due to the central limit theoerm. The decrease of standard deviation with $\sqrt(k)$ holds for all distribtions with finite variance. 
+ Further on, the convergence to the normal distribution with standard deviation $\sqrt{k}$ also holds for the median as the measure of aggregation \parencite{Bahadur1966NoteQuantilesin}. 
+
+ Let us finally look at the three emprical samples Galton, Viertelfest, and Oldenburg. 
+ As we already discussed, the median was a good aggregation function for both the Galton and the Viertelfest sample. 
+ For a sample of $n$ numbers it is relatively straightforward, to compute a weight vector of the same size where each weight represents the probabilty that this value turns out to be the median of $k$ independent and identically distributed draws from the sample with replacement.\footnote{The computation is documented in \textcite{Lorenz2016Sourcefilesand}.}
+ Figure \ref{fig:WiserThanCrowdData} shows the histograms of the draws from the Galton and the Viertelfest
+samples together with histograms of the median of twenty (respectively) two hundred independent draws from these samples with replacement. 
+ These examples show how it becomes almost certain to receive slightly wrong collective estimates for large crowds. 
+\begin{figure}
+<<WiserThanCrowd,echo=FALSE, cache=T>>=
+K <- c(1,20,200)
+Knames=c("Wk1"="1 draws", "Wk20"="Median 20 iid draws", "Wk200"="Median 200 iid draws")
+E <- data_frame(G)
+for (k in K) {E[,paste0("Wk",k)] = weights_median_n_k(nrow(E),k)}
+E <- gather(E,key = key, value=weight, -G)
+g1 <- ggplot(filter(E,G>1080,G<1320), aes(G, weight=weight, alpha=0.8)) + 
+  geom_histogram(binwidth = 5, position='identity', fill="blue") + 
+  facet_grid(key ~ ., scales="free_y") +
+  annotate("pointrange",y=0,x=truth_G, ymin=0,ymax=0) +
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "none", strip.text.y = element_blank()) +
+  ggtitle("Galton") + xlab("Estimates (axis clipped)")
+D <- data_frame(sD=sort(sD))
+for (k in K) {D[,paste0("Wk",k)] = weights_median_n_k(nrow(D),k)}
+D <- gather(D,key = key, value=weight, -sD)
+g2 <- ggplot(filter(D, sD>0, sD<40000), aes(sD, weight=weight, alpha=0.8)) + 
+  geom_histogram(binwidth = 1000, position='identity', fill="red") + 
+  facet_grid(key ~ ., scales="free_y",labeller = as_labeller(Knames)) +
+  annotate("pointrange",y=0,x=truth, ymin=0,ymax=0) + ylab("") + ggtitle("Viertelfest") + 
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "none") + xlab("Estimates (axis clipped)")
+library(grid)
+grid.newpage()
+grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2), size="first"))
+@
+\caption{Histograms for the Galton and the Viertelfest samples (1 draw) togehter with histrograms for the median of 20 and 200 independ and identically distributed draws from the same sample with replacement. The black dot is the true value.  } \label{fig:WiserThanCrowdData}
+\end{figure}
+ 
+ Finally, Table \ref{tab:WoC2} summarizes the results about the number of experts and the optimal group size for the three empirical samples (cf.~Table \ref{tab:WoC}). The results show that the optimal group size is largest for the Viertelfest sample. This presents this sample as the one with the highest degree of crowd wisdom with respect to median aggregation, which is in line with the wisdom-of-crowd indicatore being lowest for this sample (cf. Section \ref{sec:wocindicator}). 
+
+ \begin{table}
+\small
+\begin{tabular}{>{\raggedleft\arraybackslash}m{0.38\textwidth}>{\raggedleft\arraybackslash}m{0.16\textwidth}>{\raggedleft\arraybackslash}m{0.16\textwidth}>{\raggedleft\arraybackslash}m{0.16\textwidth}} \toprule 
+ & Galton & Viertelfest & Oldenburg \\ \midrule\midrule
+Number of estimates $N$ & \Sexpr{length(G)} & \Sexpr{format(length(sD),big.mark=",")} & \Sexpr{length(sO)} \\ \addlinespace[0.5ex]
+True value & \Sexpr{format(truth_G,big.mark=",")} & \Sexpr{format(truth,big.mark=",")} & \Sexpr{format(truth_O,big.mark=",")} \\ \addlinespace[0.5ex]
+\# estimates closer to truth then best mean (\%) [best mean] & \Sexpr{format(sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(G,1)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) [Arithmetic] & \Sexpr{format(sum(abs(powermean(sD,0)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sD,0)-truth)>abs(sD-truth))/length(sD),digits=2)}\%) [Geometric] & \Sexpr{format(sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(powermean(sO,-1)-truth_O)>abs(sO-truth_O))/length(sO),digits=2)}\%) [Harmonic] \\ \addlinespace[0.5ex]
+\# estimates closer to truth then median (\%)& \Sexpr{format(sum(abs(median(G)-truth_G)>abs(G-truth_G)),digits=3)} (\Sexpr{format(100*sum(abs(median(G)-truth_G)>abs(G-truth_G))/length(G),digits=2)}\%) & \Sexpr{format(sum(abs(median(sD)-truth)>abs(sD-truth)),digits=3)} (\Sexpr{format(100*sum(abs(median(sD)-truth)>abs(sD-truth))/length(sD),digits=2)}\%)  & \Sexpr{format(sum(abs(median(sO)-truth_O)>abs(sO-truth_O)),digits=3)} (\Sexpr{format(100*sum(abs(median(sO)-truth_O)>abs(sO-truth_O))/length(sO),digits=3)}\%)  \\ \addlinespace[0.5ex]
+optimal crowd size for median of iid draws against one draw (prob. that one draw is better) & \Sexpr{format(optimal_k_median_S(G,truth_G,initial_k=550)$k,big.mark=",")} (\Sexpr{format(100*optimal_k_median_S(G,truth_G,initial_k=550)$P,digits=3)}\%) & \Sexpr{format(optimal_k_median_S(sD,truth,initial_k=2870)$k,big.mark=",")} (\Sexpr{format(100*optimal_k_median_S(sD,truth,initial_k=2870)$P,digits=3)}\%)  & \Sexpr{format(optimal_k_median_S(sO,truth_O)$k,big.mark=",")} (\Sexpr{format(100*optimal_k_median_S(sO,truth_O)$P,digits=3)}\%)  \\ \addlinespace[0.5ex]
+ \bottomrule
+\end{tabular}
+\caption{The three example datasets on the wisdom of the crowd. Number of people who are better then the crowd with respect to the best mean (cf.~Table \ref{tab:WoC}) and the median. The optimal crowd size for independent and identically distributed draws (iid) from the sample (with replacement) such that the probability to draw a better single estimates is lowest. } \label{tab:WoC2}
+\end{table}
+
+
+
+\section{Diversity and conformity sampling of small medium sized crowds}
+
+<<DiversitySampling, echo=FALSE>>=
+# source("R/diversitysampling.r")
+# groupsize = 10
+# 
+# test <- make_n_Samples(G,groupsize,1000,aggregation.fun = "median", replace=FALSE)
+# 
+# TEST <- gather(test)
+# TEST$collErr <- collError(TEST$value,t, exponent=1)
+# ggplot(TEST,aes(collErr, color=key)) + geom_histogram(position="identity", alpha = 0) # + facet_grid(key ~ .)
+# TEST %>% group_by(key) %>% summarize(mean(collErr), sd(collErr))
+# t.test(collError(test$diversity,t),collError(test$normal,t))
+@
+
+Diversity sampling seems to work (reduces error) for 
+very small bias and not very large samples when the aggregation function of the sample is the mean
+It seems to have bad effects when your aggregation function is the median!!
 
 
 
 
-% # 
+
+
 
 
 
@@ -1096,13 +1449,7 @@ Not all samples of estimates for a particular judgment task can elicit wisdom of
 
 % WoC is a systemic effect of the right choice of aggregation, no bias, and large dispersion
 
-
-% Paper 1:In one mind: Diversity prediction thm. It works in one mind but not as good as first announced! Cite some papers?
-
 % What about social influence?
-% Paper 2: Focus on the concenptional thing. 
-
-% Paper 3: 
 
  
  
@@ -1110,37 +1457,32 @@ Not all samples of estimates for a particular judgment task can elicit wisdom of
  The wisdom of the crowd effect appears surprising to most individuals although it is a natural statistical property when we see individual estimates as independent random draws a distribution which is unbiased in the sense that the aggregate measure coincides with the correct value. 
 
 
- % Systematic error
-
-\bigskip
-
-\paragraph{How individuals can simulate the knowledge of diverse societies to reach better decisions.}
-\textcite{Rauhut.Lorenz2010wisdomofcrowds}
 
 
 
 
 
-\bigskip
 
-\paragraph{How social influence undermines the wisdom of the crowd.}
-\textcite{Lorenz.Rauhut.ea2011HowSocialInfluence} 
-plus letter: \textcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
-
-\emph{Short description of model and results.}
-
-Focus on the range reduction effect as the systemic effect! 
-
-
-\bigskip
-
-\paragraph{How majoritarian democracy undermines collective truth-finding.}
+\section{How majoritarian democracy undermines collective truth-finding.}
 \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines}
-
 
 The interplay of decision rules and communcation in collective judgment tasks have an effect on the chances for bias correction or bias increase on the group level. 
 
 
+Report Confidence effect also for \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence}
+
+\textcite{Granovskiy.Gold.ea2015IntegrationSocialInformation}
+
+
+\section{Conclusions from the wisdom of crowds}
+
+\begin{itemize}
+ \item Use collective estimates but also communicate diversity!
+ \item Be aware of collective tunnel vision. 
+ \item Use the initial independence of estimators!
+ \item Avoid, majoritarian thinking!
+ \item Do not take increased average confidence as a sign for you increased confidence in the collective estimate. 
+\end{itemize}
 
 
 
