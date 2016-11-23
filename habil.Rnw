@@ -59,10 +59,10 @@
 <<R-setup, echo=FALSE, warn=FALSE>>=
 ## Packages
 suppressPackageStartupMessages(library(tidyverse, warn.conflicts = FALSE))
+suppressPackageStartupMessages(library(reshape2, warn.conflicts = FALSE))
 suppressPackageStartupMessages(library(fitdistrplus))
 library(grid)
 library(RColorBrewer)
-library(reshape2)
 
 # Scripts for certain topics
 source("R/informationaccumulationsystem.r")
@@ -873,7 +873,7 @@ ggplot(tbl_df(G), aes(value)) + geom_histogram(binwidth = 5) +
   annotate("pointrange", x=mean(truth_G), y = 50, ymin = 0, ymax = 50, colour = "darkviolet", size = 1) +
   annotate("text", label="Truth", x=truth_G+15, y = 50, colour = "darkviolet", hjust=0) 
 @
-\caption{Histogram of estimates for the weight-judging competition at the West of England Fat Stock and Poultry Exhibition in Plymouth 1907 ($N=787$). }\label{fig:galton}
+\caption{Histogram of estimates for the weight-judging competition at the West of England Fat Stock and Poultry Exhibition in Plymouth 1907 ($N=\Sexpr{length(G)}$). }\label{fig:galton}
 \end{figure}
 
  The question of mean vs. median, or -- more general -- the choice of the aggregation function can be elaborated further with another impressive example for the wisdom of the crowd phenomenon. This time it involves data in which collection I was involved. 
@@ -890,7 +890,7 @@ ggplot(tbl_df(G), aes(value)) + geom_histogram(binwidth = 5) +
 
 \begin{figure}
 <<Viertelfest-Hist, echo=FALSE, fig.height=3.5>>=
-Dfit <- fitdist(D$Estimate,"lnorm")
+Dfit <- fitdist(sD,"lnorm")
 br <- seq(0,150000,by=1000)
 ggplot(filter(tbl_df(sD),value<150000),aes(value)) + geom_histogram(binwidth = 1000) + 
   scale_x_continuous(breaks=seq(0,150000, by=20000)) + theme_bw() +
@@ -907,7 +907,7 @@ ggplot(filter(tbl_df(sD),value<150000),aes(value)) + geom_histogram(binwidth = 1
   annotate("pointrange", x=mean(truth), y = 80, ymin = 0, ymax = 80, colour = "darkviolet", size = 1) +
   annotate("text", label="Truth", x=truth+3000, y = 80, colour = "darkviolet", hjust=0) 
 @
-\caption{Histogram of estimates for the guestimation task ``How many lots will be sold at the end of the festival'' at the Viertelfest Aug 22-24, 2008 in Bremen. ($N=\Sexpr{format(nrow(D), big.mark=",")}$, x-axis clipped at 150,000)}\label{fig:viertelfest}
+\caption{Histogram of estimates for the guestimation task ``How many lots will be sold at the end of the festival'' at the Viertelfest Aug 22-24, 2008 in Bremen. ($N=\Sexpr{format(length(sD), big.mark=",")}$, x-axis clipped at 150,000)}\label{fig:viertelfest}
 \end{figure}
 
  Here, the median performs quite well, as in Galton's data. 
@@ -1149,7 +1149,7 @@ Further on, in each treatment and for each question subjects were asked about th
  
  \section{How many people are wiser than the crowd?}
 
- This section presents two ideas how one can derive optimal sizes of guestimation teams and how one should sample them based on the statistical the conception of crowd wisdom. 
+ This section presents ideas how to derive optimal sizes of guestimation teams and how one should sample them based on the statistical conception of crowd wisdom. 
  The questions underlying the two ideas are:
  \begin{compactenum}
  \item How many people are wiser than the crowd?
@@ -1368,7 +1368,7 @@ grid.draw(cbind(ggplotGrob(r1),ggplotGrob(r2), size="first"))
 
  Let us finally look at the three emprical samples Galton, Viertelfest, and Oldenburg. 
  As we already discussed, the median was a good aggregation function for both the Galton and the Viertelfest sample. 
- For a sample of $n$ numbers it is relatively straightforward, to compute a weight vector of the same size where each weight represents the probabilty that this value turns out to be the median of $k$ independent and identically distributed draws from the sample with replacement.\footnote{The computation is documented in \textcite{Lorenz2016Sourcefilesand}.}
+ For a sample of $n$ numbers it is relatively straightforward, to compute a weight vector of the same size where each weight represents the probabilty that this value turns out to be the median of $k$ independent and identically distributed draws from the sample with replacement. The computation is documented in \textcite{Lorenz2016Sourcefilesand}.
  Figure \ref{fig:WiserThanCrowdData} shows the histograms of the draws from the Galton and the Viertelfest
 samples together with histograms of the median of twenty (respectively) two hundred independent draws from these samples with replacement. 
  These examples show how it becomes almost certain to receive slightly wrong collective estimates for large crowds. 
@@ -1418,20 +1418,71 @@ optimal crowd size for median of iid draws against one draw (prob. that one draw
 
 
 
-\section{Diversity and conformity sampling of small medium sized crowds}
+\paragraph{Diversity and conformity sampling of small and medium sized crowds}
 
+ In the previous paragraph we saw that whenever there is a small bias in the population, there is an optimal crowd size for the crowd to compete optimally with single individuals. 
+ This paragraph deals with process of sampling a crowd. 
+ Is there a way to reduce the collective error by rules which newly sampled estimates to accept, based on characteristics of the already sampled estimates?
+ In particular, we will analyze the impact of two sampling strategies: sampling for \emph{diversity} and sampling for \emph{conformity}.
+ 
+ Let us formulate both strategies in an ad hoc but precise way. The full code is available in the source files of this work \parencite{Lorenz2016Sourcefilesand}. Both samples operate in the same way and differ only at one particular point. 
+ Let us think of iterative sampling of $x_1, x_2, \dots$ as independent draws from the same sample one after the other.
+ Let us call $\bar{x}_i$ be the aggregation of all sampled estimates up to estimate $i$. We first consider this aggregtion to be the mean and discuss the median later. Let us further call $\text{SEM}(x_1,\dots,x_i) = \frac{s_i}{\sqrt{i}}$ be the \emph{standard error of the mean} of the first $i$ estimates, where $s_i$ is the \emph{sample standard deviation}\footnote{$s_i=\sqrt{\frac{1}{i}\sum_{j=1}^i(x_j-\bar{x}_i)^2}$}. 
+ The sampling procedure is now the following:
+ \begin{compactenum}
+ \item Sample the first two estimates $x_1$ and $x_2$ as independent random draws with replacement from the sample. 
+ \item For $i>2$, sample estimate $x_i$ such that \\
+ $|x_i - \bar{x}_{i-1}| > \text{SEM}(x_1,\dots,x_{i-1})$ for \emph{diversity sampling}, or \\
+ $|x_i - \bar{x}_{i-1}| < \text{SEM}(x_1,\dots,x_{i-1})$ for \emph{conformity sampling}. 
+ \end{compactenum}
+ Technically, sampling under certain restrictions can be done in practice by normal random sampling and discarding any sample value which does not fulfill the desired conditions. 
+ Note, that the standard error of the mean decreases with the square root of $i$. Therefore, diversity sampling approaches standard random sampling with increasing $i$. 
+ Conformity sampling instead becomes more and more restrictive, which makes it more and more difficult to draw 
+
+\begin{figure}
 <<DiversitySampling, echo=FALSE>>=
-# source("R/diversitysampling.r")
-# groupsize = 10
-# 
-# test <- make_n_Samples(G,groupsize,1000,aggregation.fun = "median", replace=FALSE)
-# 
-# TEST <- gather(test)
-# TEST$collErr <- collError(TEST$value,t, exponent=1)
-# ggplot(TEST,aes(collErr, color=key)) + geom_histogram(position="identity", alpha = 0) # + facet_grid(key ~ .)
-# TEST %>% group_by(key) %>% summarize(mean(collErr), sd(collErr))
-# t.test(collError(test$diversity,t),collError(test$normal,t))
+source("R/diversitysampling.r")
+arrange_test <- function(test,truth) {
+  gather(test, key=key, value=value, diversity, random, conformity) %>% 
+    mutate(collErr = collError(value, truth, exponent=1), 
+           key = factor(key,levels = c("conformity","random","diversity")))
+}
+if (file.exists("R/DiversitySamplingData.RData")) {
+  load("R/DiversitySamplingData.RData")
+} else {
+  x <- "rnorm"
+  n <- 5000 # sample size for each test
+  tr <- 0
+  test <- rbind(arrange_test(make_n_Samples(x, crowdsize=5, n, aggregation.fun = "mean", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=10, n, aggregation.fun = "mean", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=20, n, aggregation.fun = "mean", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=50, n, aggregation.fun = "mean", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=5, n, aggregation.fun = "median", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=10, n, aggregation.fun = "median", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=20, n, aggregation.fun = "median", replace=TRUE),tr),
+                arrange_test(make_n_Samples(x, crowdsize=50, n, aggregation.fun = "median", replace=TRUE),tr))
+  save(x,n,tr,test,file = "R/DiversitySamplingData.RData")
+}
+g1 <- ggplot(test,aes(y=collErr, x=key, color=key)) + geom_boxplot() +
+  facet_grid(aggregation.fun ~ crowdsize, scales = "free_y") +
+  labs(x="Sampling Method", y="(unsquared) Collective Error", 
+       subtitle=paste0("Boxplots (",n," crowds per sample)")) + 
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1))
+stest = test %>% group_by(aggregation.fun,crowdsize,key) %>% 
+  summarise(avCollErr = mean(collErr), stdErr=SEM(collErr))
+g2 <- ggplot(stest,aes(x=key, y=avCollErr, color=key)) + 
+  geom_pointrange(aes(ymin = avCollErr-2.81*stdErr, ymax =  avCollErr+2.81*stdErr)) +
+  facet_grid(aggregation.fun ~ crowdsize, scales = "free") + 
+  labs(x="Sampling Method", y="", subtitle="Mean (with 99.5% confidence intervals)") +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1)) 
+grid.newpage()
+grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
+# tt <- filter(test,aggregation.fun=="mean",crowdsize==20)
+# t.test(filter(tt,key=="diversity")$collErr, filter(tt,key=="random")$collErr)
+# sum(filter(tt,key=="diversity")$collErr<filter(tt,key=="random")$collErr)/n
 @
+\caption{Boxplots and mean of (unsquared) collective errors of collective estimates of simulated samples of small crowds ($k=5,10,20,50$) each drawn from the standard normal distribution using conformity, random, and diversity sampling. Crowds' collective estimates aggregated by the mean and the median. For each point \Sexpr{format(n,big.mark=",")} crowds have been sampled. 99.5\% confidence intervals are shown. Sometimes they lie within the area of the points. } \label{fig:DiversitySampling}
+\end{figure}
 
 Diversity sampling seems to work (reduces error) for 
 very small bias and not very large samples when the aggregation function of the sample is the mean
@@ -1444,12 +1495,6 @@ It seems to have bad effects when your aggregation function is the median!!
 
 
 
-
-% Pictures of whole range and core range. 
-
-% WoC is a systemic effect of the right choice of aggregation, no bias, and large dispersion
-
-% What about social influence?
 
  
  
