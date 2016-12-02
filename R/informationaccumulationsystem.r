@@ -7,7 +7,7 @@ ias <- function(y,fac,Delta) {
 }
 fix_ias <- function(init_y,fac,Delta) {
   repeat {
-    y <- ias(init_y,fac)
+    y <- ias(init_y,fac,Delta)
     if (sum(abs(init_y - y)) < 10^-12) break
     else init_y <- y
   }

@@ -76,23 +76,9 @@ makeM <- function(m, P_init, E, prec=10^-14) {
   # Produces a matrix M of iterated opinion profiles starting from P_init for all eps-values in E, iteration runs until 
   # the new profile is closer then prec to old profile
   # m is the rate of turn-over/independent opinion formation for all computations
-  # script tries to read RData file R/bc_opinion_pattern_diagram_m... which loads an existing M to build on
-  if (file.exists(paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))) {
-    load(paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))
-  } else {
-    M <- matrix(data = rep(P_init,length(E)), nrow = length(P_init), ncol = length(E), byrow = FALSE)
-  }
+  M <- matrix(data = rep(P_init,length(E)), nrow = length(P_init), ncol = length(E), byrow = FALSE)
   for (i in 1:length(E)) {
     M[,i] = stableP(P_init = P_init, P = M[,i], eps = E[i], p = m, prec=10^-14)
     save(M,file=paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))
   }
-}
-
-getR <- function(m) {
-  load(paste0("R/bc_opinion_pattern_diagram_m",m,".RData"))
-  R <- reshape2::melt(M)
-  names(R) <- c("opinion","confidencebound","frequency")
-  R$opinion <- Ops[R$opinion]
-  R$confidencebound <- E[R$confidencebound]
-  return(R)
 }
