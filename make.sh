@@ -14,3 +14,11 @@ gs \
     Habilitation_Work_Lorenz_Papers.pdf
 
 pdfbook habil.pdf
+
+
+cd co-author_confirmations
+pdftk Confirmation_JL_signed.pdf Confirmation_MDK_FZ_signed.pdf Confirmation_BK_signed.pdf Confirmation_PG_signed.pdf Confirmation_FP_MST_signed.pdf  Confirmations_signed.pdf
+Confirmation_FS_signed.pdf Confirmation_TM_signed.pdf Confirmation_HR_signed.pdf Confirmation_JKS_signed.pdf 
+ cat output ../co-author_contributions.pdf
+
+cd ..
