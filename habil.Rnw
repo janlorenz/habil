@@ -140,13 +140,13 @@ Bremen, \today\\[7mm]
 \section*{Preface}
 
  This habilitation work is an outcome of my academic journey from mathematics over the physics of socio-economic systems to the social sciences.
- This journey started with the fascination of mathematical models which are just a little bit too complicated to understand them analytically upfront and the use of computer simulation. It was further stimulated by the search for universal laws of human behavior, a bias for counterintuitive explanations, and the ambition to find and quantify hidden societal driving forces behind social phenomena. 
+ This journey started with the fascination of mathematical models which are just a little bit too complicated to understand them analytically upfront and the use of computer simulation. It was further stimulated by the search for universal laws of human behavior, a bias for counter-intuitive explanations, and the ambition to find and quantify hidden societal driving forces behind social phenomena. 
  Finally, the wish to gain insights which are directly meaningful in the social and economic world has driven me towards data analysis, data-driven modeling, and data production through experiments. 
 
  This booklet presents some of my contributions to a deeper understanding of \emph{opinion dynamics}, \emph{societal growth}, and the \emph{wisdom of the crowd}. 
  It shall show my ability to further pursue research and teaching in \emph{computational social science}. 
  Most of the theories and results in this booklet are taken and summarized from twelve independent scientific works which I authored. In many cases together with others. 
- Nine works have been published in peer-reviewed journals spanning political science, sociology, psychology, economics, and physics as well as two multi-disciplinary journals.   
+ Nine works have been published in peer-reviewed journals spanning political science, sociology, psychology, economics, and physics as well as two multidisciplinary journals.   
  One publication appeared in an edited scientific year book and two as contributions to conferences in political science and social simulation. 
 
 The works ordered by type and year of publication are:
@@ -207,7 +207,7 @@ That means, systemic effects in a system can not be boiled down to a simple aggr
 
 Studying systemic effects requires a well-suited description of the units of a system and their action and interaction. 
 For socio-economic systems that means the development of an \emph{agent-based model} with humans (or organisations) as the agents. 
-Models are called agent-based when the actions and interactions of agents are explicitly part of the model. In that sense, agent-based models differ from variable-based models where relations are modelled between different variables, e.g. by structural equation modeling. 
+Models are called agent-based when the actions and interactions of agents are explicitly part of the model. In that sense, agent-based models differ from variable-based models where relations are modeled between different variables, e.g. by structural equation modeling. 
 Agent-based models specify how agents change the values of their variables as a result of interaction. 
 Agent-based models are often studied with \emph{computer simulation}. 
 How this method can be used to tackle political science research questions is further discussed and explained in  \textcite{Lorenz2012ZurMethodeder}.
@@ -217,8 +217,8 @@ Agents in typical agent-based models apply these rules repeatedly in response to
 The idea of rational-choice models instead is that rational actors anticipate the rational moves of others which implies that all immediately switch to rational play such that their actions form a game-theoretic equilibrium. In game-theory, the existence and uniqueness of equilibrium solutions is of first interest and not so much the way how an equilibrium is reached or which of many equilibriums will be reached. 
 
 Some agent-based modelers therefore emphasize that they are able to study systems dynamics ``out of equilibrium''.  
-Although the dynamical perspective is indeed lacking to a large extent in rational choice theories, the oppositional view of agent-based and rational choice models is mostly overstated.
-First, every dynamical model -- be it with complex or simple behavioral rules -- has the tendency to approach attractive fixed points (equilibria), either static, stochastic, cyclic, or chaotic. Thus, the notion ``out-of-equilibrium'' transfers either to the study of transition, or a restricted definition of equilibrium, or a not completely specified model. 
+Although the dynamical perspective is indeed lacking to a large extent in rational choice theories, the antithetic view of agent-based and rational choice models is mostly overstated.
+First, every dynamical model -- be it with complex or simple behavioral rules -- has the tendency to approach attractive fixed points (equilibriums), either static, stochastic, cyclic, or chaotic. Thus, the notion ``out-of-equilibrium'' transfers either to the study of transition, or a restricted definition of equilibrium, or a not completely specified model. 
 Second, behavioral rules can often be derived from properly designed utility functions which agents maximize or satisfice. The utility maximizing and the behavioral rules framework are thus not necessary contrary but can even be identical. Game-theoretic reasoning can also be fed into a dynamical agent-based model through an evolutionary or boundedly rational setting or incomplete information. For example a model where agents act rational but only with respect to information from a smaller subset of players and anticipate only with a limited time horizon. Under such assumptions, also rational-choice models give rise to systemic effects which go beyond the scope of the individual. 
 
 \textcite{Groeber.Lorenz.ea2014Dissonanceminimizationas} (another part of the habilitation work) show an example how behavioral rules in models of continuous opinion dynamics can be microfounded as short-sighted (or myopic) best response of an individual to minimize opinion dissonance within its social context. In particular, the paper shows for which dissonance functions. Dissonance minimization can serve as a microfoundation of averaging as the behavioral rule in opinion dynamics models. In that sense, agents in many opinion dynamics models appear as boundedly rational agents which links agent-based modeling back to decision and game theory. 
@@ -326,9 +326,9 @@ While the development of this model is mostly theory-driven, the next three mode
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, PAPER 2, Political Partisanship %%%%%%%%%%%%%%%%%%%
 \section{How political partisanship forms through self-reinforcement}  \label{sec:OD2}
-The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachement or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
+The \textcite{GSPS2010datayears1984-2010} asked their participants if they feel attached to a certain party and to which. Despite of panel attrition and other exclusion criteria, an impressive number of 965 individuals remain which unambiguously name either no attachment or attachment to one of the four West-German political parties (CDU/CSU, SPD, FDP, Grüne) in every of the 27 years from 1984 to 2010. 
 Figure \ref{fig:MetzLorenz} is a histogram of these 965 individuals showing how many individuals made which amounts of announcement for a left (SPD and Grüne) and right (CDU/CSU and FDP) party. In particular, the histogram shows, that there are about 100 people who made 27 announcements of attachments to a left party (leftmost bin). Also about 100 people announced 27 times an attachment to a right party (rightmost bin). About 40 people never announced any party attachment (most backward bin). People announcing an attachment to a left (right) party but not all the time exist in large magnitude. People who announce a large number announcements for left and right parties are rare. For example there is only one person which announced eleven times a left party and also eleven times a right party. 
-The evolution ofsuch histograms is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
+The evolution of such histograms is modeled in \textcite{Metz.Lorenz2013Becomewhoyou}. 
 
 \begin{figure}[htbp]
 \includegraphics[width=\textwidth]{figs/3dPlotSideChoice_qti.pdf}
@@ -337,8 +337,8 @@ The evolution ofsuch histograms is modeled in \textcite{Metz.Lorenz2013Becomewho
 
 The main stylized facts of this data are: 
 \begin{compactenum}[(i)]
- \item Party attachment is almost exclusively either to right or to left parties. The decision of an individual is thus mostly if the left (or right) attachement is announced or not and not which of the two sides is chosen. 
- \item The histogram (count of people) of the number of uttered attachment within a time interval (here 27 years) has a U-shape. That means, there are peaks at the extremes for no attachment ever (0 announcments) and always attached (27 announcments). Further on, there are more people close to these extremes than for an intermediate number of announcements.  
+ \item Party attachment is almost exclusively either to right or to left parties. The decision of an individual is thus mostly if the left (or right) attachment is announced or not and not which of the two sides is chosen. 
+ \item The histogram (count of people) of the number of uttered attachment within a time interval (here 27 years) has a U-shape. That means, there are peaks at the extremes for no attachment ever (0 announcements) and always attached (27 announcements). Further on, there are more people close to these extremes than for an intermediate number of announcements.  
 \end{compactenum}
 
 The paper presents a stochastic model for the utterance of party attachments by individuals over time. 
@@ -358,7 +358,7 @@ The probability of an announcement is thus more likely if an announcement happen
 
 For a generic mechanism we define $x(t) \in \{0,1\}$ to be the \emph{announcement of the individual} at time step $t$, $\bar{x}(t) = \sum_{s=1}^t x(t)$ as the \emph{number of announcements} up to $t$, and $q$ as the \emph{interest in politics}. 
 We define the \emph{probability to announce a partisanship} at time $t$ as $p(t,\bar{x}(t),q) = \frac{\bar{x}(t) + q}{t+1}$. 
-Consequently $x(t+1)=1$ with probabilty $p(t,\bar{x}(t),q)$ and $x(t+1) = 0$ otherwise.
+Consequently $x(t+1)=1$ with probability $p(t,\bar{x}(t),q)$ and $x(t+1) = 0$ otherwise.
 
 The stochastic process $(x(t))_{t}$ is thus not a Markov process as the transition probabilities depend not only on the latest state but on all past states. 
 The analog process for the number of announcements so far $(\bar{x}(t))_t$ instead is a time-dependent Markov process, because $\bar{x}(t+1) = \bar{x}(t) + 1$ with probability $p(t,\bar{x}(t),q)$ and $\bar{x}(t+1) = \bar{x}(t)$ otherwise. Here, the transition probabilities only depend on the current state and the time step. 
@@ -381,12 +381,12 @@ Insets: Model behavior for first 10 and first 20 steps of the panel.}
  The parameter $q$ was fitted to best match the data. The best fit was achieved for $q=0.641$. 
  The model fit is shown in Figure \ref{fig:MetzLorenz3}. 
  The model fit has a striking coefficient of determination of $R^2 = 0.958$. 
- This shows that the idea to model announcements of party attachment as a self-re-inforcing stochastic process already explains the evolving U-shaped distribution quite well. 
- In particular, it explains the co-existence of large fractions non- and strong partisans with smaller fraction individuals homeing in and out with just one parameter -- the interest in politics $q$.
+ This shows that the idea to model announcements of party attachment as a self-reinforcing stochastic process already explains the evolving U-shaped distribution quite well. 
+ In particular, it explains the co-existence of large fractions non- and strong partisans with smaller fraction individuals homing in and out with just one parameter -- the interest in politics $q$.
 
 For smaller interest in politics $q<0.641$ the distribution would lead to a U-shape with a higher amount of never attached and a lower amount of always attached individuals. For higher interest in politics $q<0.641$ the bin with always attached individuals would be even higher and the bin with never attached individuals even lower. In the paper, it is further analysed if this would realize when we subdivide our sample based on the survey question about individuals' political interest in the \textcite{GSPS2010datayears1984-2010}. It turns out that fitting the model parameter $q$ for the different subsamples of people gives us $q=0.82$ for individuals with very strong political interest, $q=0.7$ for strong, $q=0.58$ for weak, and $q=0.41$ for no interest in politics with good model fits. 
 
-The reinforcement of individual attachment and non-attachment announcments in the model drives the evolution of the U-shaped distribution leading to a partly ``polarized'' population into strong party supporters and people never supporting any party. Note, that this mechanism is not social as the iteraction is only with the own past. 
+The reinforcement of individual attachment and non-attachment announcements in the model drives the evolution of the U-shaped distribution leading to a partly ``polarized'' population into strong party supporters and people never supporting any party. Note, that this mechanism is not social as the interaction is only with the own past. 
 \bigskip
 
 
@@ -433,7 +433,7 @@ The main stylized facts (cf.~\ref{fig:IMDbexamples}) are:
 Both stylized facts are explained through two assumptions on the process of opinion formation:
 \begin{compactenum}[(a)]
 \item A rating is the average of opinions of others, the current average rating, and several independent criteria. Thus, the distribution of ratings has a Gaussian-like shape due to the central limit theorem. \label{enum:rating1}
-\item Ratings are {discretised and confined} continuous opinions. All probability mass which over- or undershoots beyond the rating scale has to be collected in the extremal bins. \label{enum:rating2}
+\item Ratings are {discretized and confined} continuous opinions. All probability mass which over- or undershoots beyond the rating scale has to be collected in the extremal bins. \label{enum:rating2}
 \end{compactenum}
 The idea of (\ref{enum:rating2}) is for example that individuals who want to assess a movie as 15$\bigstar$ or -1$\bigstar$ have to confine their estimate between 1$\bigstar$ and 10$\bigstar$. Regarding (\ref{enum:rating1}), the only distribution which evolves under averaging in the limit of many criteria is the \emph{L\'evy skew $\alpha$-stable distribution} $S(\alpha,\beta,\gamma,\mu)$. Thus, it is a natural candidate to characterize rating histograms. 
 Its probability density function is
@@ -452,7 +452,7 @@ The normal distribution comes out for $\alpha=2$, in this case $\beta$ has no ef
 \includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainLevyB}
 \includegraphics[width=0.32\columnwidth]{/home/janlo/Documents/posters/2009_Rome/figs/figExplainLevyC}\\
 \tikz\draw (0,0) node{$\mu$} (4,0)node{$\mu$} (8,0)node{$\mu$};
-\caption{How the parameters of the L\'evy-skew $\alpha$-stable distribution modify the shape of the distirbution compared to $S(\frac{4}{3},0,1,\mu)$, where $\mu$ is the mark on the real line. } \label{fig:levy}
+\caption{How the parameters of the L\'evy-skew $\alpha$-stable distribution modify the shape of the distribution compared to $S(\frac{4}{3},0,1,\mu)$, where $\mu$ is the mark on the real line. } \label{fig:levy}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -524,11 +524,11 @@ BenNaim.Scheel2015PatternSelectionand,
 Hegselmann.Koenig.ea2015OptimalOpinionControl, 
 KurahashiNakamura.Maes.ea2016RobustClusteringin,
 Mathias.Huet.ea2016BoundedConfidenceModel, 
-Gargiulo.Gandic2016rolehomophilyin}. One reason for its popularity is the simplicity of its mechansism to produce cluster patterns. \textcite{Lorenz2015ModelingEvolutionIdeological} is a first attempt to apply the model ``as is'' to explain the shape of real-world opinion landscapes in the political and ideological realm. 
+Gargiulo.Gandic2016rolehomophilyin}. One reason for its popularity is the simplicity of its mechanism to produce cluster patterns. \textcite{Lorenz2015ModelingEvolutionIdeological} is a first attempt to apply the model ``as is'' to explain the shape of real-world opinion landscapes in the political and ideological realm. 
 
 The data use by \textcite{Lorenz2015ModelingEvolutionIdeological} is from two items of the European Social Survey \parencite{ESS6}. People from a representative sample are asked for their ideological left---right selfplacement with the question ``In politics people sometimes talk of `left' and `right'. Using this card, where would you place yourself on this scale, where 0 means the left and 10 means the right?'' They are asked about European unification with the question ``Now thinking about the European Union, some say European unification should go further. Others say it has already gone too far. Using this card, what number on the scale best describes your position? [0=`Unification has already gone too far', 10=`Unification should go further']''. Figure \ref{fig:ess} shows histograms of answers over the samples in France, Germany, Sweden, and the United Kingdom using the design weights provided by ESS. These weights correct for different selection probabilities triggered by the sampling design. Let us call such histograms \emph{ideology landscapes} or \emph{opinion landscapes}. 
 
-Opininon landscapes show the following stylized facts:
+Opinion landscapes show the following stylized facts:
 \begin{compactenum}[(i)]
  \item They never show the characteristics of a simple distribution, like the normal, uniform, or beta distribution. 
  \item The largest peak is always central.
@@ -568,8 +568,8 @@ We consider agents to change their ideological positions because of two processe
 For each agent $i$ and each time step $t$ opinion adaptation happens with probability $1-m$ and opinion replacement happens otherwise. In the case of adaptation, another agent $j$ is picked at random. Agent $i$ interacts with it only when their distance in opinion is less than its bound of confidence $|x_i(t) - x_j(t)| < \varepsilon$. If agent $j$ is close enough agent $i$ changes its ideological position to the average of the two positions $x_i(t+1) = (x_i(t) + x_j(t))/2$. In case of opinion replacement, agent $i$ does not engage in interaction with others but reconsiders its ideological position from scratch. That means it chooses a new random value from the interval $[0,1]$. \footnote{Remark: Dynamics on the macrolevel remains unchanged if instead of picking a new random opinion the agent just switches back to its initial opinion, which was picked at random only at the beginning of the simulation.}
 Some care is necessary with respect to specifics of the simulation algorithm and model parameters. In many implementation, agents $i$ and $j$ are drawn at the time and both of their opinions are updated. Under this mode, there are on average twice as much adaptation events per agent than in the model described here where only $i$ adapts. As a consequence, the model with bilateral adaptation behaves essentially as the model with unilateral adaptation but only half of the probability for opinion replacement, while dynamics of the former are twice as fast as dynamics of the latter. Here we use unilateral adaptation, while in \textcite{Lorenz2015ModelingEvolutionIdeological} bilateral adaptation was used. Further on, \textcite{Lorenz2015ModelingEvolutionIdeological} uses $p$ for the probability of random opinion replacement, while we use $m$ here for consistency with \textcite{Pineda.Toral.ea2009Noisycontinuous-opiniondynamics}. It thus holds $m = p/2$ in comparison of the results here with the results in \textcite{Lorenz2015ModelingEvolutionIdeological}.
 
-The model is implemented in NetLogo \parencite{Wilensky1999NetLogo} and made available by \textcite{Lorenz2017Sourcefilesand}. Figure~\ref{fig:snap1} shows the full screen shot of the ffmodel. 
-The main panel in the center shows the trajectories of opinions up to the current time step (=\texttt{tick}) moving from left to right. For longer runs this panel turns into a ``roling'' display showing only the latest time steps. 
+The model is implemented in NetLogo \parencite{Wilensky1999NetLogo} and made available by \textcite{Lorenz2017Sourcefilesand}. Figure~\ref{fig:snap1} shows the full screen shot of the model. 
+The main panel in the center shows the trajectories of opinions up to the current time step (=\texttt{tick}) moving from left to right. For longer runs this panel turns into a ``rolling'' display showing only the latest time steps. 
 At the bottom there are two observers which accompany the central panel of trajectories. 
 The left hand side panel shows the histogram of the current opinions in eleven equidistant bins, resembling the discretization of empirical opinion landscapes from the ESS. 
 The right hand side panel shows the evolution of the mean and the median opinion. 
@@ -624,14 +624,14 @@ Going along increasing bounds of confidence in Fig.~\ref{fig:reconsider}, differ
 
 \emph{Closed-minded agents} (Fig.~\ref{fig:reconsider}A $\varepsilon=0.15$): Under a relatively high probability of reconsideration ($m=0.12$) an opinion landscape with three peaks is produced -- a central, a moderate left, and a moderate right cluster as we see it in many empirical landscapes; but empirical landscapes of this type usually also have extremal peaks, the moderate peaks lie a bit closer to the center and never on the bins 1 and 9 and the central peak is much more pronounced.
 
-\emph{Intermediate agents} (Fig.~\ref{fig:reconsider}B $\varepsilon=0.25$): Under a high probability of random opinion replacement ($m=0.2$) the opinion landscape is still polarized as for the case $m=0$, but clusters are blurred such that their shape and location at bins 2 and 3 (respectively 7 and 8) matches moderate off-center empirical clusters. In this specification the empirically observed dominant central cluster misses completely. If it would evolve it would absorb the moderate clusters quickly. Also extremal peaks as empircally found are missing. 
+\emph{Intermediate agents} (Fig.~\ref{fig:reconsider}B $\varepsilon=0.25$): Under a high probability of random opinion replacement ($m=0.2$) the opinion landscape is still polarized as for the case $m=0$, but clusters are blurred such that their shape and location at bins 2 and 3 (respectively 7 and 8) matches moderate off-center empirical clusters. In this specification the empirically observed dominant central cluster misses completely. If it would evolve it would absorb the moderate clusters quickly. Also extremal peaks as empirically found are missing. 
 
 \emph{Open-minded agents} (Fig.~\ref{fig:reconsider}C $\varepsilon=0.3$): Under an intermediate probability of random opinion replacement ($m=0.09$) the opinion landscape shows a large central peak as observed empirically, also small peaks at the extremes match the empirical landscapes, although extremal peaks lie empirically more pronounced at 0 and 10 and not on bin 0 and 1 (respectively bin 9 and 10) as in the model. The weak point here is that empirically we observe much more mass on the bins close to the center. 
 
 In conclusion, several stylized facts can be reproduced by this two parameter model much better than classical distributions can, but the model can not produce a large central peak, and tendencies for small and blurred moderate off-center peaks and small or tiny extremal peaks at the same time in its current form. 
 
 Although there has been pioneering work by \textcite{Troitzsch1987BuergerperzeptionundLegitimierung},
-agent-based models for the evolution of ideological landscapes are still in its infancy and it remains to show if they can add interesting insight to political dynamics. At least the possibility for counterfactual analysis at critical values seems promising for studying and understanding self-driven abrupt changes in political landscapes. 
+agent-based models for the evolution of ideological landscapes are still in its infancy and it remains to show if they can add interesting insight to political dynamics. At least the possibility for counter-factual analysis at critical values seems promising for studying and understanding self-driven abrupt changes in political landscapes. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 2, TOPIC 5, Opinion Pattern Diagrams %%%%%%%%%%%%%%%%%%%
 
@@ -677,7 +677,7 @@ ggplot(M,aes(fac,y)) + annotate("rect", xmin = 0.1, xmax = 3.02, ymin = -1, ymax
  (1) At diffusivity being more than 0.8 of the rate of forgetting ($\Omega=0.8\Delta$) the consensual fixed points starts to deviate from zero towards the side of the group which starts with the initially more extreme opinion. 
  (2) At diffusivity being 2.25 times larger than the rate of forgetting ($\Omega=2.25\Delta$) the consensual fixed point departs into a bipolarized one, where both groups can maintain different opposing opinions. 
  Note, that the bipolarized situation only sustains itself when initial differences in opinions between communities are strong enough. 
- In this case, the higher intercommunity diffusivity is strong enough to sustain against forgetting and attraction of the other community's opinion through inter-community diffusivity.  
+ In this case, the higher inter-community diffusivity is strong enough to sustain against forgetting and attraction of the other community's opinion through inter-community diffusivity.  
  
 \begin{figure}[tb]
 <<OPD-partyID, fig.height=2.5, echo=FALSE>>=
@@ -704,7 +704,7 @@ ggplot(filter(R), aes(`interest in politics`, `number of attachments`)) +
  Most people support a party either almost always or almost never. 
  This creates an always U-shaped distribution with two peaks, both at the extremes. 
  The relative size of the two extremal peaks changes with the interest in politics $q$. 
- Low interest in politics creates a larger peak of not attached people and high interest a larger peak of attached people, but even when the interest in politics is intermediate there are few moderately attached people.  The bipolarization is created through self-reinforcement. Whenever a person has a slightly higher (or slightly lower) number of attachments (or non-attachements) it is likely that this imbalance will increase. 
+ Low interest in politics creates a larger peak of not attached people and high interest a larger peak of attached people, but even when the interest in politics is intermediate there are few moderately attached people.  The bipolarization is created through self-reinforcement. Whenever a person has a slightly higher (or slightly lower) number of attachments (or non-attachments) it is likely that this imbalance will increase. 
  
 \begin{figure}[htb]
 <<ODP-ratings, echo=FALSE, fig.height=3>>=
@@ -834,7 +834,7 @@ Papers of the Habilitation Work: \\[-1.5mm]
 %%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER 3, TOPIC 1, Innovation and Imitation %%%%%%%%%%%%%%%%%%%
 \section{How innovation and imitation drive growth of productivity} 
 
- Productivity of a firm is its efficiency of production. It can be measured for a business year e.g. as total factor productivity estimated based on the balance sheet items value added, fixed assets (capital), number of employees (labour), and costs of materials using the method of \textcite{Levinsohn.Petrin2003EstimatingProductionFunctions}. \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} presents a model which reproduces the evolution of the distribution of productivity remarkably well. The model shows that imitation can ``push'' the distribution forward, leading to higher growth rates than relying on innovation alone. 
+ Productivity of a firm is its efficiency of production. It can be measured for a business year e.g. as total factor productivity estimated based on the balance sheet items value added, fixed assets (capital), number of employees (labor), and costs of materials using the method of \textcite{Levinsohn.Petrin2003EstimatingProductionFunctions}. \textcite{Koenig.Lorenz.ea2016Innovationvsimitation} presents a model which reproduces the evolution of the distribution of productivity remarkably well. The model shows that imitation can ``push'' the distribution forward, leading to higher growth rates than relying on innovation alone. 
  
  Figure \ref{fig:ODEFR} shows the distribution of the total factor productivity of a balances panel of French firms for the years 1995 to 2003 in a double logarithmic (log-log) plot. Results are structurally similar for other countries and for unbalanced panels. 
 
@@ -843,7 +843,7 @@ Papers of the Habilitation Work: \\[-1.5mm]
   \item the distribution of productivity is dispersed spanning some orders of magnitude,
   \item the distribution of high-productivity firms follows a power law $P(A)\propto e^{-\lambda A}$ (visible as a straight line in the log-log plot, the exponent is on average $\lambda=3.73$ with little variation over the years), 
     \item the distribution of low-productivity firms follows a power law $P(A)\propto e^{\rho A}$ (the exponent is on average $\rho=2.36$ with little variation over the years), and 
-  \item over time the distribution is a traveling wave, which means that its shape stays constant while it shifts sideways by a value $\nu$ per year.\footnote{Because of the logarithmic x-axis the visible linear additive shift corresponds to a multiplicative one. In the following we will look at dynamics of log-productivity and use a normal linear x-axis and a logarithmic y-axis, which is identical.} The shift is $\nu = 0.0271$ based an a linear regression of the mean of log-productivty on time .
+  \item over time the distribution is a traveling wave, which means that its shape stays constant while it shifts sideways by a value $\nu$ per year.\footnote{Because of the logarithmic x-axis the visible linear additive shift corresponds to a multiplicative one. In the following we will look at dynamics of log-productivity and use a normal linear x-axis and a logarithmic y-axis, which is identical.} The shift is $\nu = 0.0271$ based an a linear regression of the mean of log-productivity on time .
 \end{compactenum}
 
 \begin{figure}[tbp]
@@ -866,7 +866,7 @@ deviation of the $\log$-TFP, with fitted regression lines.}
  For a relatively low $q$ the probability to make two or more steps towards a better firm is negligible. 
  
  The probability for innovation is independent of the firm's current productivity as well as of the productivities of others. 
- The probability to improve productivity through imitiation instead depends also on the probability to find a better firm, which depends on the position of the own productivity in the current distribution. 
+ The probability to improve productivity through imitation instead depends also on the probability to find a better firm, which depends on the position of the own productivity in the current distribution. 
  When many firms are better this probability is higher. 
  When no firm is better it is zero. 
  
@@ -881,7 +881,7 @@ deviation of the $\log$-TFP, with fitted regression lines.}
  For innovation the expected gain is always $p$. 
  For imitation instead it is at least $q$ times the fraction of firms which are better.\footnote{This neglects the possibility that an imitating firm jumps more than one rung at a time.}
  When $q>p$ there is thus for each distribution of productivity a threshold above which firms benefit more from innovation than from imitation while it is the other way round for firms below the threshold. 
- The dynamics of the distribution of productivity based on this endogeneous choice of the strategy can be described by a system of ordinary differential equations which solutions can be analysed and numerically computed \parencite{Koenig.Lorenz.ea2016Innovationvsimitation}. 
+ The dynamics of the distribution of productivity based on this endogenous choice of the strategy can be described by a system of ordinary differential equations which solutions can be analysed and numerically computed \parencite{Koenig.Lorenz.ea2016Innovationvsimitation}. 
 
 \begin{figure}[tbp]
  \centering%
@@ -936,7 +936,7 @@ the trajectory of the model with parameters $p=0.0049$ and $q=0.106$ which were 
 
  \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth} study how the sum of the the human capital of individuals grows or declines in a society of economic actors which have to redistribute capital. 
  At first sight, human capital seems to be not redistributable, but using the concept of ``risky human capital''\parencite{Grochulski.Piskorski2010Riskyhumancapital} presents human capital as the result of risky investments and stochastic depreciation. 
- As investment and returns are through labour and ultimately monetary capital it can be redistributed in this form. 
+ As investment and returns are through labor and ultimately monetary capital it can be redistributed in this form. 
  The model also generalizes to other sorts of capital and wealth. 
  
  We model the individual random growth or decline of human capital as proportional to the individual endowment of income. 
@@ -951,7 +951,7 @@ the trajectory of the model with parameters $p=0.0049$ and $q=0.106$ which were 
  \begin{equation}
   y(t+1) = \underbrace{(1-a)\eta(t) y(t)}_\text{\parbox{25mm}{\centering income after stochastic \\[-1.5mm] growth and tax}} + \underbrace{(1-b)a \frac{1}{N}\sum_{i=1}^N \eta_i(t) y_i(t)}_\text{\parbox{33mm}{\centering lump sum from tax revenue \\[-1.5mm] with efficiency loss}} \label{eq:tax}
  \end{equation}
-where $a$ is the \emph{tax rate}, $b$ the \emph{inefficieny factor}\footnote{The inefficiency factor is called ``admin rate'' by \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}.}, and $\eta(t)$ a vector of realizations from independent and identically distributed random variables which are the stochastic growth rates for all individuals. The values $\eta_1(t),\dots,\eta_2(t)$ are the random growth rates. They are positive numbers standing for decline when below one and for growth when above one. Note, that the product $\eta(t) y(t)$
+where $a$ is the \emph{tax rate}, $b$ the \emph{inefficiency factor}\footnote{The inefficiency factor is called ``admin rate'' by \textcite{Lorenz.Paetzel.ea2013Redistributionspursgrowth}.}, and $\eta(t)$ a vector of realizations from independent and identically distributed random variables which are the stochastic growth rates for all individuals. The values $\eta_1(t),\dots,\eta_2(t)$ are the random growth rates. They are positive numbers standing for decline when below one and for growth when above one. Note, that the product $\eta(t) y(t)$
 stands for component-wise multiplication of two vectors here.  
  
 \begin{figure}
@@ -962,7 +962,7 @@ stands for component-wise multiplication of two vectors here.
 \label{fig:redis}
 \end{figure} 
 
- For \emph{maximally progressive taxation} we compute in each step a maximal income above which everthing is taxed such that the tax revenue equals a fraction of $a$ from the total income $Y(t) = \sum_{i=1}^Ny_i(t)$. 
+ For \emph{maximally progressive taxation} we compute in each step a maximal income above which everything is taxed such that the tax revenue equals a fraction of $a$ from the total income $Y(t) = \sum_{i=1}^Ny_i(t)$. 
  For \emph{maximally regressive taxation} we compute in each step a fee which has to be paid at most by everyone such that the tax revenue equals a fraction of $a$ from the total income $Y(t)$. Figure \ref{fig:redis} sketches examplarily how the three tax regime operate on the incomes of a small society of six individuals. 
  
  Figure \ref{fig:growthex} shows trajectories of $Y(t)$ based on (\ref{eq:tax}) and the two other tax regimes for 500 time steps with 10 individuals and the same realizations of $\eta(t)$. 
@@ -975,7 +975,7 @@ stands for component-wise multiplication of two vectors here.
  The reason for the decline under low tax rates is best understood when looking at the case with no taxation.  
  No taxation would let an individual's income grow by $y_i(t+1) = \eta_i(t)y_i(t)$. 
  This kind of simple multiplicative stochastic processes have a seemingly contradictory property. 
- Even when the expected income in every next time step is larger then the current income in the long run every trajecory dies out after enough iterations. 
+ Even when the expected income in every next time step is larger then the current income in the long run every trajectory dies out after enough iterations. 
  Theoretically, the expected value of $Y(t)$ grows with the expected value of $\eta$ which coincides with the arithmetic mean. 
  It is the nature of multiplicative stochastic processes, that the distribution converges to be lognormally distributed with increasing variance which makes the distribution extremely skew rather quickly. 
  This has the consequence that the size of the mean depends on the existence of very few extremely rich trajectories and several others which are close to zero. 
@@ -1050,7 +1050,7 @@ when the minimal income is within its natural bounds $\min_j x_j \leq m \leq \ba
 
  A laboratory experiment was designed to test the effect of framing the same decision differently. 
  Subjects in the experiment interacted through computer terminals. 
- They where randomly assigned to groups of five in which each subjects got randomly assigned to a certain initial endowment from a pre-specified distribution. In each session subjects had to participate in six random groups with the distributions shown in Figure \ref{fig:dists}. 
+ They where randomly assigned to groups of five in which each subjects got randomly assigned to a certain initial endowment from a specified distribution. In each session subjects had to participate in six random groups with the distributions shown in Figure \ref{fig:dists}. 
  
 \begin{figure}[htb]
  \includegraphics[width=\textwidth]{figs/fig1_dists}
@@ -1097,7 +1097,7 @@ when the minimal income is within its natural bounds $\min_j x_j \leq m \leq \ba
  Figures \ref{fig:hist_ideal} and \ref{fig:hist_decision} show the histograms of individual ideally preferred levels of redistribution before deliberation and the histograms of the collective decisions. 
  Decisions about a minimal income $m$ were displayed as the corresponding tax rate $\tau$ for which subjects decided implicitly. Both figures also include a histogram of the rational egoistic preferences. 
 
-Ideally prefered tax rates as well as group decisions are substantially and significantly higher in the MIN frame than in the tax frame. 
+Ideally preferred tax rates as well as group decisions are substantially and significantly higher in the MIN frame than in the tax frame. 
 Framing is a vehicle to manipulate the mental representations of reality (e.g. general redistribution vs. basic security). Framing thereby triggers the prevalence of different normative views on how to behave in certain situations (e.g. distributional justice vs. need based justice). 
 
 The two mechanisms MIN and TAX are experimental vehicles that do not have one-to-one equivalents in real-world politics. There are no systems in which the minimal income is fully determined by a single redistributive tax rate, are there systems where the revenue of a certain tax is directly transferred back to tax payers as  equal lump-sums. Nevertheless, there is no doubt that both parameters, the income of the poorest and the level of taxation, are constantly at the top of the political agenda and heavily discussed outcomes of policy decisions. In real world politics the causal link between the income of the poorest and how it is achieved through spending taxpayers' money is certainly less comprehensible to voters than in our laboratory democracy. In this respect it is even more compelling to see that even if a simple direct relation between taxation and benefits exists, framing provides an effective tool to alter individual and collective decisions on redistributive taxation. 
@@ -1110,29 +1110,29 @@ Changing the frame in which the issue of redistribution is deliberated provides 
 
  Two mainstream beliefs are that easy options for the imitation of technology as well as excessive redistribution both hinder societal growth. 
  The argument in both cases is that disincentives for the individual are created.  
- Immitation stops firms from doing innovation. 
+ Imitation stops firms from doing innovation. 
  Redistribution hinders the wealthy ones to achieve their maximal growth potential, which is obviously larger in expectation when growth is multiplicative. 
- The argument is that these individual effects add up and consequentyl hinder also societal growth. 
+ The argument is that these individual effects add up and consequently hinder also societal growth. 
  From a systemic perspective instead it becomes clear how imitation and redistribution also spur the growth of the system. 
 
  In the model of imitation and innovation firms decide strategically if they opt for the imitation or the innovation strategy. 
  It turns out that the growth rate of productivity is higher compared to an economy of firms which all use the innovation strategy. 
  Imitation fulfills a pushing function. 
  Firms lacking behind in technology can catch up faster, and thus the base for firms taking steps forward at the technology frontier through innovation is larger. 
- Nevertheless, innovation remains the only process which can bring the technology frontier forward, but the ``pushing'' function of imitiation is overlooked by focussing on the individualistic perspective only. 
+ Nevertheless, innovation remains the only process which can bring the technology frontier forward, but the ``pushing'' function of imitation is overlooked by focusing on the individualistic perspective only. 
  
  In a society with multiplicative stochastic growth, wealthy individuals can indeed grow more in absolute terms than poor individuals. 
  Let us consider an example of two individuals starting with a wealth of one each. 
  Let us further consider that there are ten rounds and in each round one of the individuals doubles its wealth while the other one halves it. 
  If all doubling events happen to the same individual the total wealth after round ten is very large $2^10 + 0.5^10 = 1024.001$. 
- This is the largest possible outcome, but much more likely is that both individual have five successess and five failures. 
+ This is the largest possible outcome, but much more likely is that both individual have five successes and five failures. 
  In this case the total wealth after round ten is the same as in round zero $2^5\cdot 0.5^5 + 2^5\cdot 0.5^5 = 2$. 
  When individuals would fully redistribute after every round they would end up with a total wealth of $(\frac{2 + 0.5}{2})^10 + (\frac{2 + 0.5}{2})^10 = 18.63$ for any distribution of successes among the individuals.
  So, in a very rare case the total wealth is much higher without redistribution, but for the typical case redistribution performs much better. 
  
  The probability of all individuals having all successes is $\Sexpr{round(dbinom(10, 10, 0.5),digits=4)}$, while the probability that both have five successes is $\Sexpr{round(dbinom(5, 10, 0.5),digits=3)}$. 
  This imbalance increases quickly with more time steps such that the situations where no redistribution is beneficial are practically not happening. 
- It seems that humans have problems to recognize and appreciate this effect, probably because humans typically assign the reason for their success and thesuccess of others to ability while only failures are assigned to bad luck. 
+ It seems that humans have problems to recognize and appreciate this effect, probably because humans typically assign the reason for their success and the success of others to ability while only failures are assigned to bad luck. 
  Most popular arguments in favor of redistribution are the prevention of unrest, a democratic process where poor people have a majority, or moral arguments of charity or justice as a reason. 
  Perhaps these moral emotions or societal institutions evolved in human societies because they spur the growth of these societies through the mechanism of portfolio rebalancing presented here. 
  
@@ -1158,7 +1158,7 @@ Reply Letter: \fullcite{Rauhut.Lorenz.ea2011ReplytoFarrell}
 
 \hfill\parbox{100mm}{
 \footnotesize
-In these democratic days, any investigation into the trutstworthiness and peculiarities of popular judgments is of interest. % [...] This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected. 
+In these democratic days, any investigation into the trustworthiness and peculiarities of popular judgments is of interest. % [...] This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected. 
 \hfill Francis Galton (\citeyear{Galton1907Voxpopuli})
 }
 
@@ -1168,15 +1168,15 @@ In these democratic days, any investigation into the trutstworthiness and peculi
  Nowadays, the term ``crowd wisdom'' is used as an explanation for the functioning of a variety of phenomena like crowd sourcing and crowd funding or even democracy. 
  A typical metaphor is that humans can copy the concept of swarm intelligence from social animals. 
  Social insects are for example able to solve complex problems such as the best spot for a new nest without any central organization. 
- In this chapter we look at one particularily simple instance of crowd wisdom: \emph{guesstimation tasks}. A guesstimate is an estimate made without complete information but by guesswork or conjecture. 
- Guesstimation is the main method for many predicition tasks.
+ In this chapter we look at one particularly simple instance of crowd wisdom: \emph{guesstimation tasks}. A guesstimate is an estimate made without complete information but by guesswork or conjecture. 
+ Guesstimation is the main method for many prediction tasks.
  Thus it is very relevant for a lot of individual or societal decision making. 
  In particular, we will only deal with guesstimation tasks for numerical facts. 
- In that sense, the disussion and change of guesstimates about numerical facts, is a form of opinion dynamics close to the models presented in Chapter \ref{ch:od}.
+ In that sense, the discussion and change of guesstimates about numerical facts, is a form of opinion dynamics close to the models presented in Chapter \ref{ch:od}.
 
  The seminal example is due to a paper of one founding father of statistics -- Francis Galton. 
  At the weight-judging competition at the West of England Fat Stock and Poultry Exhibition he collected 787 cards on which competitors estimated the weight of the meat of an ox after it has been slaughtered and dressed. 
- In his paper in \emph{Nature}, \textcite{Galton1907Voxpopuli} reported that the 5-percentile and the 95-percentile spannded values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. 
+ In his paper in \emph{Nature}, \textcite{Galton1907Voxpopuli} reported that the 5-percentile and the 95-percentile spanned values from 1,074 to 1,293 pounds, while the median (middlemost) value was 1,207 which was surprisingly close to the correct value of 1,198 pounds. 
  \textcite{Galton1907Voxpopuli} concluded: 
 \emph{``This result is, I think more credible to the trustworthiness of a democratic judgment than might have been expected.''}
 
@@ -1193,7 +1193,7 @@ In these democratic days, any investigation into the trutstworthiness and peculi
 
 \section{Three guesstimation games} \label{sec:guesstimation}
 
- Just recently, Kenneth W. Wallis dug out the full sample of estimates from Galton's notes out of the archive and made it publically available\footnote{\url{https://www2.warwick.ac.uk/fac/soc/economics/staff/academic/wallis/publications/galton_data.xlsx}}. He also found some small errors in Galton's computation \parencite{Wallis2014RevisitingFrancisGaltons} with a 5-percentile of \Sexpr{format(quantile(G,0.05),digits=4,big.mark=",")} and a median of \Sexpr{format(median(G),big.mark=",")}. Figure \ref{fig:galton} shows the histogram of estimates together with the truth, the median and the mean of estimates. 
+ Just recently, Kenneth W. Wallis dug out the full sample of estimates from Galton's notes out of the archive and made it publicly available\footnote{\url{https://www2.warwick.ac.uk/fac/soc/economics/staff/academic/wallis/publications/galton_data.xlsx}}. He also found some small errors in Galton's computation \parencite{Wallis2014RevisitingFrancisGaltons} with a 5-percentile of \Sexpr{format(quantile(G,0.05),digits=4,big.mark=",")} and a median of \Sexpr{format(median(G),big.mark=",")}. Figure \ref{fig:galton} shows the histogram of estimates together with the truth, the median and the mean of estimates. 
  
  Interestingly, the mean of estimates \Sexpr{format(mean(G), digits=5,big.mark=",")} is even closer to the truth than the median  which Galton reported. \textcite{Hooker1907MeanorMedian} already made this point in a letter to \emph{Nature}. He estimated the mean as 1,196 based on the percentiles reported by \textcite{Galton1907Voxpopuli}. In a reply \textcite{Galton1907Ballot-Box} reported it to be 1,197. Hooker as well as Galton referred to another paper, where \textcite{Galton1907Onevoteone} argued that for ``democratic'' aggregation always the median shall be used and not the mean, because it would give \emph{``voting power to `cranks' in proportion to their crankiness.''} Ultimately, it turns out that the arguments for using the median as democratic means against cranks has its value in its own right, although it is not of key importance in guesstimation tasks. The malicious power of cranks under aggregation of the mean would be to over- or understate estimates to steer the mean towards a certain direction. 
  Obviously, this does not play such an important role in guesstimation games, first because there is no incentive to do, and second because the number of participants is large. 
@@ -1290,12 +1290,12 @@ grid.draw(cbind(ggplotGrob(gG),ggplotGrob(gD), size="first"))
 
  Inference of the best measure of central tendency for the aggregation of the wisdom of the crowd from measurements of other aspects of the distribution is an interesting task which needs further theoretical and empirical exploration. 
  One way is to use the augmented quincunx model of sequential and probabilistic cue categorization presented by \textcite{Nash2014CuriousAnomalySkewed}. 
- In particular, he argues that left-skewness in Galton's sample is due to the fact that most judgers had a lot of professional knowledge and the fact that the ox was comparably heavy. 
- According to the theory, extremeness of the true value in comparison to a typical value known by judgers triggers a skew distribution, which is skew on the side of the typical and steep on the side of the extreme.  
+ In particular, he argues that left-skewness in Galton's sample is due to the fact that most people had a lot of professional knowledge and the fact that the ox was comparably heavy. 
+ According to the theory, extremeness of the true value in comparison to a typical value known by people triggers a skew distribution, which is skew on the side of the typical and steep on the side of the extreme.  
  
- The set of options for measures of aggregtion is well described by \emph{abstract means} as outlined by \textcite{Hegselmann.Krause2005OpinionDynamicsDriven}\footnote{\textcite{Hegselmann.Krause2005OpinionDynamicsDriven} extend the concept to partial abstract means which they use to generalize bounded confidence models of opinion dynamics as treated in Chapter \ref{ch:od}. }. An abstract mean is a function which maps a set of real numbers to a certain number between the maximum and the minimum of that set.
+ The set of options for measures of aggregation is well described by \emph{abstract means} as outlined by \textcite{Hegselmann.Krause2005OpinionDynamicsDriven}\footnote{\textcite{Hegselmann.Krause2005OpinionDynamicsDriven} extend the concept to partial abstract means which they use to generalize bounded confidence models of opinion dynamics as treated in Chapter \ref{ch:od}. }. An abstract mean is a function which maps a set of real numbers to a certain number between the maximum and the minimum of that set.
  Within this framework it is always possible to find an abstract mean which aggregates the truth correctly as long as the truth is sandwiched between the minimal and the maximal estimate. 
- This excercise is of little practical relevance. 
+ This exercise is of little practical relevance. 
  The real challenge is to infer a good generalized mean from the distribution of estimates without knowing the truth. 
 
 \begin{figure}
@@ -1319,7 +1319,7 @@ ggplot(filter(tbl_df(sO),value<=5000), aes(value)) + geom_histogram(binwidth = 5
 \caption{Histogram of estimates for the number of estimation tickets at the Lange Nacht der Wissenschaft at Carl von Ossietzky Universität Oldenburg 2010 ($N=\Sexpr{length(sO)}$, x-axis clipped at 5,000). }\label{fig:OL}
 \end{figure}
 
- An example for a sample of estimates which shows little crowd wisdom is another dataset collected by me on another occasion. At the ``Lange Nacht der Wissenschaft''\footnote{Literally ``Long Night of Science''} at Carl von Ossietzky Universität Oldenburg on September 24, 2010, I collected, with the help of others, estimates in a guesstimation game\footnote{See a report in German here \url{http://janlo.de/wp/2010/09/07/schatzquiz-oldenburg/}. Link to the data: \url{https://docs.google.com/spreadsheets/d/1Bqe4yeb26lKIoaCqYfq4ZaK5jefSHGSRCpHlyWOiMQ4/edit?usp=sharing}} similar to the one of the Viertel-Fest. 
+ An example for a sample of estimates which shows little crowd wisdom is another dataset collected by me on another occasion. At the ``Lange Nacht der Wissenschaft''\footnote{Literally ``Long Night of Science''} at Carl von Ossietzky Universität Oldenburg on September 24, 2010, I collected, with the help of others, estimates in a guesstimation game\footnote{See a report in German here \url{http://janlo.de/wp/2010/09/07/schatzquiz-oldenburg/}. Link to the data: \url{https://docs.google.com/spreadsheets/d/1Bqe4yeb26lKIoaCqYfq4ZaK5jefSHGSRCpHlyWOiMQ4/edit?usp=sharing}} similar to the one of the Viertelfest. 
  Visitors were asked how many estimation tickets will be handed in between 17:00 and 20:00. 
 
  I collected \Sexpr{truth_O} tickets, that was the correct answer\footnote{For some reason, I reported 271 as the correct answer directly after the game. The reason is probably that I forgot to ultimately update the computation after entering the data from the final ticket. There was time pressure, because the winner had to be announced shortly after in the context of a science slam talk.}. From the tickets, I extracted \Sexpr{length(sO)} valid estimates which 5- to 95 percentile spanned values from \Sexpr{format(round(quantile(sO,0.05,na.rm=T)), big.mark=",")} to \Sexpr{format(round(quantile(sO,0.95,na.rm=T)), big.mark=",")}, and thus also almost three orders of magnitude. 
@@ -1327,7 +1327,7 @@ ggplot(filter(tbl_df(sO),value<=5000), aes(value)) + geom_histogram(binwidth = 5
  Taking the median's closeness to the truth as a good proxy for crowd wisdom, we do not find much in this dataset. 
  The skewness and dispersion of the estimates over orders of magnitude is similar to the estimates from the Viertelfest. Thus, there is little indication coming from the data to use another aggregation function than the geometric mean, and it is reasonable to attribute this deviation to a systematic error caused by a cognitive bias to overestimate. 
 
- Nevertheless, there is a speculative interpretation of the estimation task which could give rise to another measure of aggregation which performs better. On the tickets, the time span 17:00-20:00 was clearly indicated. Based on this, we may interprete that people estimated how much time the collection takes per ticket. If we assume that people saw my three helpers and me, they might have thought about four times 180 minutes summing up to 720 collector minutes. The collection time per ticket was such 720/272 = 2.65 minutes. Estimates of 1000, or 5000 by other people would thus transform 720/1000=0.72 and 720/5000=0.14 minutes. With the assumption of this mindset, the arithmetic mean of these ratios might elicit some crowd wisdom, and the reciprocal value of this times 720 minutes would by the aggregate estimate of the crowd. This description coincides with taking the harmonic mean. The harmonic mean is the reciprocal value of the arithmetic mean of the reciprocal values of the sample data. The harmonic, the geometric and the arithmetic mean are special cases of $p$-means (also called power means or generalized means).\footnote{For positive numbers $x_1,\dots,x_n$ and a real number $p$, the $p$-mean is $(\frac{1}{n}\sum x_i^p)^\frac{1}{p}$. The arithmetic mean is represented by $p=1$, the harmonic mean by $p=-1$. The geometric mean appears as the limit for $p\to 0$. The minimum and the maximum are the limits for $p\to -\infty$ and $p\to\infty$ respectively. $p$-means of the same sample are monotonously decreasing with $p$.}. The harmonic mean of the estimates of the number of tickets is \Sexpr{format(powermean(sO,-1),digits=4,big.mark=",")} and comes close to the true value of \Sexpr{truth_O}. As a side note, this interpretation would in principle also be valid for the number of lots at the Viertelfest, but the timespan for collection and number of collectors were not prominently communicated to participants. 
+ Nevertheless, there is a speculative interpretation of the estimation task which could give rise to another measure of aggregation which performs better. On the tickets, the time span 17:00-20:00 was clearly indicated. Based on this, we may interpret that people estimated how much time the collection takes per ticket. If we assume that people saw my three helpers and me, they might have thought about four times 180 minutes summing up to 720 collector minutes. The collection time per ticket was such 720/272 = 2.65 minutes. Estimates of 1000, or 5000 by other people would thus transform 720/1000=0.72 and 720/5000=0.14 minutes. With the assumption of this mindset, the arithmetic mean of these ratios might elicit some crowd wisdom, and the reciprocal value of this times 720 minutes would by the aggregate estimate of the crowd. This description coincides with taking the harmonic mean. The harmonic mean is the reciprocal value of the arithmetic mean of the reciprocal values of the sample data. The harmonic, the geometric and the arithmetic mean are special cases of $p$-means (also called power means or generalized means).\footnote{For positive numbers $x_1,\dots,x_n$ and a real number $p$, the $p$-mean is $(\frac{1}{n}\sum x_i^p)^\frac{1}{p}$. The arithmetic mean is represented by $p=1$, the harmonic mean by $p=-1$. The geometric mean appears as the limit for $p\to 0$. The minimum and the maximum are the limits for $p\to -\infty$ and $p\to\infty$ respectively. $p$-means of the same sample are monotonously decreasing with $p$.}. The harmonic mean of the estimates of the number of tickets is \Sexpr{format(powermean(sO,-1),digits=4,big.mark=",")} and comes close to the true value of \Sexpr{truth_O}. As a side note, this interpretation would in principle also be valid for the number of lots at the Viertelfest, but the timespan for collection and number of collectors were not prominently communicated to participants. 
  As there is little indication from the data to use the harmonic mean and the median is also far away from the truth, it is more reasonable to assume that a systematic error is the reason. 
  
  Figure \ref{fig:OL} shows the histogram of estimates with the x-axis clipped such that all estimates larger than 5,000 are not visible. 
@@ -1366,7 +1366,7 @@ Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,dig
  
  We defined crowd wisdom as wisdom going beyond individual wisdom. Not all samples of estimates for a particular guesstimation task can elicit crowd wisdom. Let us distinguish two extreme cases which can serve to assess when crowds are wise and when not. 
 \begin{compactenum}[(i)]
- \item When all individuals estimate correctly, then the crowd is not wiser than the individual. Thus, there is no crowd wisdom which goes beyond individual wisdom. More general statement: If the sample's central tendancy is close to the truth but estimates show little dispersion, then there is not much crowd wisdom. 
+ \item When all individuals estimate correctly, then the crowd is not wiser than the individual. Thus, there is no crowd wisdom which goes beyond individual wisdom. More general statement: If the sample's central tendency is close to the truth but estimates show little dispersion, then there is not much crowd wisdom. 
  \item When the truth is not sandwiched between the minimal and maximal estimate, then there is no wisdom in the crowd but a systematic error in the sample. More general statement: When the reasonable measure of central tendency of the sample is far away from the truth, then there is no crowd wisdom. 
 \end{compactenum}
 
@@ -1381,7 +1381,7 @@ Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,dig
  In terms of measurement error, the statistical bias is caused by \emph{systematic error} while variance (analogously low precision) is caused by \emph{random error}. 
  The term statistical bias is purely statistical and should not be confused with systemic or cognitive bias which relate bias to institutional or mental processes which cause the statistical bias. 
  
- A fundamental mathematical relation of the mean squared error, the variance and the statistical bias is the \emph{bias-variance decompostion of squared error} which states that the mean of squared errors is equal to the squared bias plus the variance of estimates. More suggestive of the wisdom of crowds, \textcite{Page2007DifferenceHowPower} calls it the \emph{diversity prediction theorem}, which states
+ A fundamental mathematical relation of the mean squared error, the variance and the statistical bias is the \emph{bias-variance decomposition of squared error} which states that the mean of squared errors is equal to the squared bias plus the variance of estimates. More suggestive of the wisdom of crowds, \textcite{Page2007DifferenceHowPower} calls it the \emph{diversity prediction theorem}, which states
  \begin{quote} 
  Collective Error = Average Individual Error -- Diversity,
  \end{quote}
@@ -1396,7 +1396,7 @@ Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,dig
 \footnotesize
 \def\tabularxcolumn#1{m{#1}}
 \begin{tabularx}{\textwidth}{@{}m{24mm}  >{\centering\arraybackslash}m{30mm} >{\centering\arraybackslash}X >{\centering\arraybackslash}m{27mm} @{}} \toprule
-\textbf{Predicting Crowd} \newline \parencite{Page2007DifferenceHowPower}        & as $\{x_1,\dots,x_N\}$ \newline with truth $y$ & as a \newline Statistical Estimator  & as an ISO 5752 \newline Measurment Method  \\ \midrule
+\textbf{Predicting Crowd} \newline \parencite{Page2007DifferenceHowPower}        & as $\{x_1,\dots,x_N\}$ \newline with truth $y$ & as a \newline Statistical Estimator  & as an ISO 5752 \newline Measurement Method  \\ \midrule
 \textbf{Collective Error =}  &    $(y - \frac{1}{N}\sum\limits_{i=1}^N x_i)^2$ & (squared) \newline Statistical Bias$\mbox{}^\ast$ \newline (by systematic error) &  (an inverse of)  \newline Trueness \\ \midrule
 \textbf{Average \newline Individual Error =}    & $\frac{1}{N}\sum\limits_{i=1}^N(y - x_i)^2$ &  Mean Squared Error & \\ \midrule 
 \textbf{Diversity =}  & $\frac{1}{N}\sum\limits_{i=1}^N(x_i - \frac{1}{N}\sum\limits_{i=1}^Nx_i)^2$ & Variance \newline (by random error)  & (an inverse of) \newline Precision \\ 
@@ -1411,13 +1411,13 @@ Deviation median from truth & +\Sexpr{format(100*(median(G)-truth_G)/truth_G,dig
 
  \section{Repeated guesstimation}
  
- What happens to crowd wisdom when people participate more than once in the same guesstimation game and moreover exchange information about the estimates of others? This general question was analyzed in a controlled group estimation experiment where subjects sat in cubicles in front of computers. The experiment is documented in the supplemtary material of \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
+ What happens to crowd wisdom when people participate more than once in the same guesstimation game and moreover exchange information about the estimates of others? This general question was analyzed in a controlled group estimation experiment where subjects sat in cubicles in front of computers. The experiment is documented in the supplementary material of \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
  
  Subjects had to estimate facts. For each estimate, subjects could earn money based on the closeness of their individual estimate to the true value. Each subject had to enter five consecutive estimates for each question. Three different treatments for the exchange of estimates among subjects were used. 
  \begin{compactenum}[(i)]
 \item \textbf{No information:} Subjects got no information about the estimates of other subjects. Thus, they estimated five times in a row without further information. This treatment served on the one hand as a control treatment for the other two treatments, and on the other hand it was used to assess what \textcite{Vul.Pashler2008MeasuringCrowdWithin} call the ``crowd within''. 
 \item \textbf{Aggregated information:} After each round of individual estimates subjects were informed about the arithmetic mean of all estimates. Thus, subjects were confronted with a crowd estimate but not with the crowd's diversity. 
-\item \textbf{Full information:} Subjects got information about the estimates of all other subjects, including a graphical visualisation. Here, subjects could observe the diversity of estimates among the crowd as well as changes of estimates of individuals over time. 
+\item \textbf{Full information:} Subjects got information about the estimates of all other subjects, including a graphical visualization. Here, subjects could observe the diversity of estimates among the crowd as well as changes of estimates of individuals over time. 
 \end{compactenum}
 Further on, in each treatment and for each question subjects were asked about their subjective certainty about their first and about their fifth and last estimate. 
 
@@ -1429,11 +1429,11 @@ Further on, in each treatment and for each question subjects were asked about th
  They also computed that one would on average need to ask 1.11 (1.32 in the delayed treatment) different people to achieve the same decrease of mean squared error than asking the same person twice. 
 
  \textcite{Rauhut.Lorenz2010wisdomofcrowds} used the ``no information'' condition of the experiment to elicit how the result of \textcite{Vul.Pashler2008MeasuringCrowdWithin} extends to asking oneself more than two times. 
- The analysis was embedded in the framework of the diversity predicition theorem and a method to compute the \emph{average number of different individuals one needs to ask to achieve the same improvement than asking oneself $T$ times} was developed. 
+ The analysis was embedded in the framework of the diversity prediction theorem and a method to compute the \emph{average number of different individuals one needs to ask to achieve the same improvement than asking oneself $T$ times} was developed. 
  The method coincides with the concept of \textcite{Vul.Pashler2008MeasuringCrowdWithin} for two consecutive estimates, but deviates for more estimates. 
  The method can also be used to quantify the average number of different individuals one needs to ask to achieve the same improvement than asking oneself ad infinitum.
  
- Asking oneself ad infinitum did on average not outperform asking only one other person. Over all our six questions the effect and also the magnitude 1.1 for asking oneself twice could be confirmed. Asking oneself ad infinitum (without a long delay) was on avarage as good as asking 1.28 different people. 
+ Asking oneself ad infinitum did on average not outperform asking only one other person. Over all our six questions the effect and also the magnitude 1.1 for asking oneself twice could be confirmed. Asking oneself ad infinitum (without a long delay) was on average as good as asking 1.28 different people. 
  Further on, there was variation regarding the guesstimation task. 
  For some of our questions there was no improvement through asking oneself twice or often. For one question subjects we worsened. 
  Thus, the hypothesis that people sample from a ``mental'' distribution when they estimate several times is questionable in these cases. 
@@ -1464,9 +1464,9 @@ Further on, in each treatment and for each question subjects were asked about th
  One way to measure this is to take the absolute value of the standard score (z-score) of the truth. 
  This is the distance of the mean to the truth divided by the standard deviation
  This measure depends on aggregation of a collective estimate by the arithmetic mean. 
- In Galton's sample the standard score of the truth is \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)}, meaning that the distance of the arithmetic mean to the truth is just \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)} standard deviations. Unfortunatelly, generalizations of this method to other aggregation functions like the geometric or the harmonic means rely on transformations of the data and an appropriate definition of the z-score, including a the definition of something like a geometric or harmonic standard deviation, which altogether seems not straightforward and consequently difficult to compare\footnote{The most straightforward way to quantify adjuted standard scores when the geometric (respectively the harmonic) mean is used is to compute standard scores of the logarithm (respectively the reciprocal) of truth with respect to the logarithms (respectively the reciprocals) of the sample values. In the Viertelfest sample the logarithm of the truth is \Sexpr{format(standardScoreTruth(sD,truth),digits=3)} standard deviations away from the logarithms of estimates. In the Oldenburg sample the reciprocal of the truth is \Sexpr{format(standardScoreTruth(sO,truth_O),digits=3)} standard deviations away form the reciprocals of estimates. }. 
+ In Galton's sample the standard score of the truth is \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)}, meaning that the distance of the arithmetic mean to the truth is just \Sexpr{format(standardScoreTruth(G,truth_G),digits=3)} standard deviations. Unfortunately, generalizations of this method to other aggregation functions like the geometric or the harmonic means rely on transformations of the data and an appropriate definition of the z-score, including a the definition of something like a geometric or harmonic standard deviation, which altogether seems not straightforward and consequently difficult to compare\footnote{The most straightforward way to quantify adjusted standard scores when the geometric (respectively the harmonic) mean is used is to compute standard scores of the logarithm (respectively the reciprocal) of truth with respect to the logarithms (respectively the reciprocals) of the sample values. In the Viertelfest sample the logarithm of the truth is \Sexpr{format(standardScoreTruth(sD,truth),digits=3)} standard deviations away from the logarithms of estimates. In the Oldenburg sample the reciprocal of the truth is \Sexpr{format(standardScoreTruth(sO,truth_O),digits=3)} standard deviations away form the reciprocals of estimates. }. 
 
-  The arithmetic mean, the geometric mean, the harmonic mean, as well as standard score, variance, collective error and mean of squared error, and thus the whole reasoning of the diversity predicition theorem relies on statistics based on moments. 
+  The arithmetic mean, the geometric mean, the harmonic mean, as well as standard score, variance, collective error and mean of squared error, and thus the whole reasoning of the diversity prediction theorem relies on statistics based on moments. 
   Order statistics as the median are the typical alternative to them. 
   They are often used because they are more robust.
   In the limited amount of the three samples presented here the median has turned out as most robust aggregation function because it aggregates good collective estimates for two samples (Galton and Viertelfest). It has also show to deliver good collective estimates in \textcite{Lorenz.Rauhut.ea2011HowSocialInfluence}.
@@ -1489,7 +1489,7 @@ Further on, in each treatment and for each question subjects were asked about th
  
  In the samples of Galton and the Viertelfest the median has turned out to be an acceptable measure of aggregation, while it is far off in the Oldenburg sample (cf. Table \ref{tab:WoC}). The wisdom-of-crowd indicators are \Sexpr{format(WoCIndicator(G,truth_G),digits=3)} for Galton's sample, \Sexpr{format(WoCIndicator(sD,truth),digits=3)} for the Viertelfest, and \Sexpr{format(WoCIndicator(sO,truth_O),digits=3)} for the sample from Oldenburg. Hence, the Viertelfest sample shows the highest degree of crowd wisdom, because \Sexpr{format(100*(1-WoCIndicator(sD,truth)),digits=2)}\% of the inner estimates are enough to bracket the truth. In Galton's sample \Sexpr{format(100*(1-WoCIndicator(G,truth_G)),digits=3)}\% are needed. 
 
- The wisdom-of-crowd indicator helped to show that the range reduction effect through even mild social influence is strong enough to bring the truth to more periperal regions of samples  of estimates \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
+ The wisdom-of-crowd indicator helped to show that the range reduction effect through even mild social influence is strong enough to bring the truth to more peripheral regions of samples  of estimates \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
  Further on, its application for the larger samples of Galton and the Viertelfest shows that the wisdom-of-crowd indicator can quantify the degree of crowd wisdom quite well. 
  Intuitively, both samples show a high degree of crowd wisdom because they can be aggregated by the median to a surprisingly good collective estimate.
  The wisdom-of-crowd indicator captures this intuition because it computes similar values for both samples despite very different magnitudes of bias and dispersion and different shapes of the distribution. 
@@ -1530,7 +1530,7 @@ Further on, in each treatment and for each question subjects were asked about th
   \end{equation}
   
   In the following we consider $X$ to be normally distributed with mean $\mu$ and standard deviation $\sigma$ and the aggregation function for $k$ estimates to be the arithmetic mean. 
-  For the sake of statistical simplicity we also assume that we draw the estimates of people with replacement. This assumption might seem unrealistic when we think of a competetion of a single individual against $k$ others from the same population. 
+  For the sake of statistical simplicity we also assume that we draw the estimates of people with replacement. This assumption might seem unrealistic when we think of a competition of a single individual against $k$ others from the same population. 
   Statistically, sampling with or without replacement would only make a big difference for very small populations. 
   Let us further assume without loss of generality that $\sigma = 1$ and $\textrm{truth}=0$.
   Then, $b = \mu$ is the (unsquared) bias in the population and $f_X(x) = \phi(x-b)$, with $\phi(x) = \frac{e^{-x^2/2}}{\sqrt{2\pi}}$ being the probability density function of the standard normal distribution with mean zero and standard deviation one. 
@@ -1655,7 +1655,7 @@ grid.draw(cbind(ggplotGrob(q1),ggplotGrob(q2), size="first"))
  Consequently, the number of experts increases linearly for large $k$. 
  Interestingly, the probability to draw an expert does not decline monotonically. 
  There is an interior minimum at $k=\Sexpr{which(Probability==min(Probability))}$ for which the probability is lowest (\Sexpr{round(min(Probability),digits=3)}).
- Thus, for a bias of \Sexpr{b} it is in some sense optimal to ask \Sexpr{which(Probability==min(Probability))} individuals and take their avergae estimate.
+ Thus, for a bias of \Sexpr{b} it is in some sense optimal to ask \Sexpr{which(Probability==min(Probability))} individuals and take their average estimate.
  The explanation for this surprising intermediate optimum under some bias is the following. 
  For a lower crowd size the group is just not large enough to optimally outperform a randomly drawn individual. 
  Larger groups are better for the same reason as in the unbiased situation. 
@@ -1700,7 +1700,7 @@ r2 <- ggplot(D, aes(x=b,y=opt_k), color="black") + theme_bw() + geom_line() +
 grid.newpage()
 grid.draw(cbind(ggplotGrob(r1),ggplotGrob(r2), size="first"))
 @
-\caption{The impact of the bias $b$ on the probability to draw an expert (first panel) and the optimal crowd size for which this probability is lowest. The blue line in the first panel is the probability for large groups ($k=\infty$), the black line the probability for the optimal $k$ as plotted in the second panel. The deviation of the blue and the black lines represents the risk of having worse collective estimates by collecting too many estimates. This region ($0.5<b<1.5$) is focussed in the inset in the second panel. }\label{fig:WiserThanCrowdTheory4}
+\caption{The impact of the bias $b$ on the probability to draw an expert (first panel) and the optimal crowd size for which this probability is lowest. The blue line in the first panel is the probability for large groups ($k=\infty$), the black line the probability for the optimal $k$ as plotted in the second panel. The deviation of the blue and the black lines represents the risk of having worse collective estimates by collecting too many estimates. This region ($0.5<b<1.5$) is focused in the inset in the second panel. }\label{fig:WiserThanCrowdTheory4}
 \end{figure}
 
  In Figure \ref{fig:WiserThanCrowdTheory4} we further analyse the impact of the bias on the probability to draw an expert and the optimal crowd size. 
@@ -1713,13 +1713,13 @@ grid.draw(cbind(ggplotGrob(r1),ggplotGrob(r2), size="first"))
  \end{compactitem}
 
  The theory and results so far were presented and computed under the assumptions that estimates are normally distributed and that the arithmetic mean is used for the aggregation of collective estimates. 
- The results for other distributions of estimates and other appropriate measures of aggregation are probabily essentially similar regarding the general characteristics. 
- Firstly, the mean of several draws from the same distribution, even when this distribution is not normal, converges to be normally distributed due to the central limit theoerm. The decrease of standard deviation with $\sqrt{k}$ holds for all distributions with finite variance. 
+ The results for other distributions of estimates and other appropriate measures of aggregation are probably essentially similar regarding the general characteristics. 
+ Firstly, the mean of several draws from the same distribution, even when this distribution is not normal, converges to be normally distributed due to the central limit theorem. The decrease of standard deviation with $\sqrt{k}$ holds for all distributions with finite variance. 
  Further on, the convergence to the normal distribution with standard deviation $\sqrt{k}$ also holds for the median as the measure of aggregation \parencite{Bahadur1966NoteQuantilesin}. 
 
  Let us finally look at the three empirical samples Galton, Viertelfest, and Oldenburg. 
  As we already discussed, the median was a good aggregation function for both the Galton and the Viertelfest sample. 
- For a sample of $n$ numbers it is relatively straightforward, to compute a weight vector of the same size where each weight represents the probabilty that this value turns out to be the median of $k$ independent and identically distributed draws from the sample with replacement. The computation is documented in \textcite{Lorenz2017Sourcefilesand}.
+ For a sample of $n$ numbers it is relatively straightforward, to compute a weight vector of the same size where each weight represents the probability that this value turns out to be the median of $k$ independent and identically distributed draws from the sample with replacement. The computation is documented in \textcite{Lorenz2017Sourcefilesand}.
  Figure \ref{fig:WiserThanCrowdData} shows the histograms of the draws from the Galton and the Viertelfest
 samples together with histograms of the median of twenty (respectively) two hundred independent draws from these samples with replacement. 
  These examples show how it becomes almost certain to receive slightly wrong collective estimates for large crowds. 
@@ -1748,7 +1748,7 @@ library(grid)
 grid.newpage()
 grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2), size="first"))
 @
-\caption{Histograms for the Galton and the Viertelfest samples (1 draw) togehter with histrograms for the median of 20 and 200 independ and identically distributed draws from the same sample with replacement. The black dot is the true value.  } \label{fig:WiserThanCrowdData}
+\caption{Histograms for the Galton and the Viertelfest samples (1 draw) together with histograms for the median of 20 and 200 independent and identically distributed draws from the same sample with replacement. The black dot is the true value.  } \label{fig:WiserThanCrowdData}
 \end{figure}
  
  Finally, Table \ref{tab:WoC2} summarizes the results about the number of experts and the optimal group size for the three empirical samples (cf.~Table \ref{tab:WoC}). The results show that the optimal group size is largest for the Viertelfest sample. This presents this sample as the one with the highest degree of crowd wisdom with respect to median aggregation, which is in line with the wisdom-of-crowd indicator being lowest for this sample (cf.~Section \ref{sec:wocindicator}). 
@@ -1834,7 +1834,7 @@ grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
  Means of crowds lie on average significantly closer to the truth when diversity sampling is used instead of pure random sampling. 
  Probably, diversity sampling makes the first draws better centered around the center. 
  Consider for example that draws number one and two are larger than the mean, then diversity sampling makes it much more likely, that the third draw (which is the first one using diversity sampling restrictions) is below the mean. 
- Contrastingly, diversity sampling leads to larger collective error of the median of crowds which were sampled for diversity. As diversity sampling prevents new draws which are very central in the current sample an improvement of the median estimate does not occur as fast as with random sampling. 
+ In contrast, diversity sampling leads to larger collective error of the median of crowds which were sampled for diversity. As diversity sampling prevents new draws which are very central in the current sample an improvement of the median estimate does not occur as fast as with random sampling. 
  
  Nevertheless, it is surprising that improvements of random sampling are possible, because no knowledge about the distribution is used except for the already sampled values. 
 
@@ -1844,20 +1844,20 @@ grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
  The collective estimates we analyzed so far were not really collective decisions. 
  They were only collective decisions from our external perspective, because we aggregated them to one. 
  Neither did the people contribute to the aggregation, nor did they knew about our intention. 
- Contrastingly, a lot of our statistical theory on crowd wisdom relies on the assumption that estimates are independent and thus neither coordinated nor influenced by each other. 
+ In contrast, a lot of our statistical theory on crowd wisdom relies on the assumption that estimates are independent and thus neither coordinated nor influenced by each other. 
  We already looked at an experiment on the impact of social influence in the very mild form of information about the estimates of others \parencite{Lorenz.Rauhut.ea2011HowSocialInfluence}. 
  In this experiment the correctness of individual estimates was monetarily incentivized, but there was no need and no other incentive to agree or converge towards a collective decision besides the common knowledge that there was a universal truth valid for all. 
  
  \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} study the impact of collective decision rules on the truth-finding capacity of crowds which could communicate about common guesstimation tasks by means of a laboratory experiment where subject sat in cubicles in front of computer terminals without verbal or face-to-face communication with other subjects. 
  The underlying fundamental research question is if democratic principles are a mechanism to elicit crowd wisdom.
  Guesstimation tasks provide an objectively verifiable framework for crowd wisdom. 
- This maps to the insitution of advisory or expert committees which task is to predict future developments of for example economic growth, tax revenue, societal, economic, or environmental risks and so on. 
+ This maps to the institution of advisory or expert committees which task is to predict future developments of for example economic growth, tax revenue, societal, economic, or environmental risks and so on. 
  These boards and committees do not always strictly decide based on democratic principles, but they are often expected to provide a common assessment and members are often picked based on different expertise and theoretical background. 
- Further on, they should predict facts which are to become verfiable in the future. 
+ Further on, they should predict facts which are to become verifiable in the future. 
  Thus, these committees face a demand to deliver a collective decision and this demand is underpinned epistemically by the nature of the task. 
  Ultimately, with respect to facts there is nothing but uncertainty to disagree about.
  This discussion about the role of crowd wisdom for democracy, should not blur the fact that many democratic decisions, like elections and referendums, do not provide this immediate objectivity with respect to correctness, but are for example solutions of conflicts of interest or value judgments. 
- In that sense, democractic decisions are to a large extent an instance of crowd wisdom by postulation.
+ In that sense, democratic decisions are to a large extent an instance of crowd wisdom by postulation.
 
  \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} analyze the impact and interplay of three democratic principles: majoritarianism, unanimity (or consensus), and deliberation. 
  ``Deliberation'' is meant here in a weak sense, meaning communication to achieve a solution for the common good.
@@ -1869,13 +1869,13 @@ grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
  These initial estimates serve as independent estimates from subjects in the analysis. 
  For the deliberation phase, two different modes of deliberation were used: 
  \begin{compactenum}[(a)]
-\item \emph{Numercial communication:} As in \textcite{Lorenz.Paetzel.ea2016JustDontCall} subjects had to communicate numerical proposals over ten rounds before they entered their individual final decisions. There was no way to exchange verbal statements or anything else then numbers. 
+\item \emph{Numerical communication:} As in \textcite{Lorenz.Paetzel.ea2016JustDontCall} subjects had to communicate numerical proposals over ten rounds before they entered their individual final decisions. There was no way to exchange verbal statements or anything else then numbers. 
 \item \emph{Chats:} Subjects had an ordinary chat window, in which all members could post textual messages which immediately appeared in the chat window of all subjects in the group. This chat windows closed after three minutes or when all subjects clicked a button that they were ready. 
 \end{compactenum}
  After the deliberation subjects had to enter their final decision privately.  
  The decision of all subjects from a group were then aggregated to a final decision based on three different agreement rules for valid collective decisions:
  \begin{compactenum}[(i)]
-\item \emph{Individual:} There was no need of a collective agreement. All subjects were paid independently based on the correctness of their indidivual decision. 
+\item \emph{Individual:} There was no need of a collective agreement. All subjects were paid independently based on the correctness of their individual decision. 
 \item \emph{Majority:} If there was a proposal which was entered by more than half of the subjects, then this was made the collective decision. All subjects were then paid based on the correctness of the majority decision also when they disagreed. When subjects failed to agree, there was no payment for anyone. 
 \item \emph{Unanimity:} Only if the same proposal was entered by all subjects, this was accepted as the collective decision. When subjects failed to agree, there was no payment for anyone, otherwise they were paid based on the correctness of their collective estimate. 
 \end{compactenum}
@@ -1892,9 +1892,9 @@ grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
  Together with Galton's plea for the median as the more robust measure of aggregation \parencite{Galton1907Onevoteone} it looks like majority rule should bring about the wisdom of the crowd. 
  The results of \textcite{Lorenz.Rauhut.ea2015MajoritarianDemocracyUndermines} show that this does not realize when deliberation is added to the process. 
  Besides the empirical fact, no clear mechanism causing the difference could be identified so far. 
- On the one hand, a forced collective decision could decrease independence of judgers even more than just information exchange with negative effects on group judging performance, but this should then also hold for groups with unanimity rule. 
- On the other hand, one might think that unanimity rule makes every subject's estimate relevant, while some can be ignored under majority rule, but exactly that possiblity is also sometimes seen as a benefit of majority rule.  Stupid or even malicious outliers can safely be ignored under majority rule. 
- One could speculate that majority rule has two effects which make it likely that the group performs worse than under unanity and individual rule. 
+ On the one hand, a forced collective decision could decrease independence of people even more than just information exchange with negative effects on group judging performance, but this should then also hold for groups with unanimity rule. 
+ On the other hand, one might think that unanimity rule makes every subject's estimate relevant, while some can be ignored under majority rule, but exactly that possibility is also sometimes seen as a benefit of majority rule.  Stupid or even malicious outliers can safely be ignored under majority rule. 
+ One could speculate that majority rule has two effects which make it likely that the group performs worse than under unanimity and individual rule. 
  First, majority rule makes people think quickly about where the majority decision must lie, this distracts from fruitful thoughts and discussion of the topic which could reduce bias. 
  Although this effect should also occur under unanimity rule, it is not that strong, because, for negotiation of a unanimous decision, one must first hear every single subject. 
  Second, majority rule might create a view that the own opinion is not important because it can be overruled anyway. 
@@ -1929,7 +1929,7 @@ grid.draw(cbind(ggplotGrob(g1),ggplotGrob(g2),size="first"))
 \begin{compactitem}
  \item Relying on crowd wisdom assumes that there is something in the aggregation which goes beyond individual wisdom. 
  \item Often it is a good idea to use collective estimates but it is also important to communicate group diversity. 
- \item When communication cannot be precluded (which is the case in an open society) be aware of the possiblity of a collective tunnel vision. 
+ \item When communication cannot be precluded (which is the case in an open society) be aware of the possibility of a collective tunnel vision. 
  \item Whenever possible it is a good idea to extract independent initial estimates of estimators. 
  \item In any team which is to estimate facts, avoid majoritarian thinking.
  \item Do not take increasing average confidence in a discussing group as a sign for your increased confidence in the collective estimate.
